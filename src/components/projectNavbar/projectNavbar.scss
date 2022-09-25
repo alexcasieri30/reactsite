@@ -1,0 +1,17 @@
+.project-navbar-container{
+    display:flex;
+    flex-direction:row;
+    text-align:center;
+    width: 100%;
+    margin-top: 10px;
+    .project-navbar-section{
+        border: solid 1px black;
+        flex: 1;
+        padding: 10px;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .project-navbar-active{
+        border-bottom:none;
+    }
+}

@@ -1,0 +1,142 @@
+
+.your-cart-main{
+    height: 800px;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+}
+%checkout-button{
+    border: none;
+    background-color: none;
+}
+
+.your-cart-container{
+    display:flex;
+    flex-direction:column;
+    height: 100vh;
+    .your-cart-header{
+        flex: 0.15;
+        font-size: 35pt;
+        margin-top: 30px;
+        margin-left: 40px;
+    }
+    .your-cart-mid{
+        display: flex;
+        flex-direction: row;
+        flex: 0.75;
+        height: 60%;
+        
+        .your-cart-items{
+            flex: 0.6;
+            height: 100%;
+            overflow: scroll;
+            border: solid 3px darkblue;
+            border-radius: 10px;
+            margin-left: 40px;
+            margin-right: 10px;
+            .no-items-to-show{
+                font-size: 20pt;
+                text-align: center;
+                margin-top: 20px;
+            }
+            .your-cart-items-container{
+                display:flex;
+                flex-direction:row;
+                border-bottom: solid 1px black;
+
+                .your-cart-items-item{
+                    height: 100px;
+                    width: 100%;
+                    .your-cart-items-item-name{
+                        margin-top: 15px;
+                        margin-left: 15px;
+                        font-size: 15pt;
+                    }
+                    .your-cart-items-item-price{
+                        margin-top: 15px;
+                        margin-left: 15px;
+                    }
+                }
+                .your-cart-items-remove{
+                    margin-top: 40px;
+                    margin-right: 30px;
+                    .remove-item{
+                        border: none;
+                        height: 20px;
+                        width: 70px;
+                        background-color: rgba(0,0,0,0.2);
+                        cursor: pointer;
+                        &:hover{
+                            border: solid 1px darkblue;
+                            border-radius: 2px;
+                            
+                        }
+                    }
+                }
+            }
+            
+        }
+        .your-cart-checkout{
+            flex: 0.4;
+            margin-left: 50px;
+            .your-cart-checkout-title{
+                font-size: 20pt;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            // .your-cart-checkout-quantity{
+            //     font-size: 15pt;
+            //     margin-bottom: 10px;
+            //     text-align: center;
+            // }
+            .your-cart-checkout-totalprice{
+                text-align: center;
+                font-size: 15pt;
+                #checkout-price{
+                    margin-top: 20px;
+                    font-size: 30pt;
+                }
+            }
+           
+            .your-cart-checkout-confirm{
+                position:relative;
+                top: 10%;
+                display:flex;
+                justify-content:center;
+                .submit-order{
+                    font-size: 15pt;
+                    width: 200px;
+                    height: 50px;
+                    border: none;
+                    background-color: rgba(91, 125, 249, 0.3);
+                    border-radius: 5px;
+                    &:hover{
+                        background-color: rgba(129, 132, 197, 0.5);
+                        cursor: pointer;
+                    }
+                    &:focus{
+                        border: solid 1px darkblue;
+                    }
+                    &:active{
+                        border: solid 3px darkblue;
+                    }
+                }
+            }
+        }
+    }
+    .your-cart-footer{
+        flex: 0.15;
+    }
+}
+
+#checkout-back-button{
+    margin-left: 40px;
+    border: none;
+    height: 40px;
+    width: 80px;
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    border-radius: 5px;
+    &:hover{
+        background-color: rgba(0,0,0,0.3);
+    }
+}

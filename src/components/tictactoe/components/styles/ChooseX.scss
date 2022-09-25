@@ -1,0 +1,35 @@
+#choose-X-div{
+    display:flex;
+    justify-content:center;
+    margin-top: 30px;
+    #choose-x-bar-main{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        width: 60%;
+        .choose-x-bar-div{
+            flex: 1;
+            padding: 5px;
+            height: 150px;
+            width: 150px;
+            &:focus{
+                border: solid 3px blue;
+            }
+            .choose-x-bar-img{
+                border: solid 1px black;
+                cursor: pointer;
+                &:hover{
+                    filter: invert(100%);
+                    border: solid 3px yellow;
+                }
+                
+            }
+        }
+    }
+}
+.active{
+    width: 145px;
+    height: 145px;
+    border: solid 5px blue;
+    box-shadow: 8px 8px 16px rgb(0 0 0 / 0.4);
+}

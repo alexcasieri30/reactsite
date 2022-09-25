@@ -1,0 +1,85 @@
+$bgColor: lightblue;
+
+.shopping-cart-icon{
+    position:absolute;
+    right: 40px;
+    top: 10px;
+    height: 10px;
+    width: 10px;
+    font-size: 10pt;
+
+    cursor:pointer;
+    .icon-img{
+        z-index:-1;
+    }
+}
+.shop-all-page-navbar{
+    display:flex;
+
+    .shop-all-page-navbar-items{
+        flex: 1;
+        padding: 5px;
+        text-align:center;
+        border-radius: 8px 8px 0px 0px;
+        border: solid 1px black;
+        cursor:pointer;
+    }
+    #tote-bags{
+        border-bottom:none;
+    }
+}
+
+
+.shop-all-page-container{
+    background-color: $bgColor;
+    height: 645px;
+    .shop-all-page-section{
+        height: 80vh;
+        background-color: $bgColor;
+        .shop-all-page-section-content{
+            padding-top: 20px;
+            display:flex;
+            flex-direction:column;
+            height: 90%;
+            width: 100%;
+            .shop-all-page-section-rows{
+                flex: 1;
+                height: 100%;
+                width: 100%;
+                display:flex;
+                flex-direction:row;
+                margin: 10px;
+                .shop-all-page-section-columns{
+                    flex:1;
+                    margin: 20px;
+                    border: solid 1px black;
+                    &:hover{
+                        border-bottom: solid 4px black;
+                        cursor:pointer;
+                        box-shadow: 0 8px 8px 5px rgba(0,0,0,0.3);
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+.hidden{
+    display:none;
+}
+.see-more{
+    text-align:center;
+    &:hover{
+        text-decoration:underline;
+        cursor:pointer;
+    }
+}
+
+.active-section{
+    background-color: $bgColor;
+}
+
+#show-all-main{
+    height:100%;
+}

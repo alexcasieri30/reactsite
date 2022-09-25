@@ -1,0 +1,15 @@
+.App{
+    background-color: white;
+    display:flex;
+    flex-direction:row;
+    width: 100%;
+    .project-header-name{
+        width: 100vw;
+        flex: 1;
+        text-align:center;
+        padding: 10px;
+    }
+}
+body{
+    margin: 0px;
+}

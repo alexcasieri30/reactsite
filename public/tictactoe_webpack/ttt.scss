@@ -1,0 +1,143 @@
+#ttt-body{
+    background: linear-gradient(to left,#8A2387,#E94057,#F27121);
+}
+.header{
+    margin:0px;
+    flex: 0.05;
+    border: solid 1px black;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+.header-elements{
+    cursor:pointer;
+    padding: 10px;
+    flex: .333333;
+    text-align:center;
+}
+.header-elements:hover{
+    background-color: rgba(0,0,0,0.3);
+}
+
+.game-play{
+    height: 80vh;
+    display:flex;
+    flex-direction: column;
+}
+.header-text-tictactoe{
+    text-align:center;
+    flex: 0.1;
+}
+.gameboard{
+    flex: 0.7;
+    display:flex;
+    justify-content:center;
+}
+.bottom{
+    height: 100px;
+    flex: 0.2;
+    display:flex;
+    justify-content:center;
+}
+
+.grid-container-tictactoe{
+    display:grid;
+    overflow: scroll;
+    grid-template-columns: repeat(3, 140px);
+    grid-template-rows: repeat(3, 140px);
+    border: solid 1px black;
+    border-radius: 10px;
+    height: 420px;
+    width: 420px;
+    position:relative;
+    top: 10vh;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 0.4);
+
+}
+
+.game-box{
+    border: dashed 1px black;
+}
+.game-box:hover{
+    border: solid 3px darkblue;
+}
+.active{
+    height: 98px;
+    width: 98px;
+    margin:auto;
+}
+.hidden{
+    display: none;
+}
+
+.p1{
+    background-color: rgba(150,250,150,.6);
+    opacity: 0.5;
+}
+.p2{
+    opacity: 0.5;
+    background-color: rgba(250,70,70,.7);
+}
+.tiegame{
+    opacity: 0.5;
+    background-color: rgba(70,70,250,.7);
+}
+
+.hidden{
+    display:none;
+}
+
+#reset{
+    cursor: pointer;
+    margin-top: 15px;
+    background-color: rgba(250,70,70,.9);
+    height: 40px;
+    width: 80px;
+    border-radius: 8px;
+}
+
+.gameover-alert{
+    opacity: 1;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    position:absolute;
+    top: 30vh;
+    left: 31vw;
+    border: solid 1px black;
+    height: 200px;
+    width: 400px;
+    align-content: center;
+}
+
+.choose-img-container{
+    align-content: center;
+    margin:auto;
+    display:flex;
+    flex-direction: row;
+}
+.choose-box{
+    flex: .5;
+    margin:auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.choose-box-img{
+    box-sizing: border-box;
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+}
+.choose-box-img:hover{
+    filter: invert(100%);
+    border: solid 3px yellow;
+}
+.selected{
+    border: dotted 3px rgb(57, 128, 57);
+}
+
+
+.pointer-delay{
+    pointer-events: none;
+}

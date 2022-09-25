@@ -1,0 +1,160 @@
+
+%item1-button{
+    height: 40px;
+    width: 100%;
+    border: none;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover{
+        background-color: rgba(0,0,0,0.3);
+    }
+}
+
+.item1-container{
+    margin: 0px;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #62aad3 0%, #80D0C7 100%);
+    display:flex;
+    flex-direction:column;
+    height: 800px;
+
+    .item1-section1{
+        flex: 0.05;
+        text-align:left;
+        padding-top: 30px;
+        padding-left: 50px;
+        font-size: 35pt;
+    }
+    .item1-section2{
+        flex: 0.9;
+        display:flex;
+        .item1-section2-mid{
+            flex: 1;
+            padding: 15px;
+            padding-top: 30px;
+            padding-left: 30px;
+            height: 90%;
+            display:flex;
+            flex-direction:row;
+            .item1-image{
+                flex: 0.65;
+                display:flex;
+                flex-direction:column;
+                .item1-image-image{
+                    flex: 0.70;
+                    border: solid 1px black;
+                    display:flex;
+                    flex-direction:column;
+                    .item1-image-source{
+                        flex: 0.7;
+                    }
+                    .item1-image-description{
+                        flex: 0.3;
+                        padding: 10px;
+                        border: solid 1px black;
+                    }
+                }
+                .item1-image-checkout{
+                    flex: 0.3;
+                    display:flex;
+                    flex-direction:column;
+                    .item1-confirm-add-container{
+                        padding: 10px;
+                        .item1-confirm-add{
+                            @extend %item1-button;
+                            width: 80%;
+                            margin-left: 10%;
+                        }
+                    }
+                    .item1-add-container{
+                        padding: 10px;
+                        padding-bottom: 0px;
+                        .item1-add-to-cart{
+                            @extend %item1-button;
+                        }
+                    }
+                    .item1-view-cart-link{
+                        margin-left: 10px;
+                        text-align:center;
+                    }
+                }
+            }
+            .item1-info{
+                flex: 0.35;
+                padding-left: 30px;
+
+                .item1-price{
+                    font-size: 20pt;
+                    padding: 10px;
+                    padding-left: 0px;
+                }
+                .item1-quantity{
+                    padding: 10px;
+                    padding-left: 0px;
+                }
+                .item1-quantity-dropdown{
+                    padding: 10px;
+                    padding-left: 0px;
+                    .item1-quantity-select{
+                        width: 60px;
+                        background-color: lightblue;
+                    }
+                }
+                .return-policy{
+                    .return-policy-title{
+                        font-size: 15pt;
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                    }
+                    .return-policy-text{
+                        width: 80%;
+                        text-align: justify;
+                        font-size: 12pt;
+                    }
+                }
+                .item-added-info{
+                    border: solid 1px black;
+                    border-radius: 5px;
+                    margin-top: 30px;
+                    margin-left: 10px;
+                    padding: 10px;
+                    #item-info-table{
+                        display:flex;
+                        .item-added-title{
+                            flex: 0.9;
+                        }
+                        .hide-added-item-popup{
+                            margin-top: 0px;
+                            margin-left: 100px;
+                            flex: 0.1;
+                            #hide-table{
+                                font-size: 13pt;
+                                border-radius: 10px;
+                                border: none;
+                                cursor: pointer;
+                                height: 20px;
+                                width: 20px;
+                                text-align: center;
+                                &:hover{
+                                    background-color: rgba(0,0,0,0.3);
+                                }
+                            }
+                        }
+                    }
+                    .you-added-item1-info{
+                        width: 200px;
+                        padding: 10px;
+                        background-color: rgba(0,200,200,0.4);
+                        .you-added-item1-info-tr {
+                            border: solid 1px black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .item1-section3{
+        flex: 0.1;
+    }
+}
