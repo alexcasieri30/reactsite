@@ -1,5 +1,6 @@
 import React from "react";
 import "./projectNavbar.scss";
+import Carousel from "../Utilities/Carousel";
 import { Link } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import { useState } from "react";

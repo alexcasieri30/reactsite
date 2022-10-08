@@ -1,0 +1,58 @@
+.fullscreengames-main-container{
+    display:flex;
+    height: 60em;
+    flex-direction:column;
+    .fullscreengames-top{
+        flex: 0.2;
+    }
+    .fullscreengames-mid{
+        flex: 0.65;
+        display:flex;
+        .fullscreengames-mid-left{
+            flex: 0.3;
+        }
+        .fullscreengames-mid-mid{
+            flex: 0.4;
+            border: solid 1px black;
+            border-radius: 30px;
+            display:flex;
+            flex-direction:column;
+            overflow: scroll;
+            .fs-game-section{
+                margin: 0;
+                flex: 0.25;
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+                border: outset 5px gray;
+            }
+            #memory2{
+                background-color: rgba(199, 1, 173, 0.4);
+                &:hover{
+                    border: inset 5px gray;
+                }
+            }
+            #gcta{
+                background-color: rgba(130,100,100,0.5);
+                &:hover{
+                    border: inset 5px gray;
+                }
+            }
+            #other{
+                background-color: rgba(0,0,200,0.4);
+                &:hover{
+                    border: inset 5px gray;
+                }
+            }
+            
+        }
+        .fullscreengames-mid-right{
+            flex: 0.3;
+        }
+    }
+    .fullscreengames-bot{
+
+    }
+}
+

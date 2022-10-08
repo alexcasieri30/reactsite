@@ -26,7 +26,7 @@ const Navbar = function(){
                     <img src={Home} style={{'height':'2.5em', 'width':'auto'}} className="navbar-icon" alt="" />
                 </div>
             </Link>
-            <Link to="/games" className="navbar-section">
+            <Link to="/chooseGameType" className="navbar-section">
                 <div id="navbar-section-5">
                     <img src={Games} style={{'height':'2.5em', 'width':'auto'}} className="navbar-icon" alt="" />
                 </div>

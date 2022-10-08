@@ -2,7 +2,7 @@ import "./styles/startboard.scss";
 import Board from "./SetBoard";
 import { useState } from "react";
 
-function StartBoard({ setPlayerShips }){
+function StartBoard({ newGameButton, setPlayerShips }){
     const [ship, setShip] = useState(-1);
     const [hovering, setHovering] = useState(false);
     const [readyToStart, setReadyToStart] = useState(false);

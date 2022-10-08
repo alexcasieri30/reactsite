@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<style type="text/css">
+		#forest{
+			background-image: url('images/environment_forestbackground.png');
+			width: 800px;
+			height: 600px;
+			position: relative;
+			float: left;
+		}
+		#grass1{
+			position: absolute;
+			left: 0px;
+			bottom: 0px;
+		}
+		#grass2{
+			position: absolute;
+			left: 270px;
+			bottom: 0px;
+		}
+		#grass3{
+			position: absolute;
+			left: 540px;
+			bottom: 0px;
+		}
+		.grass:hover{
+			background-color: yellow;
+			opacity: 0.5;
+		}
+		#playAgain{
+			width: 100px;
+			height: 45px;
+			position: absolute;
+			top: 560px;
+			left: 940px;
+			display: none;
+		}
+		#overbox{
+			display: none;
+			position: absolute;
+			width: 300px;
+			height: 200px;
+			background-color: rgb(50,50,50);
+			opacity: 0.8;
+			border-radius: 15px;
+			border: solid 1px black;
+			left: 250px;
+			top: 200px;
+		}
+		#gameover{
+			color: white;
+			display: none;
+			position: absolute;
+			top: 0px;
+			left: 85px;
+			font-size: 30pt;
+		}
+		#gamestats{
+			display: inline;
+			position: absolute;
+			top: 115px;
+			left: 55px;
+			font-size: 15pt;
+			color: white;
+		}
+		#newgame{
+			position: absolute;
+			top: 170px;
+			left: 115px;
+			display: inline;
+		}
+		#instructions{
+			margin-left: 810px;
+		}
+		#title{
+			margin-left: 810px;
+		}
+		#yourprogress{
+			margin-left: 810px;
+		}
+		#pokeballsLeft{
+			margin-left: 810px;
+		}
+		#pokemonCaught{
+			margin-left: 810px;
+		}
+		#pokeIndex{
+			z-index: -1;
+			display: inline;
+			text-align: center;
+			color: white;
+			position: absolute;
+			top: 450px;
+			left: 300px;
+ 			width: 200px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="forest">
+			<img class="grass" id="grass1" src="images/grass.png">
+			<img class="grass" id="grass2" src="images/grass.png">
+			<img class="grass" id="grass3" src="images/grass.png">
+		</div>
+		<div id="game">
+			<h1 id="title">Gotta Catch them all</h1>
+			<p id="instructions"> Your goal in this game is to earn as many Pokeballs as possible while catching a variety of Pokemon along the way. <br><br> To play simply click on one of the three grass clumps in the forest. Behind one of those grass clumps is a Pokemon. Behind another grass clump are two free Pokeballs that you can use to try again, and behind the last grass clump is nothing. <br><br> Note that each time you pick a grass clump you will be using one of your Pokeballs, and when you run out the game will be over. </p>
+			<h1 id="yourprogress">Your progress:</h1>
+			<p id="pokeballsLeft"> Pokeballs left: 5</p>
+			<p id="pokemonCaught"> Pokemon caught: 0</p>
+			<button id="playAgain">Play again!</button>
+			<div id="overbox">
+				<h1 id="gameover">GAME OVER!</h1>
+				<p id="gamestats"></p>
+				<button id="newgame">New Game</button>
+			</div>
+			<div id="pokeIndex">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var locked;
+		let pokeBalls = 5;
+		let pokemonCaught = 0;
+		let pokeIndex = document.getElementById("pokeIndex");
+		let g1 = document.getElementById("grass1");
+		let g2 = document.getElementById("grass2");
+		let g3 = document.getElementById("grass3");
+		let outputPokeballs = document.getElementById("pokeballsLeft");
+		let outputCaught = document.getElementById('pokemonCaught');
+		let group = ['pikachu.png','squirtle.png','eevee.png','charmander.png','bulbasaur.png'];
+		let playAgain = document.getElementById("playAgain");
+		let bulbasaurCaught = 0;
+		let charmanderCaught = 0;
+		let eeveeCaught = 0;
+		let pikachuCaught = 0;
+		let squirtleCaught = 0;
+			g1.onclick = function(){
+				let yourprogress = document.getElementById('yourprogress');
+				if (locked == true){
+					return;
+				}
+				else{
+					pokeBalls -= 1;
+					locked = true;
+					let chance = parseInt( Math.random() * 3 );
+					if (chance == 0){
+
+						let yourprogress = document.getElementById('yourprogress');
+						let pokemonNum = parseInt( Math.random() * group.length );
+						g1.src=`images/${group[pokemonNum]}`;
+						pokemonCaught+=1;
+						if (pokemonNum == 4){
+							bulbasaurCaught++;
+							yourprogress.innerHTML = 'You caught a Bulbasaur!';
+						}
+						else if (pokemonNum == 3){
+							charmanderCaught++;
+							yourprogress.innerHTML = 'You caught a Charmander!'
+						}
+						else if (pokemonNum == 2){
+							eeveeCaught++;
+							yourprogress.innerHTML = 'You caught an Eevee!'
+						}
+						else if (pokemonNum == 0){
+							pikachuCaught++;
+							yourprogress.innerHTML = 'You caught a Pikachu!'
+						}
+						else if (pokemonNum == 1){
+							squirtleCaught++;
+							yourprogress.innerHTML = 'You caught a Squirtle!'
+						}
+					}
+					else if (chance == 1){
+						pokeBalls+=2;
+						g1.src="images/pokeballs.png";
+						yourprogress.innerHTML = 'You caught 2 free Pokeballs!';
+					}
+					else if (chance == 2){
+						console.log('you got nothing');
+						yourprogress.innerHTML = 'You got nothing.';
+						g1.src="";
+					}
+					outputPokeballs.innerHTML = "Pokeballs left: " + pokeBalls;
+					outputCaught.innerHTML = "Pokemon caught: " + pokemonCaught;
+					playAgain.style.display = "inline";
+
+					playAgain.onclick = function(){
+						playAgain.style.display = "none";
+						yourprogress.innerHTML = 'Your progress:'
+						g1.src="images/grass.png"
+						g2.src="images/grass.png"
+						g3.src="images/grass.png"
+						locked = false;
+						outputPokeballs.innerHTML = "Pokeballs left: " + pokeBalls;
+					}
+					if (pokeBalls == 0){
+						let gameover = document.getElementById('gameover');
+						gameover.style.display = "inline";
+						let overbox = document.getElementById('overbox');
+						overbox.style.display = 'inline';
+						let gamestats = document.getElementById('gamestats');
+						gamestats.style.display = 'inline';
+						gamestats.innerHTML = "Total Pokemon caught: " + pokemonCaught;
+						playAgain.style.display = 'none';
+						g1.style.display = 'none';
+						g2.style.display = 'none';
+						g3.style.display = 'none';
+						let button = document.getElementById('newgame');
+						pokeIndex.style.display = 'inline';
+						pokeIndex.style['z-index'] = '0';
+						pokeIndex.innerHTML = `<h1 style="font-size: 15pt">PokeIndex</h1>Bulbasaurs: ${bulbasaurCaught} <br> Charmanders: ${charmanderCaught} <br> Eevees: ${eeveeCaught} <br> Pikachus: ${pikachuCaught} <br> Squirtles ${squirtleCaught}`;
+						button.onclick = function(){
+							gameover.style.display = 'none';
+							overbox.style.display = 'none';
+							gamestats.style.display = 'none';
+							g1.style.display = 'inline';
+							g1.src = 'images/grass.png';
+							g2.style.display = 'inline';
+							g3.style.display = 'inline';
+							pokeBalls = 5;
+							pokemonCaught = 0;
+							bulbasaurCaught = 0;
+							charmanderCaught = 0;
+							eeveeCaught = 0;
+							pikachuCaught = 0;
+							squirtleCaught = 0;
+							pokeIndex.style.display='none';
+							outputPokeballs.innerHTML = 'PokeBalls left: ' + pokeBalls;
+							outputCaught.innerHTML = 'Pokemon caught: ' + pokemonCaught;
+							locked = false;
+							return;
+						}
+					}
+				}
+			}
+			g2.onclick = function(){
+				let yourprogress = document.getElementById('yourprogress');
+				if (locked == true){
+					return;
+				}
+				else{
+					pokeBalls -= 1;
+					locked = true;
+					let chance = parseInt( Math.random() * 3 );
+					if (chance == 0){
+						let pokemonNum = parseInt( Math.random() * group.length);
+						g2.src=`images/${group[pokemonNum]}`;
+						pokemonCaught += 1;
+						if (pokemonNum == 4){
+							bulbasaurCaught++;
+							yourprogress.innerHTML = 'You caught a Bulbasaur!';
+						}
+						else if (pokemonNum == 3){
+							charmanderCaught++;
+							yourprogress.innerHTML = 'You caught a Charmander!';
+						}
+						else if (pokemonNum == 2){
+							eeveeCaught++;
+							yourprogress.innerHTML = 'You caught an Eevee!';
+						}
+						else if (pokemonNum == 0){
+							pikachuCaught++;
+							yourprogress.innerHTML = 'You caught a Pikachu!';
+						}
+						else if (pokemonNum == 1){
+							squirtleCaught++;
+							yourprogress.innerHTML = 'You caught a Squirtle!';
+						}
+					}
+					else if (chance == 1){
+						g2.src="images/pokeballs.png";
+						pokeBalls+=2;
+						yourprogress.innerHTML = 'You caught 2 free Pokeballs!';
+					}
+					else{
+						yourprogress.innerHTML = 'You got nothing.'
+						g2.src="";
+					}
+					outputPokeballs.innerHTML = "Pokeballs left: " + pokeBalls;
+					outputCaught.innerHTML = "Pokemon caught: " + pokemonCaught;
+					playAgain.style.display = "inline";
+					playAgain.onclick = function(){
+						playAgain.style.display = "none";
+						g1.src="images/grass.png"
+						g2.src="images/grass.png"
+						g3.src="images/grass.png"
+						yourprogress.innerHTML = 'Your progress:'
+						locked = false;
+						outputPokeballs.innerHTML = "Pokeballs left: " + pokeBalls;
+					}
+					if (pokeBalls == 0){
+						let gameover = document.getElementById('gameover');
+						gameover.style.display = "inline";
+						let overbox = document.getElementById('overbox');
+						overbox.style.display = 'inline';
+						let gamestats = document.getElementById('gamestats');
+						gamestats.style.display = 'inline';
+						gamestats.innerHTML = "Total Pokemon caught: " + pokemonCaught;
+						let button = document.getElementById('newgame');
+						playAgain.style.display = 'none';
+						g1.style.display = 'none';
+						g2.style.display = 'none';
+						g3.style.display = 'none';
+						pokeIndex.style.display = 'inline';
+						pokeIndex.style['z-index'] = '0';
+						pokeIndex.innerHTML = `<h1 style="font-size: 15pt">PokeIndex</h1>Bulbasaurs: ${bulbasaurCaught} <br> Charmanders: ${charmanderCaught} <br> Eevees: ${eeveeCaught} <br> Pikachus: ${pikachuCaught} <br> Squirtles ${squirtleCaught}`;
+						button.onclick = function(){
+							gameover.style.display = 'none';
+							overbox.style.display = 'none';
+							gamestats.style.display = 'none';
+							g1.style.display = 'inline';
+							g2.style.display = 'inline';
+							g2.src = 'images/grass.png';
+							g3.style.display = 'inline';
+							pokeBalls = 5;
+							pokemonCaught = 0;
+							bulbasaurCaught = 0;
+							charmanderCaught = 0;
+							eeveeCaught = 0;
+							pikachuCaught = 0;
+							squirtleCaught = 0;
+							pokeIndex.style.display = 'none';
+							outputPokeballs.innerHTML = 'PokeBalls left: ' + pokeBalls;
+							outputCaught.innerHTML = 'Pokemon caught: ' + pokemonCaught;
+							locked = false;
+							return;
+						}
+					}
+				}
+			}
+			g3.onclick = function(){
+				let yourprogress = document.getElementById('yourprogress');
+				if (locked == true){
+					return;
+				}
+				else{
+					pokeBalls -= 1;
+					locked = true;
+					let chance = parseInt( Math.random() * 3 );
+					if (chance == 0){
+						let pokemonNum = parseInt( Math.random() * group.length );
+						g3.src=`images/${group[pokemonNum]}`
+						pokemonCaught += 1;
+						if (pokemonNum == 4){
+							bulbasaurCaught++;
+							yourprogress.innerHTML = 'You caught a Bulbasaur!';
+						}
+						else if (pokemonNum == 3){
+							charmanderCaught++;
+							yourprogress.innerHTML = 'You caught a Charmander!';
+						}
+						else if (pokemonNum == 2){
+							eeveeCaught++;
+							yourprogress.innerHTML = 'You caught an Eevee!';
+						}
+						else if (pokemonNum == 0){
+							pikachuCaught++;
+							yourprogress.innerHTML = 'You caught a Pikachu!';
+						}
+						else if (pokemonNum == 1){
+							squirtleCaught++;
+							yourprogress.innerHTML = 'You caught a Squirtle!';
+						}
+					}
+					else if (chance == 1){
+						g3.src="images/pokeballs.png";
+						pokeBalls += 2;
+						yourprogress.innerHTML = 'You caught 2 free Pokeballs!';
+					}
+					else{
+						yourprogress.innerHTML = 'You got nothing.';
+						g3.src="";
+					}
+					outputPokeballs.innerHTML = "Pokeballs left: " + pokeBalls;
+					outputCaught.innerHTML = "Pokemon caught: " + pokemonCaught;
+					playAgain.style.display = "inline";
+					playAgain.onclick = function(){
+						playAgain.style.display = "none";
+						yourprogress.innerHTML = 'Your progress:'
+						g1.src="images/grass.png"
+						g2.src="images/grass.png"
+						g3.src="images/grass.png"
+						locked = false;
+						outputPokeballs.innerHTML = "Pokeballs left: " + pokeBalls;
+					}
+					if (pokeBalls == 0){
+						let gameover = document.getElementById('gameover');
+						gameover.style.display = "inline";
+						let overbox = document.getElementById('overbox');
+						overbox.style.display = 'inline';
+						let gamestats = document.getElementById('gamestats');
+						gamestats.style.display = 'inline';
+						gamestats.innerHTML = "Total Pokemon caught: " + pokemonCaught;
+						playAgain.style.display = 'none';
+						pokeIndex.style.display = 'inline';
+						pokeIndex.style['z-index'] = '0';
+						pokeIndex.innerHTML = `<h1 style="font-size: 15pt">PokeIndex</h1>Bulbasaurs: ${bulbasaurCaught} <br> Charmanders: ${charmanderCaught} <br> Eevees: ${eeveeCaught} <br> Pikachus: ${pikachuCaught} <br> Squirtles ${squirtleCaught}`;
+						g1.style.display = 'none';
+						g2.style.display = 'none';
+						g3.style.display = 'none';
+						let button = document.getElementById('newgame');
+						button.onclick = function(){
+							console.log("new game started");
+							console.log(pokemonCaught);
+							gameover.style.display = 'none';
+							overbox.style.display = 'none';
+							gamestats.style.display = 'none';
+							pokeIndex.style.display = 'none';
+							g1.style.display = 'inline';
+							g2.style.display = 'inline';
+							g3.style.display = 'inline';
+							g3.src = 'images/grass.png';
+							pokeBalls = 5;
+							pokemonCaught = 0;
+							bulbasaurCaught = 0;
+							charmanderCaught = 0;
+							eeveeCaught = 0;
+							pikachuCaught = 0;
+							squirtleCaught = 0;
+							outputPokeballs.innerHTML = 'PokeBalls left: ' + pokeBalls;
+							outputCaught.innerHTML = 'Pokemon caught: ' + pokemonCaught;
+							locked = false;
+							return;
+						}	
+					}
+				}
+			}
+	</script>
+</body>
+</html>
+

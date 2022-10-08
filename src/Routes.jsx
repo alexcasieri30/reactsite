@@ -1,10 +1,14 @@
 import {Route} from "react-router-dom";
 import Games from './App';
-import Memory from './components/memory/App';
-import CVLetter from './components/cv_project/App';
-import Sketch from './components/etchasketch_react/App';
-import TictactoeBoard from './components/tictactoe/App';
-import Battleship from "./components/battleship/App";
+import ChooseGameType from "./components/Games/ChooseGame";
+import FullScreenGames from "./components/Games/FullScreenGames";
+
+import Memory from './components/Games/memory/App';
+import CVLetter from './components/Games/cv_project/App';
+import Sketch from './components/Games/etchasketch_react/App';
+import TictactoeBoard from './components/Games/tictactoe/App';
+import Battleship from "./components/Games/battleship/App";
+
 
 import Home from './static_pages/HomeV1';
 import React from "react";
@@ -28,6 +32,9 @@ const routes = [
     <Route path="/about" element={<About/>}/>,
     <Route path="/blog" element={<Blog/>}/>,
     <Route path="/settings" element={<Settings/>}/>,
+
+    <Route path="/chooseGameType" element={<ChooseGameType/>}/>,
+    <Route path="/fullscreengames" element={<FullScreenGames/>}/>,
 
     <Route path="/games" element={<Games/>}/>,
     <Route path="/games/memory" element={<Memory />}/>,

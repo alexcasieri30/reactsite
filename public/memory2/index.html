@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Memory</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-family: monospace;
+        text-align: center;
+      }
+      .hidden {
+        display: none;
+      }
+
+      #tokens {
+        width: 400px;
+        height: 300px;
+        margin: auto;
+      }
+
+      #tokens img {
+        width: 100px;
+        height: 100px;
+      }
+      .clicked{
+
+      }
+      #playagain{
+        display: none;
+      }
+      .matched{
+      }
+      #scoreboard{
+        text-align: right;
+        margin-right: 43vw;
+      }
+      #bestTime{
+        text-align: center;
+        position: relative;
+      }
+      #didYouMakeIt{
+        margin-left: 0px;
+        margin-top: 100px;
+      }
+      #level{
+        display: flex;
+        margin-left: 180px;
+        margin-right: 180px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      .levelbutton{
+        flex-grow: 1;
+        cursor: pointer;
+        margin: 20px;
+        margin-left: 30px;
+        margin-right: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: white;
+        border: solid 1px blue;
+        color: black;
+      }
+      #modechosen{
+        margin-right: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Memory Matching Madness!</h1>
+    <br>
+    <!-- start screen -->
+    <div id="screen_start">
+        <p>Instructions go here</p>
+        <p>Difficulty:</p>
+        <div id='level'>
+            <div class = 'levelbutton'>Easy</div>
+            <div class = 'levelbutton'>Medium</div>
+            <div class = 'levelbutton'>Hard</div> 
+        </div>
+        <div id='modechosen'>Mode chosen: </div>
+        <br>
+        <br>
+        <p>Enter your name (optional): </p>
+        <input type="text" placeholder = 'Name'value = "" id='yourname'>
+        <br>
+        <br>
+        <button id="start">Start</button>
+    </div>
+    <!-- game play screen -->
+    <div id="screen_game" class="hidden">
+        <div id="timer">00:00</div>
+        <div id="tokens"></div>
+    </div>
+    <!-- game over screen -->
+    <div id="screen_gameover" class="hidden">
+        <div id="yourTime">Your time was:<br><br></div>
+        <br>
+        <button id="again">Play again</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id='bestTime'></div>
+        <div id='scoreboard'><br><br></div>
+        
+        <br>
+        <div id='didYouMakeIt'></div>
+    </div>
+
+    <br>
+    <div id='stopwatch'></div>
+
+    <audio id='correctSound' src='sounds/bell_sound.mp3'></audio>
+    <audio id='incorrectSound' src='sounds/thud_sound.mp3'></audio>
+    <script>
+        //localStorage.clear()
+        // isolate our DOM queries
+
+        window.localStorage.setItem('Player_1E',1000)
+        window.localStorage.setItem('Player_2E',1000)
+        window.localStorage.setItem('Player_3E',1000)
+        window.localStorage.setItem('Player_1M',1000)
+        window.localStorage.setItem('Player_2M',1000)
+        window.localStorage.setItem('Player_3M',1000)
+        window.localStorage.setItem('Player_1H',1000)
+        window.localStorage.setItem('Player_2H',1000)
+        window.localStorage.setItem('Player_3H',1000)
+
+
+        let screen_start = document.querySelector('#screen_start');
+        let screen_game = document.querySelector('#screen_game');
+        let screen_gameover = document.querySelector('#screen_gameover');
+        let start = document.querySelector('#start');
+        let tokens = document.querySelector('#tokens');
+        let playagain = document.getElementById('again')
+        let yourTime = document.getElementById("yourTime")
+        let scoreboard = document.getElementById('scoreboard')
+        let header = document.querySelector('h1')
+        let yourResult = document.getElementById("didYouMakeIt");
+        let buttons = document.querySelectorAll('.levelbutton');
+        let modechosen = document.getElementById('modechosen');
+        let yourname = document.getElementById('yourname');
+        let correctSound = document.getElementById('correctSound');
+        let incorrectSound = document.getElementById('incorrectSound');
+        let bestTime = document.getElementById('bestTime')
+        
+
+        let time;
+        // array of all pokemon graphics
+        
+
+        let choice = 0;
+
+        for (let i = 0; i < buttons.length; i++){
+
+            buttons[i].onclick = function(event, number){
+                modechosen.innerHTML = 'Mode Chosen: '
+                for (let j = 0; j < buttons.length; j++){
+                    buttons[j].style.backgroundColor = 'white'
+                }
+                let button = event.currentTarget;
+                button.style.backgroundColor = 'rgb(150,150,255)';
+
+                if (button.innerHTML == "Easy"){
+                    modechosen.innerHTML += 'Easy';
+                }
+                else if (button.innerHTML == "Medium"){
+                    modechosen.innerHTML += 'Medium';
+                }
+                else{
+                    modechosen.innerHTML += 'Hard' 
+                }
+            }
+        }
+
+        // vars to keep track of which elements were clicked
+        let token1 = false;
+        let token2 = false;
+        let stopwatch = document.getElementById('timer')
+        let sec = 0;
+        let min = 0;
+        function increaseTime(){
+            sec++;
+            
+            if (sec < 10){
+                if (sec == 0){
+                    stopwatch.innerHTML = `0${min}:00`;
+                }
+                else{
+                    stopwatch.innerHTML = `0${min}:0` + sec;
+                }
+            }
+            else{
+                if (sec == 60){
+                    min += 1;
+                    sec = sec - 60;
+                }
+                if (sec == 0){
+                    stopwatch.innerHTML =`0${min}:0` + sec;
+                }
+                else{
+                    stopwatch.innerHTML = `0${min}:` + sec;            
+                }
+            }
+        }
+        function getThreeMin(array){
+
+                let min1 = 10000
+                let index1;
+                for (let i = 0; i < array.length; i++){
+                    if (array[i] < min1){
+                        min1 = array[i]
+                        index1 = i
+                    }
+                }
+                let min2 = 10000
+                let index2;
+                for (let i = 0; i < array.length; i++){
+                    if (i != index1){
+                        if (array[i] < min2){
+                            min2 = array[i]
+                            index2 = i
+                        }
+                    }
+                }
+                let min3 = 10000
+                let index3;
+                for (let i = 0; i < array.length; i++){
+                    if (i != index1 && i != index2){
+                        if (array[i] < min3){
+                            min3 = array[i];
+                            index3 = i;
+                        }
+                    }
+                }
+                return [index1, index2, index3]
+            }
+        function resetTime(){
+            sec = 0;
+            min = 0;
+        }
+        function reset() {
+            token1.src = 'assignment06_images/pokeball.png';
+            token2.src = 'assignment06_images/pokeball.png';
+            token1 = false;
+            token2 = false;
+        }
+        function getTotalSeconds(time){
+            let seconds = parseInt(time.charAt(time.length - 2) + time.charAt(time.length - 1))
+            let minutes = parseInt(time.charAt(time.length - 5) + time.charAt(time.length - 4)) * 60
+            let totalseconds = minutes + seconds
+            return totalseconds
+        }
+        function generateTimeName(){
+            for (let i = 0; i < 10; i++){
+                let randnum1 = parseInt(1 + Math.random() * 9).toString()
+                let randnum2 = parseInt(Math.random() * 10).toString()
+                let randnum3 = parseInt(Math.random() * 10).toString()
+                let randnum4 = parseInt(Math.random() * 10).toString()
+                let randnum5 = parseInt(Math.random() * 10).toString()
+                let randnum6 = parseInt(Math.random() * 10).toString()
+                let randnum7 = parseInt(Math.random() * 10).toString()
+                let randnum = parseInt(randnum1 + randnum2 + randnum3 + randnum4 + randnum5 + randnum6 + randnum7)
+                let variable = 'player_' + randnum.toString()
+                return variable
+            }
+        }
+        let controlvariable;
+        // pick 6 random pokemon
+        let pickedPokemon = [];
+        // when the user click start we need to show the game playing screen
+        start.addEventListener('click', function() {
+            var assets = ['snorlax.png', 'electrabuzz.png', 'chansey.png', 'oddish.png',
+                'pikachu.png', 'paras.png', 'arcanine.png', 'ponita.png',
+                'venonat.png', 'eggsecute.png', 'machop.png', 'pidgey.png',
+                'psyduck.png', 'tauros.png', 'vulpix.png', 'gloom.png',
+                'krabby.png', 'butterfree.png', 'bulbasaur.png', 'clefairy.png',
+                'koffing.png', 'goldeen.png', 'magikarp.png', 'beedrill.png',
+                'lapras.png', 'meowth.png', 'ekans.png', 'jigglypuff.png',
+                'horsea.png', 'polywog.png', 'sandshrew.png', 'rattata.png',
+                'gengar.png', 'eevee.png', 'bellsprout.png', 'squirtle.png',
+                'seel.png', 'caterpie.png']
+
+            if (modechosen.innerHTML == "Mode Chosen: Easy"){
+                choice = 1;
+            }
+            else if (modechosen.innerHTML == "Mode Chosen: Medium"){
+                choice = 2;
+            }
+            else{
+                choice = 3;
+            }
+            let nH = document.querySelector('#nameHeader')
+            console.log(nH)
+            if (header.children.length >= 1){
+                for (let x = 0; x < 1; x++){
+                    header.removeChild(nH)
+                }  
+            }
+            let nameOfPerson = yourname.value;
+            let timeName;
+            let realName;
+
+
+            if (nameOfPerson.length == 0){
+                timeName = generateTimeName();
+                realName = timeName;
+            }
+            else{
+                timeName = nameOfPerson; 
+                realName = timeName;
+            }
+            if (choice == 1){
+                timeName += 'E'
+            }
+            else if (choice == 2){
+                timeName += 'M'
+            }
+            else if (choice == 3){
+                timeName += 'H'
+            }
+
+            let nameHeader = document.createElement("div")
+            nameHeader.id = 'nameHeader'
+            nameHeader.innerHTML = "You are: " + realName;
+            nameHeader.style['font-size'] = '10pt'
+
+            header.appendChild(nameHeader)
+
+
+            let prevImages = document.querySelectorAll('img')
+            if(tokens.children.length > 0){
+                for (let x = 0; x < prevImages.length; x++){
+                    
+                    tokens.removeChild(prevImages[x])
+                }
+            }
+            controlvariable = setInterval(increaseTime, 1000);
+            let matches = 0;
+            // make the start screen invisible
+            screen_start.classList.add('hidden');
+
+            // show the playing screen
+            screen_game.classList.remove("hidden");
+
+            if (choice == 3){
+                for (let i = 0; i < 15; i++) {
+                    let randomP = parseInt( Math.random() * assets.length );
+                    pickedPokemon.push( assets[randomP] );
+                    pickedPokemon.push( assets[randomP] );
+                    assets.splice( randomP, 1 );
+                }
+                tokens.style.width = '600px'
+                tokens.style.height = '500px'
+            }
+            else if (choice == 2){
+                console.log(assets)
+                for (let i = 0; i < 10; i++) {
+                    let randomP = parseInt( Math.random() * assets.length );
+                    pickedPokemon.push( assets[randomP] );
+                    pickedPokemon.push( assets[randomP] );
+                    assets.splice( randomP, 1 );
+                }
+                tokens.style.width = '500px'
+                tokens.style.height = '400px'
+            }
+            else {
+                // create 12 pokeballs for the user to click on
+                for (let i = 0; i < 6; i++) {
+                    let randomP = parseInt( Math.random() * assets.length );
+                    pickedPokemon.push( assets[randomP] );
+                    pickedPokemon.push( assets[randomP] );
+                    assets.splice( randomP, 1 );
+                }
+                tokens.style.width = '400px'
+                tokens.style.height = '300px'
+            }
+            // randomize the pokemon in our array
+            while (pickedPokemon.length > 0) {
+                let tempImage = document.createElement('img');
+                tempImage.src = 'assignment06_images/pokeball.png';
+                //setting the secret image for each pokeball
+                let secretIndex = parseInt( Math.random() * pickedPokemon.length );
+                //add to dataset
+
+                tempImage.dataset.secret = pickedPokemon[ secretIndex ];
+                //remove from pickedpokemon
+                pickedPokemon.splice( secretIndex, 1 );
+                //adding the pokeball to the div with the images
+                tokens.appendChild( tempImage );
+                //when an image is clicked
+                tempImage.addEventListener('click', function(event) {
+    	            // if this is the first one clicked, show the image as-is
+    	            if (token1 == false) {
+    	                // this becomes token1!
+                        if (!event.currentTarget.classList.contains('matched')){
+    	                    token1 = event.currentTarget;
+                            token1.classList.add('clicked')
+                        }
+                        console.log(event.currentTarget)
+    	                // reveal our secret image
+    	                event.currentTarget.src = 'assignment06_images/' + event.currentTarget.dataset.secret;
+    	            }
+    	            // if this is the SECOND one clicked, we need to evaluate
+                    else if (token2 == false){
+                            if (!event.currentTarget.classList.contains('matched')){
+                                token2 = event.currentTarget;
+                            }
+                            //need this if statement for:
+                            //if token 1 is clicked, and token2 is the same as token1
+                            if (!token2.classList.contains("clicked")){
+                                // token1.classList.remove('clicked')
+            			        // reveal our secret image
+            			        event.currentTarget.src = 'assignment06_images/' + event.currentTarget.dataset.secret;
+            			        if (token1.dataset.secret == token2.dataset.secret){
+            			            console.log("MATCH!");
+                                    correctSound.play();
+                                    matches += 1;
+                                    token1.classList.add('matched')
+                                    token2.classList.add('matched')
+            			            token1 = false;
+            			            token2 = false;
+                                    if ((choice == 1 && matches == 6)||(choice == 2 && matches == 10)||(choice ==3&&matches==15)){
+                                        screen_game.classList.add('hidden');                                        
+                                        screen_gameover.classList.remove('hidden');   
+                                        time = stopwatch.innerHTML;
+                                        yourTime.innerHTML += time;
+                                        let timeInSeconds = getTotalSeconds(stopwatch.innerHTML)
+                                        window.localStorage.setItem(timeName,timeInSeconds)
+                                        let keysE = []
+                                        let valuesE = []
+                                        let keysM = []
+                                        let valuesM = []
+                                        let keysH = []
+                                        let valuesH = []
+                                        for (let k = 0; k < localStorage.length; k++){
+                                            let key = localStorage.key(k)
+                                            let value = parseInt(localStorage.getItem(key))
+                                            if (key.charAt(key.length - 1) == 'E'){
+                                                keysE.push(key)
+                                                valuesE.push(value)
+                                            }
+                                            else if (key.charAt(key.length - 1) == 'M'){
+                                                keysM.push(key)
+                                                valuesM.push(value)
+                                            }
+                                            else if (key.charAt(key.length - 1) == 'H'){
+                                                keysH.push(key)
+                                                valuesH.push(value)
+                                            }
+                                        }
+
+                                        //set scoreboard for easy mode
+                                        if (choice == 1){
+                                            scoreboard.innerHTML = "Best times (in seconds) - Easy mode: <br><br>"
+                                            let minimum_indicesE = getThreeMin(valuesE)
+                                            let highScoresE = 0;
+                                            for (let c = 0; c < minimum_indicesE.length; c++){
+
+                                                if (keysE[minimum_indicesE[c]] === timeName){
+                                                    highScoresE += 1;
+                                                }
+                                                else{
+                                                    highScoresE += 0;
+                                                }
+                                                scoreboard.innerHTML += keysE[minimum_indicesE[c]].substr(0,keysE[minimum_indicesE[c]].length - 1) + " : " + valuesE[minimum_indicesE[c]]
+                                                scoreboard.innerHTML += "<br>"
+                                            }
+                                            if (highScoresE == 1){
+                                                yourResult.innerHTML = "You made it on the leaderboard!"
+                                            }
+                                            else if (highScoresE == 0){
+                                                yourResult.innerHTML = 'You did not make it on the leaderboard.'
+                                            }
+                                        }
+                                        //set scoreboard for medium mode
+                                        else if (choice == 2){
+                                            scoreboard.innerHTML = "Best times (in seconds) - Medium mode: <br><br>"
+
+                                            let minimum_indicesM = getThreeMin(valuesM)
+                                            console.log(minimum_indicesM)
+                                            let highScoresM = 0;
+                                            for (let c = 0; c < minimum_indicesM.length; c++){
+                                                if (keysM[minimum_indicesM[c]] === timeName){
+                                                    highScoresM += 1;
+                                                }
+                                                else{
+                                                    highScoresM += 0
+                                                }
+                                                scoreboard.innerHTML += keysM[minimum_indicesM[c]].substr(0,keysM[minimum_indicesM[c]].length - 1) + " : " + valuesM[minimum_indicesM[c]]
+                                                scoreboard.innerHTML += "<br>"
+                                            }
+                                            if (highScoresM == 1){
+                                                yourResult.innerHTML = "You made it on the leaderboard!"
+                                            }
+                                            else if (highScoresM == 0){
+                                                yourResult.innerHTML = 'You did not make it on the leaderboard.'
+                                            }
+                                        }
+                                        else if(choice == 3){
+                                            scoreboard.innerHTML = "Best times (in seconds) - Hard mode: <br><br>"
+                                            let minimum_indicesH = getThreeMin(valuesH)
+                                            let highScoresH = 0;
+                                            for (let c = 0; c < minimum_indicesH.length; c++){
+                                                if (keysH[minimum_indicesH[c]] === timeName){
+                                                    highScoresH += 1;
+                                                }
+                                                else{
+                                                    highScoresH += 0
+                                                }
+                                                scoreboard.innerHTML += keysH[minimum_indicesH[c]].substr(0,keysH[minimum_indicesH[c]].length - 1) + " : " + valuesH[minimum_indicesH[c]]
+                                                scoreboard.innerHTML += "<br>"
+                                            }
+                                            if (highScoresH == 1){
+                                                yourResult.innerHTML = "You made it on the leaderboard!"
+                                            }
+                                            else if (highScoresH == 0){
+                                                yourResult.innerHTML = 'You did not make it on the leaderboard.'
+                                            }
+                                        }
+
+                                        playagain.addEventListener('click',function(){
+                                            yourname.value = "" 
+                                            nameHeader.innerHTML = ""
+                                            yourTime.innerHTML = "Your time was: <br><br>"
+                                            bestTime.classList.add('hidden');
+                                            
+                                            resetTime();
+                                            screen_start.classList.remove('hidden');
+                                            screen_gameover.classList.add('hidden');
+                                        });
+                                        clearInterval(controlvariable)
+                                        return;
+                                    }
+            			        }
+            			        else {
+                                    incorrectSound.play();
+            			            setTimeout( reset, 500 );
+            			        }
+                            }
+    	            }
+                    if (token1 != false && token2 != false){
+                        token1.classList.remove('clicked')
+                        token2.classList.remove('clicked')
+                        setTimeout( reset, 500 )
+                    }
+                }); 
+            }
+        });
+    </script>
+    </body>
+</html>
+
+
+

@@ -1,6 +1,6 @@
 import "./App.scss";
 import Game from "./components/GamePlay";
-import ProjectNavbar from "./../projectNavbar/ProjectNavbar";
+import ProjectNavbar from "../../projectNavbar/ProjectNavbar";
 
 function App() {
   return (

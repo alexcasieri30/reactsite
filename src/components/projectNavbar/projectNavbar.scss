@@ -6,7 +6,10 @@
     font-family: games;
     src: url('../fonts/games.ttf');
 }
-
+.project-navbar-carousel{
+    height: 20em;
+    width: 10em;
+}
 
 .games-header{
     display:flex;
@@ -25,6 +28,10 @@
             font-size: 50pt;
             text-align: center;
         }
+    }
+    .project-navbar-carousel{
+        width: 10em;
+        height: 10em;
     }
     .project-navbar-content{
         .project-navbar-container{
