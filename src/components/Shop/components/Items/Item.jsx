@@ -1,12 +1,19 @@
 import {Link, useLinkClickHandler, useLocation} from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Item.scss";
 
 
 export default function Item({name, price, imageSource}){
     const data = useLocation().state;
+
     const [confirmUp, setConfirmUp] = useState(false);
     const [added, setAdded] = useState(false);
+
+    useEffect(()=>{
+        let body = document.querySelector('body');
+        body.style.backgroundColor="lightblue";
+    })
+
     function confirmAdd(currentItem){
         let confirmButton = document.querySelector(".item1-confirm-add");
         if (confirmButton.style.display=="inline"){
@@ -21,8 +28,8 @@ export default function Item({name, price, imageSource}){
         setAdded(true);
         setConfirmUp(false);
     }
+
     function toggleConfirmAdd(){
-        console.log(data.items);
         let confirmAdd = document.querySelector(".item1-confirm-add");
         if (confirmAdd.style.display== "none"){
             confirmAdd.style.display = "inline";
@@ -32,6 +39,11 @@ export default function Item({name, price, imageSource}){
             setConfirmUp(false);
         }
     }
+
+    // useEffect(()=> {
+    //     let img_div = document.querySelector(".item1-image-source");
+    //     let 
+    // })
 
     return(
         <div className="item1-container">
@@ -44,7 +56,7 @@ export default function Item({name, price, imageSource}){
                     <div className="item1-image">
                         <div className="item1-image-image">
                             <div className="item1-image-source">
-                                {imageSource}
+                                <img src={data.img_link} className="item1-page-item-image" alt="" />
                             </div>
                             <div className="item1-image-description">
                                 Desc

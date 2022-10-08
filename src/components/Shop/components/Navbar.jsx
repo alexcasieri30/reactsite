@@ -12,25 +12,12 @@ function Navbar(props){
         textDecoration:"none",
     }
     function ShopHover(e){
+        let dropdown = document.querySelector(".navbar-section-shop-categories");
+        if (e._reactName=="onMouseLeave"){
+            dropdown.classList.add("navbar-section-hidden")
+        }
         if (e.currentTarget.classList[0]=="navbar-section-shop"){
             e.currentTarget.parentNode.children[1].classList.remove("navbar-section-hidden");
-        }else{
-
-            if (e.currentTarget.id=="home"){
-                e.currentTarget.nextSibling.children[1].classList.add("navbar-section-hidden")
-            }else if (e.currentTarget.id=="about"){
-                console.log(e.currentTarget.previousSibling.children);
-                e.currentTarget.previousSibling.children[1].classList.add("navbar-section-hidden")
-            }else{
-                console.log(e);
-                if (e.currentTarget.id=="shop"){
-                    e.currentTarget.children[1].classList.add("navbar-section-hidden");
-                }else if (e.currentTarget.classList[0]=="navbar"){
-                    
-                    console.log(e);
-                    
-                }
-            }
         }
     }
     return(
@@ -39,8 +26,7 @@ function Navbar(props){
                 ShopSite
             </div>
             <div className="navbar-container">
-                
-                <div className="navbar-section" id="shop">
+                <div className="navbar-section" id="shop" onMouseLeave={(e)=> ShopHover(e)}>
                     <div className="navbar-section-shop" onMouseEnter={(e) => ShopHover(e)}>
                         <Link to="/shop" state={{items: []}}>Shop</Link>
                     </div>

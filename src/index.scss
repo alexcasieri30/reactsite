@@ -1,19 +1,28 @@
 #root{
-    height: 100%;
+    height: 100vh;
 }
 
 .container{
     display:flex;
+    flex-direction:column;
     height: 100%;
-    .left{
-        margin-top: 10%;
-        margin-bottom: 10%;
+    .header{
         flex: 0.1;
+        position: sticky;
+        top: 0;
     }
-    .mid{
-        flex: 0.85;
+    .middle{
+        flex: 0.9;
+        .left{
+        }
+        .mid{
+            flex: 0.85;
+        }
+        .right{
+            flex: 0.05;
+        }
     }
-    .right{
-        flex: 0.05;
+    .footer{
+
     }
 }

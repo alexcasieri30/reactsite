@@ -4,11 +4,14 @@ import Memory from './components/memory/App';
 import CVLetter from './components/cv_project/App';
 import Sketch from './components/etchasketch_react/App';
 import TictactoeBoard from './components/tictactoe/App';
-import Home from './Home';
+import Battleship from "./components/battleship/App";
+
+import Home from './static_pages/HomeV1';
 import React from "react";
 
 import Blog from "./components/Blog/App";
-import About from "./components/About/App";
+import About from "./static_pages/About";
+import Settings from "./static_pages/Settings";
 
 import Shop from "./components/Shop/components/Shop/Shop";
 import ShopAll from "./components/Shop/components/Shop/ShopAll";
@@ -24,12 +27,14 @@ const routes = [
     <Route path="/" element={<Home/>}/>,
     <Route path="/about" element={<About/>}/>,
     <Route path="/blog" element={<Blog/>}/>,
+    <Route path="/settings" element={<Settings/>}/>,
 
     <Route path="/games" element={<Games/>}/>,
     <Route path="/games/memory" element={<Memory />}/>,
     <Route path="/games/cv_letter" element={<CVLetter/>}/>,
     <Route path="/games/sketch" element={<Sketch/>}/>,
     <Route path="/games/tictactoe" element={<TictactoeBoard/>}/>,
+    <Route path="/games/battleship" element={<Battleship/>}/>,
 
     <Route path="/shop" element={<Shop/>}/>,
     <Route path="/shop/all" element={<ShopAll/>}/>,

@@ -1,0 +1,89 @@
+
+@font-face{
+    font-family: captured;
+    src: url('../fonts/captured.ttf')
+}
+
+
+.startboard-container{
+    display:flex;
+    height: 100%;
+    .startboard-left{
+        flex:0.5;
+        border: solid 1px black;
+        height: 100%;
+        margin-right: 20px;
+        border-radius: 10px;
+        .startboard-left-board{
+            display:flex;
+            justify-content:center;
+            height: 25em;
+            margin: 3em;
+            margin-left: 40px;
+            margin-right: 40px;
+            padding-top: 5%;
+        }
+    }
+    .startboard-right{
+        border-radius: 10px;
+        flex: 0.5;
+        border: solid 1px black;
+        height: 100%;
+        margin-left: 20px;
+        .place-ships-title{
+            text-align: center;
+            font-size: 20pt;
+            margin-top: 1em;
+            font-family: captured;
+        }
+        .place-ships-container{
+            display:flex;
+            flex-direction:column;
+            height: 25em;
+            margin: 2em;
+            margin-left: 40px;
+            margin-right: 40px;
+            .ship-place{
+                flex: 0.2;
+                display: flex;
+                justify-content: center;
+                .ship-container-div{
+                    display:flex;
+                    flex-direction:column;
+                    margin:auto;
+                    justify-content:center;
+                    
+                    .ship-container{
+               
+                        display: grid;
+                        grid-template-rows: repeat(1, 30px);
+                        grid-template-columns: repeat(8, 30px);
+                        .ship-cell{
+                            border: solid 1px black;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .ready-to-play-display{
+            margin-top: 40%;
+            font-size: 20pt;
+            text-align: center;
+            .message-container{
+                height: 5.5em;
+                border: solid 1px black;
+                margin-left: 10%;
+                margin-right: 10%;
+                border-radius: 10px;
+                padding-top: 20px;
+                .message{
+                    margin: 10px;
+                }
+                .message2{
+                    margin: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,17 +1,48 @@
-.project-navbar-container{
-    display:flex;
-    flex-direction:row;
-    text-align:center;
-    width: 100%;
-    margin-top: 10px;
-    .project-navbar-section{
-        border: solid 1px black;
-        flex: 1;
-        padding: 10px;
-        border-radius: 10px 10px 0px 0px;
-    }
+@font-face{
+    font-family: featured;
+    src: url('../fonts/featured.ttf');
+}
+@font-face{
+    font-family: games;
+    src: url('../fonts/games.ttf');
+}
 
-    .project-navbar-active{
-        border-bottom:none;
+
+.games-header{
+    display:flex;
+    flex-direction:column;
+    margin-top: 5em;
+    .project-header-title{
+        margin: auto;
+        font-size: 40pt;
+        margin-bottom: 2%;
+        .project-header-title-featured{
+            font-family: featured;
+            text-align: center;
+        }
+        .project-header-title-games{
+            font-family: games;
+            font-size: 50pt;
+            text-align: center;
+        }
+    }
+    .project-navbar-content{
+        .project-navbar-container{
+            display:flex;
+            flex-direction:row;
+            text-align:center;
+            width: 100%;
+            margin-top: 10px;
+            .project-navbar-section{
+                border: solid 1px black;
+                flex: 1;
+                padding: 10px;
+                border-radius: 10px 10px 0px 0px;
+            }
+    
+            .project-navbar-active{
+                border-bottom:none;
+            }
+        }
     }
 }

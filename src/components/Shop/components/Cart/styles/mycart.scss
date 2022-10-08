@@ -1,8 +1,8 @@
 
 .your-cart-main{
     height: 800px;
-    background-color: #0093E9;
-    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    // background-color: #0093E9;
+    // background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 }
 %checkout-button{
     border: none;
@@ -24,7 +24,6 @@
         flex-direction: row;
         flex: 0.75;
         height: 60%;
-        
         .your-cart-items{
             flex: 0.6;
             height: 100%;

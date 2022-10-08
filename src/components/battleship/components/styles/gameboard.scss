@@ -1,0 +1,188 @@
+
+@font-face{
+    font-family: captured;
+    src: url('../fonts/captured.ttf')
+}
+@font-face{
+    font-family: gameover;
+    src: url('../fonts/gameover.ttf')
+}
+@font-face{
+    font-family: winner;
+    src: url('../fonts/winner.otf')
+}
+
+$game-background-color: rgba(0,0,0,0.2);
+
+
+.gameboard-container{
+    display:flex;
+    height: 30em;
+
+    .player-board-container{
+        background-color: $game-background-color;
+        margin-right: 20px;
+        flex:0.5;
+        border: solid 1px black;
+        height: 100%;
+        border-radius: 10px;
+        .player-board{
+            // border: solid 1px black;
+            display:flex;
+            justify-content:center;
+            height: 25em;
+            margin: 3em;
+            margin-left: 30px;
+            margin-right: 30px;
+
+        }
+        .my-ships-captured{
+            text-align: center;
+            height: 6em;
+            .my-ships-captured-title{
+                font-family: captured;
+                font-size: 25pt;
+            }
+            .player-captured-ships{
+                display:flex;
+                justify-content:center;
+                padding: 5%;
+                .player-captured-ship{
+                    flex: 0.75;
+                    height: 100%;
+                    width: 100%;
+                    font-size: 15pt;
+                    font-weight: bolder;
+                }
+            }
+        }
+       
+    }
+    .computer-board-container{
+        background-color: $game-background-color;
+        flex:0.5;
+        border: solid 1px black;
+        height: 100%;
+        margin-left: 20px;
+        border-radius: 10px;
+        .computer-board{
+            // border: solid 1px black;
+            display:flex;
+            justify-content:center;
+            height: 25em;
+            margin: 3em;
+            margin-left: 30px;
+            margin-right: 30px;
+           
+        }
+        .comp-ships-captured{
+            text-align: center;
+            height:6em;
+            .comp-ships-captured-title{
+                font-family: captured;
+                font-size: 25pt;
+            }
+            .comp-captured-ships{
+                display:flex;
+                justify-content:center;
+                padding: 5%;
+                .comp-captured-ship{
+                    flex: 0.75;
+                    font-size: 15pt;
+                }
+            }
+        }
+    }
+}
+
+
+/* classes for statuses of cells */
+
+.chosen{
+    background-color: black;
+}
+
+.chosen-ship{
+    background-color: red;
+}
+
+.captured-section{
+    background-color: rgb(90, 99, 41);
+}
+
+
+.game-over-display-div{
+    width: 30em;
+    height: 30em;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin:auto;
+    margin-top: 5em;
+    .game-over-title{
+        text-align: center;
+        margin: 0.5em;
+        font-size: 40pt;
+        font-family: gameover;
+        animation: flash 1s linear infinite;
+    }
+    .player-win-display{
+        display:flex;
+        justify-content:center;
+        flex-direction:column;
+        height: 100%;
+        #new-game{
+            height: 40px;
+            width: 20em;
+            margin: auto;
+            cursor: pointer;
+            border: none;
+            background-color: rgba(0,0,0,0.3);
+            font-size: 15pt;
+            font-family: monospace;
+            &:hover{
+                background-color: rgba(0,0,0,0.5);
+            }
+        }
+        .you-win-stats-table-div{
+            flex: 1;
+            margin: 1em;
+            height: 100%;
+            font-size: 15pt;
+            font-family: monospace;
+            text-align: center;
+            .battleship-stats-table{
+                width: 100%;
+                height: 16em;
+                text-align:center;
+                display:flex;
+                flex-direction:column;
+                overflow: scroll;
+                .battleship-stats-table-tr{
+                    margin: 1em;
+                    display:flex;
+                    .battleship-stats-table-tr-td{
+                        border: solid 1px black;
+                        padding: 1em;
+                        flex: 1;
+                    }
+                }
+            }
+        }
+    }
+    .computer-win-display{
+
+    }
+}
+.win-banner{
+    flex: 0.2;
+    text-align:center;
+    font-size: 40pt;
+    font-family: monospace;
+}
+
+@keyframes flash{
+    50%{
+        opacity: 0;
+    }
+}

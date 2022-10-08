@@ -13,11 +13,9 @@
 
 .item1-container{
     margin: 0px;
-    background-color: #0093E9;
-    background-image: linear-gradient(160deg, #62aad3 0%, #80D0C7 100%);
     display:flex;
     flex-direction:column;
-    height: 800px;
+    height: 100vh;
 
     .item1-section1{
         flex: 0.05;
@@ -48,6 +46,12 @@
                     flex-direction:column;
                     .item1-image-source{
                         flex: 0.7;
+                        display:flex;
+                        justify-content:center;
+                        .item1-page-item-image{
+                            height: 100%;
+                            width: 40%;
+                        }
                     }
                     .item1-image-description{
                         flex: 0.3;

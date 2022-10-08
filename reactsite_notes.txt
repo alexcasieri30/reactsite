@@ -1,0 +1,57 @@
+- overall theme ideas
+	- games page --> super interactive
+		- lot going on
+		- things moving all over the place
+		- colorful backgrounds
+	- shop
+		- more generic, smooth/rounded edges
+		- modern looking
+		- light/smooth colors
+
+- games page
+	- add animations to the buttons / backgrounds
+	- add small animations throughout the page, little gifs, moving shapes, etc.
+	- background to the /games endpoint
+	- title "Featured Games" interactive with animation
+		- lots of room for images/
+
+
+- home page
+	- infinite scroll down with small example sections from each page
+	- add more creative way to display the different pages that the website offers
+		- the dashboard is boring as fuck
+
+- about page
+	- work experience
+	- interests
+	- link to an image gallery perhaps
+
+
+- footer
+	- link to GitHub, linked, Contact Me page
+	- also could be a Link to a "history of this website" page
+		- here I detail all of the steps I took to making the website
+		- different versions of it, my ideas, motivations behind it, etc.
+
+- idea for right side of page
+	- once I get Node.js down, the right side can be a small popup 
+	  for users to leave comments on each page they visit
+	- example: on games page, the popup says "let me know your feedback for each of these games, and how I can improve them, or any general comments about them
+	- these are sent to the blog page 
+
+- blog page
+	- users can add general blog posts on general topics
+	- users can view others and query by topic / time / most liked
+	- users can view others' comments for each page in the website
+
+
+
+
+
+
+
+
+
+
+	
+
