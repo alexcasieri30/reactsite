@@ -16,18 +16,44 @@
     flex-direction:column;
     margin-top: 5em;
     .project-header-title{
-        margin: auto;
-        font-size: 40pt;
         margin-bottom: 2%;
-        .project-header-title-featured{
-            font-family: featured;
-            text-align: center;
+        display:flex;
+        .project-header-title-left{
+            flex: 1;
+            .project-header-title-left-settings{
+                border: solid 1px black;
+                padding: 1em;
+                display:flex;
+                justify-content: center;
+                margin: auto;
+                width: 25em;
+                margin-top: 3em;
+                cursor: pointer;
+            }
         }
-        .project-header-title-games{
-            font-family: games;
-            font-size: 50pt;
-            text-align: center;
+        .project-header-title-featuredgames{
+            flex: 1;
+            font-size: 40pt;
+            .project-header-title-featured{
+                font-family: featured;
+                text-align: center;
+            }
+            .project-header-title-games{
+                font-family: games;
+                font-size: 50pt;
+                text-align: center;
+            }
         }
+        .project-header-title-right{
+            flex: 1;
+            .project-header-title-right-dropdown{
+                display:flex;
+                justify-content:center;
+                margin: auto;
+                padding-top: 2em;
+            }
+        }
+        
     }
     .project-navbar-carousel{
         width: 10em;

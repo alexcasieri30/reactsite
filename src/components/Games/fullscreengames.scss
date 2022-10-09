@@ -2,14 +2,43 @@
     display:flex;
     height: 60em;
     flex-direction:column;
+    margin-top: 5em;
     .fullscreengames-top{
         flex: 0.2;
+        display:flex;
+        .fullscreengames-top-left{
+            flex: 1;
+            text-align: center;
+        }
+        .fullscreengames-top-title{
+            flex: 1;
+            text-align: center;
+            font-size: 40pt;
+            margin-bottom: 2%;
+            .fullscreengames-top-title-featured{
+                font-family: featured;
+                text-align: center;
+            }
+            .fullscreengames-top-title-games{
+                font-family: games;
+                font-size: 50pt;
+                text-align: center;
+            }
+        }
+        .fullscreengames-top-right{
+            flex: 1;
+            .fullscreengames-top-dropdown{
+                margin-top: 2em;
+            }
+        }
+        
     }
     .fullscreengames-mid{
         flex: 0.65;
         display:flex;
         .fullscreengames-mid-left{
             flex: 0.3;
+            margin-top: 5em;
         }
         .fullscreengames-mid-mid{
             flex: 0.4;
@@ -55,4 +84,5 @@
 
     }
 }
+
 

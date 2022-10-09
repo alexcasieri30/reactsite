@@ -1,10 +1,29 @@
 import "./fullscreengames.scss";
-
+import Dropdown from "../Utilities/Dropdown";
 
 function FullScreenGames(){
     return (
         <div className="fullscreengames-main-container">
-            <div className="fullscreengames-top"></div>
+            <div className="fullscreengames-top">
+                <div className="fullscreengames-top-left">
+                    space
+                </div>
+                <div className="fullscreengames-top-title">
+                    <div className="fullscreengames-top-title-featured">
+                        Full Screen
+                    </div>
+                    <div className="fullscreengames-top-title-games">
+                        Games
+                    </div>
+                </div>
+                <div className="fullscreengames-top-right">
+                    <div className="fullscreengames-top-dropdown">
+                        <Dropdown currentPage={"Full Screen"}></Dropdown>
+                    </div>
+                </div>
+                
+                
+            </div>
             <div className="fullscreengames-mid">
                 <div className="fullscreengames-mid-left"></div>
                 <div className="fullscreengames-mid-mid">

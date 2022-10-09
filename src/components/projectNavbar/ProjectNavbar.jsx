@@ -1,6 +1,6 @@
 import React from "react";
 import "./projectNavbar.scss";
-import Carousel from "../Utilities/Carousel";
+import Dropdown from "../Utilities/Dropdown";
 import { Link } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -52,11 +52,23 @@ const ProjectNavbar = function(){
     return (
         <div className="games-header">
             <div className="project-header-title">
-                <div className="project-header-title-featured">
-                    Featured
+                <div className="project-header-title-left">
+                    <div className="project-header-title-left-settings">
+                        Settings
+                    </div>
                 </div>
-                <div className="project-header-title-games">
-                    Games
+                <div className="project-header-title-featuredgames">
+                    <div className="project-header-title-featured">
+                        Featured
+                    </div>
+                    <div className="project-header-title-games">
+                        Games
+                    </div>
+                </div>
+                <div className="project-header-title-right">
+                    <div className="project-header-title-right-dropdown">
+                        <Dropdown currentPage={"Games"}/>
+                    </div>
                 </div>
             </div>
             <div className="project-navbar-content">

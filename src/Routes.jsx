@@ -1,6 +1,6 @@
 import {Route} from "react-router-dom";
 import Games from './App';
-import ChooseGameType from "./components/Games/ChooseGame";
+import ChooseGameType from "./components/Utilities/Dropdown";
 import FullScreenGames from "./components/Games/FullScreenGames";
 
 import Memory from './components/Games/memory/App';
@@ -33,7 +33,7 @@ const routes = [
     <Route path="/blog" element={<Blog/>}/>,
     <Route path="/settings" element={<Settings/>}/>,
 
-    <Route path="/chooseGameType" element={<ChooseGameType/>}/>,
+    // <Route path="/chooseGameType" element={<ChooseGameType/>}/>,
     <Route path="/fullscreengames" element={<FullScreenGames/>}/>,
 
     <Route path="/games" element={<Games/>}/>,

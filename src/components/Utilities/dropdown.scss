@@ -1,0 +1,67 @@
+
+#choose-game-dropdown-container{
+    display:flex;
+    justify-content:center;
+    width: 100%;
+}
+
+.choose-game-link{
+    background: none;
+    border: solid 1px black;
+    text-decoration: none;
+    color: #777;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 1em;
+    width: 25em;
+    margin-top: 1em;
+}
+
+.choose-game-dropdown.choose-game-active > .choose-game-link, .choose-game-link:hover{
+    color: black;
+}
+.choose-game-dropdown{
+    position:relative;
+}
+
+.choose-game-dropdown-menu{
+    position:absolute;
+    width: 25em;
+    top: calc(100% + .25rem);
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.choose-game-dropdown.choose-game-active > .choose-game-link + .choose-game-dropdown-menu{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.choose-type-link{
+    display:flex;
+    flex-direction:column;
+    gap: .25rem;
+}
+
+.dropdown-heading{
+    display:flex;
+    flex-direction:column;
+    .dropdown-link{
+        background: linear-gradient(45deg, rgb(255, 135, 135), rgb(136, 136, 255));
+        flex: 1;
+        padding: 1em;
+        text-align: center;
+        cursor: pointer;
+        &:hover{
+            background: linear-gradient(180deg, rgb(255, 135, 135), rgb(136, 136, 255));
+        }
+    }
+}
