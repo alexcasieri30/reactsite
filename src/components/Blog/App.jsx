@@ -11,7 +11,8 @@ function Main(){
     })
 
     const getdata = async () => {    
-        const response = await fetch('http://localhost:3000/data', {mode: 'cors'});
+        const response = await fetch('http://localhost:3001/data', {mode: 'cors'});
+        console.log(response);
         const data = await response.json()
         let table_elements = [];
         for (let i = 0; i < data.length; i++){
@@ -33,6 +34,19 @@ function Main(){
         setInputs(values => ({...values, [name]: value}))
     }
 
+    const submitButton = () =>{
+        const response2 = fetch('http://localhost:3001/add', {
+            method: 'POST', 
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({first: inputs['first'], last: inputs['last']})
+        });
+        console.log(response2);
+        return response2;
+    }
+
     return(
         <div className="blog-page-main-container">
             <button className="blog-page-button" id="get-data-button" onClick={getdata}>Get Data</button>
@@ -40,12 +54,11 @@ function Main(){
             <table id="table">
                 {children}
             </table>
-            <form action="http://127.0.0.1:3000/add" method="POST" className="add-user-form">
+            <div className="blog-form">
                 <input type="text" name="first" placeholder="first name" onChange={handleChange} value={inputs.firstname}/>
                 <input type="text" name="last" placeholder="last name" onChange={handleChange} value={inputs.lastname}/>
-                <input type="submit" className="blog-page-button" id="get-data-button" value="Add User"/>
-            </form>
-            
+                <input type="submit" onClick={submitButton} className="blog-page-button" id="get-data-button" value="Add User"/>
+            </div>
         </div>
     )
 }
