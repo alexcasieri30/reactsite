@@ -13,6 +13,7 @@ import Battleship from "./components/Games/battleship/App";
 import Home from './static_pages/HomeV1';
 import React from "react";
 
+import BlogUsers from "./components/Blog/components/UsersPage";
 import Blog from "./components/Blog/App";
 import About from "./static_pages/About";
 import Settings from "./static_pages/Settings";
@@ -31,6 +32,7 @@ const routes = [
     <Route path="/" element={<Home/>}/>,
     <Route path="/about" element={<About/>}/>,
     <Route path="/blog" element={<Blog/>}/>,
+    <Route path="/blog/users" element={<BlogUsers/>}/>,
     <Route path="/settings" element={<Settings/>}/>,
 
     // <Route path="/chooseGameType" element={<ChooseGameType/>}/>,

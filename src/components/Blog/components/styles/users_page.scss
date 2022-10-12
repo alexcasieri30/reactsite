@@ -1,0 +1,52 @@
+.blog-page-main-container{
+    margin-top: 10%;
+    display:flex;
+    .blog-signup-form{
+        margin-top: 6em;
+        flex: 0.15;
+        display:flex;
+        flex-direction:column;
+        padding-left: 2em;
+        .blog-signup-form-input{
+            width: 13em;
+            border: solid 1px black;
+            height: 3em;
+        }
+    }
+    .blog-page-users-table-div{
+        flex: 0.7;
+        .blog-page-users-table-title{
+            text-align: center;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            font-size: 20pt;
+        }
+        .blog-page-users-table{
+            margin:auto;
+            border: solid 1px black;
+            width: 70%;
+            height: 20em;
+            .blog-page-users-table-tr{
+                width: 100%;
+                .blog-page-users-table-td{
+                    border: solid 1px black;
+                    width: 100%;
+                    padding: 10px;
+                }
+            }
+        }
+        
+    }
+    .blog-page-section-right{
+        flex: 0.15;
+    }
+    
+}
+
+
+
+#blog-page-button{
+    margin-top: 1em;
+    border: none;
+    cursor: pointer;
+}

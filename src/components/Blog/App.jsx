@@ -1,66 +1,100 @@
-import React, { useEffect, useState } from 'react';
-import "./styles/app.scss";
+import './app.scss';
+import {Link} from "react-router-dom";
+import {useState, useEffect} from "react";
 
-function Main(){
-    const [children, setChildren] = useState([])
+function Blog(){
     const [inputs, setInputs] = useState({});
 
-    useEffect(()=>{
-        let body = document.querySelector('body');
-        body.style.backgroundColor="white";
-    })
 
-    const getdata = async () => {    
-        const response = await fetch('http://localhost:3001/data', {mode: 'cors'});
-        console.log(response);
-        const data = await response.json()
-        let table_elements = [];
-        for (let i = 0; i < data.length; i++){
-            console.log(data[i].firstname)
-            let element = <tr>
-                <td>{data[i].firstname}</td>
-                <td>{data[i].lastname}</td>
-            </tr>
-            console.log(element);
-            table_elements.push(element)
-        }
-        setChildren(table_elements);
-    }
-
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        console.log(inputs);
-        setInputs(values => ({...values, [name]: value}))
-    }
-
-    const submitButton = () =>{
-        const response2 = fetch('http://localhost:3001/add', {
-            method: 'POST', 
+    async function submitPostButton(){
+        const response = await fetch('http://localhost:3001/write_post', {
+            method: 'POST',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({first: inputs['first'], last: inputs['last']})
+            body: JSON.stringify(
+                {
+                    title: inputs['title'].replace("'", "''"),
+                    subtitle: inputs['subtitle'].replace("'", "''"),
+                    username: inputs['username'].replace("'", "''"),
+                    category: inputs['category'].replace("'", "''"),
+                    text: inputs['text'].replace("'", "''"),
+                    time: '03/01/2022'
+                }
+            )
         });
-        console.log(response2);
-        return response2;
+        console.log('FROM POST: ', response);
+        setInputs({
+            title: '',
+            subtitle: '',
+            username: '',
+            category: '',
+            text: '',
+        })
+    }
+
+    function changePost(event){
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}))
     }
 
     return(
-        <div className="blog-page-main-container">
-            <button className="blog-page-button" id="get-data-button" onClick={getdata}>Get Data</button>
-            <div></div>
-            <table id="table">
-                {children}
-            </table>
-            <div className="blog-form">
-                <input type="text" name="first" placeholder="first name" onChange={handleChange} value={inputs.firstname}/>
-                <input type="text" name="last" placeholder="last name" onChange={handleChange} value={inputs.lastname}/>
-                <input type="submit" onClick={submitButton} className="blog-page-button" id="get-data-button" value="Add User"/>
+        <div className="blog-main">
+            <div className="blog-main-left">
+                <div className="blog-main-seeUsers-div">
+                    <Link className="see-all-users-link" to={"/blog/users"}>
+                        <button>See All Users</button>
+                    </Link>
+                </div>
+                
+                <div className="blog-main-sections">
+                    <div className="blog-main-section">Section1</div>
+                    <div className="blog-main-section">Section2</div>
+                    <div className="blog-main-section">Section3</div>
+                    <div className="blog-main-section">Section4</div>
+                    <div className="blog-main-section">Section5</div>
+                </div>
             </div>
+            <div className="blog-main-mid">
+                <div className="blog-main-mid-title">
+                    Blog Posts
+                </div>
+                <div className="blog-main-mid-posts">
+                    Posts
+                </div>
+                <div className="blog-main-mid-writepost">
+                    <div className="blog-main-mid-describe">
+                        <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="title" placeholder="Title" value={inputs['title']}/>
+                        <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="subtitle" placeholder="Subtitle" value={inputs['subtitle']}/>
+                        <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="category" placeholder="Category" value={inputs['category']}/>
+                        <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="username" placeholder="Username" value={inputs['username']}/>
+                    </div>
+                    <div className="blog-main-mid-textarea">
+                        <div className="submit-post-text">
+                            <textarea onChange={(e) => changePost(e)} name="text" id="blog-post" placeholder="Write post" value={inputs['text']}></textarea>
+                        </div>
+                        <div className="submit-post-div">
+                            <button type="submit" id='submit-post' onClick={submitPostButton}>Submit post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="blog-main-right"></div>
         </div>
     )
 }
 
-export default Main;
+/*
+    posts:
+    create table posts(id serial primary key,
+                        text text, 
+                        author id int references users(id), 
+                        time time, 
+                        category varchar(20),
+                        title varchar(50), 
+                        subtitle varchar(50));
+*/
+
+export default Blog;

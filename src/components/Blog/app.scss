@@ -1,0 +1,78 @@
+.blog-main{
+    display:flex;
+    height: 100vh;
+    .blog-main-left{
+        border: solid 1px black;
+        flex: 0.2;
+        display:flex;
+        flex-direction:column;
+        .blog-main-seeUsers-div{
+            margin: 40% 0 0 0;
+            flex: 0.1;
+            display:flex;
+            justify-content:center;
+            .see-all-users-link{
+                
+            }        
+        }
+        .blog-main-sections{
+            flex: 0.9;
+            border: solid 1px black;
+            display:flex;
+            flex-direction:column;
+            .blog-main-section{
+                flex: 1;
+            }
+        }
+    }
+    .blog-main-mid{
+        flex: 0.6;
+        margin-top: 5em;
+        display:flex;
+        flex-direction:column;
+        .blog-main-mid-title{
+            flex: 0.1;
+            font-size: 30pt;
+            border: solid 1px black;
+        }
+        .blog-main-mid-posts{
+            flex: 0.6;
+            border: solid 1px black;
+        }
+        .blog-main-mid-writepost{
+            flex:0.3;
+            border: solid 1px black;
+            display:flex;
+            flex-direction:row;
+            justify-content: space-around;
+            .blog-main-mid-describe{
+                margin-top: 2em;
+                display:flex;
+                flex-direction: column;
+                gap: 1em;
+                .blog-main-mid-describe-input{
+                    height: 2em;
+                }
+            }
+            .blog-main-mid-textarea{
+                margin-top: 2em;
+                .submit-post-text{
+                    #blog-post{
+                        height: 11em;
+                        width: 30em;
+                    }
+                }
+                .submit-post-div{
+                    display:flex;
+                    justify-content:center;
+                    #submit-post{
+                        margin: 1em;
+                    }
+                }
+            }
+        }
+    }
+    .blog-main-right{
+        flex: 0.2;
+    }
+}

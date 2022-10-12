@@ -1,0 +1,30 @@
+future endeavors
+
+- home page
+    - add links to skills map
+    - add "history of site" section where the about is
+    - "add me on socials" section below that
+
+- about page
+    - format to be like an article
+
+- blog page
+    - sign in/sign out buttons that add users to database
+        - id, first, last, username, email, role
+        - localstorage the info when they log in 
+    - discussion sections -- categories to filter the posts by
+        - database with blog information
+        - author, text, category, time
+    - also 'MOST RECENT' section that shows all posts sorted by time
+    - 'MY POSTS' section that only shows posts with created by name in localstorage 
+    - each post:
+        - shows up at the top, sorted by time
+        - includes the text, author username, time
+
+- shopsite
+    - waiting for ava
+
+- settings
+    - see if I am able to set background-themes/colors
+    - set text size
+    - set text font 
