@@ -12,7 +12,7 @@ function Main(){
     })
 
     const getdata = async () => {
-        const response = await fetch('http://localhost:3001/data', {mode: 'cors'});
+        const response = await fetch('http://localhost:3001/users/data', {mode: 'cors'});
         console.log("RESPONSE: ", response);
         const data = await response.json()
         let table_elements = [];
@@ -39,7 +39,7 @@ function Main(){
         if (!inputs['first']||!inputs['username']){
             return
         }
-        const response2 = await fetch('http://localhost:3001/add', {
+        const response2 = await fetch('http://localhost:3001/users/add', {
             method: 'POST', 
             mode: 'cors',
             headers: {

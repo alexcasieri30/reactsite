@@ -10,6 +10,7 @@
     "concurrently": "^7.4.0",
     "nodemon": "^2.0.20",
     "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
@@ -17,10 +18,11 @@
     "sass": "^1.54.9",
     "style-loader": "^3.3.1",
     "uniqid": "^5.4.0",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"cd api && nodemon index\"",
+    "start": "concurrently \"react-app-rewired start\" \"cd api && nodemon index\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -42,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "browser": {
+    "fs": false
   }
 }

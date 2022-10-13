@@ -1,0 +1,43 @@
+.blog-main-writepost{
+    width: 15%;
+    position:absolute;
+    margin-top: -20em;
+    align-items: center;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    .blog-main-writepost-container{
+        border: solid 1px black;
+        background-color: rgba(0,0,0,0.9);
+        padding: 5em;
+        border-radius: 40px;
+        .blog-main-describe{
+            margin-top: 2em;
+            display:flex;
+            flex-direction: column;
+            gap: 1em;
+            .blog-main-mid-describe-input{
+                height: 2em;
+            }
+        }
+        .blog-main-mid-textarea{
+            margin-top: 2em;
+            .submit-post-text{
+                #blog-post{
+                    height: 11em;
+                    width: 30em;
+                }
+            }
+            .submit-post-div{
+                display:flex;
+                justify-content:center;
+                #submit-post{
+                    margin: 1em;
+                }
+                #cancel-post{
+                    margin: 1em;
+                }
+            }
+        }
+    }
+}

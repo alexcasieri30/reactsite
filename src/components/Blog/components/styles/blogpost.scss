@@ -1,0 +1,42 @@
+.blog-post-outline{
+    margin: 1em;
+    border: solid 1px black;
+    padding: 1em;
+    width: max-content;
+    max-width: 18em;
+    border-radius: 1em;
+    display:flex;
+    flex-direction:column;
+    gap: 1em;
+    .blog-post-header{
+        display:flex;
+        justify-content:space-between;
+        font-family: monospace;
+        margin-bottom: 1em;
+        .blog-post-title-info{
+            .blog-post-title{
+                font-size: 18pt;
+            }
+            .blog-post-subtitle{
+                font-size: 12pt;
+            }
+        }
+        .blog-post-other-info{
+            .blog-post-author{
+                font-size: 10pt;
+            }
+            .blog-post-time{
+                font-size: 8pt;
+            }
+        }
+    }
+    .blog-post-body{
+        .blog-post-text{
+            font-family: monospace;
+        }
+    }
+    .blog-post-footer{
+        font-family: monospace;
+        font-size: 8pt;
+    }
+}
