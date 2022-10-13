@@ -50,24 +50,29 @@ app.post("/add", function(req, res){
   res.status(200);
 })
 
-app.post("/write_post", function(req, res){
+app.post("/write_post", async function(req, res){
   const info = req.body;
   let current_id;
-  // pool.query(`select id from users where username='${info.username}'`, (error, results) => {
-  //   console.log("RESULTS: ", results.rows);
-  //   current_id = results.rows;
-  // })
-  console.log(info);
-  console.log(`insert into posts (text, author_id, time, category, title, subtitle) values ('${info.text}', 1, '${info.time}', '${info.category}', '${info.title}', '${info.subtitle}');`);
-  pool.query(`insert into posts (text, author_id, time, category, title, subtitle) values ('${info.text}', 1, '${info.time}', '${info.category}', '${info.title}', '${info.subtitle}');`, (error, results) => {
+  const results = await pool.query(`select id from users where username='${info.username}'`);
+  try{
+    current_id = results.rows[0].id;
+  }catch(error){
+    console.error(error);
+  }
+  pool.query(`insert into posts (text, author_id, time, category, title, subtitle) values ('${info.text}', ${current_id}, '${info.time}', '${info.category}', '${info.title}', '${info.subtitle}');`, (error, results) => {
     if (error){
       throw error;
     }
     res.status(200).json({"SUCCESS": "true"});
   })
-  // pool.query("insert into posts (text, author_id, time, category, title, subtitle) values ('text', 1,'time', 'cat','title','subtitle');", (error, results) => {
-  //   console.log(results);
-  // })
+})
+
+app.get("/get_posts", async function(req, res){
+  const info = req.body;
+  const results = await pool.query(`select * from posts`);
+  console.log(results.rows);
+  res.set('Access-Control-Allow-Origin', '*');
+  res.status(200).json(results.rows)
 })
 
 app.listen(port, function () {

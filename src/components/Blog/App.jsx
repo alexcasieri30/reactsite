@@ -4,7 +4,36 @@ import {useState, useEffect} from "react";
 
 function Blog(){
     const [inputs, setInputs] = useState({});
+    const [postData, setPostData] = useState(null);
+    const [dataExists, setDataExists] = useState(false);
 
+    const getFirstPosts = async () => {
+        const response = await fetch('http://localhost:3001/get_posts', {mode: 'cors'});
+        const data = await response.json();
+        if (postData==null){
+            setPostData(
+                data
+            )
+            setDataExists(
+                true
+            )
+        }
+    }
+
+    useEffect(() => {
+        getFirstPosts();
+    });
+
+    const updatePosts = async () => {
+        const response = await fetch('http://localhost:3001/get_posts', {mode: 'cors'});
+        const data = await response.json();
+        setPostData(
+            data
+        )
+        setDataExists(
+            true
+        )
+    }
 
     async function submitPostButton(){
         const response = await fetch('http://localhost:3001/write_post', {
@@ -24,14 +53,14 @@ function Blog(){
                 }
             )
         });
-        console.log('FROM POST: ', response);
         setInputs({
             title: '',
             subtitle: '',
             username: '',
             category: '',
             text: '',
-        })
+        }, updatePosts());
+        
     }
 
     function changePost(event){
@@ -40,6 +69,9 @@ function Blog(){
         setInputs(values => ({...values, [name]: value}))
     }
 
+    function postClick (){
+        console.log(postData);
+    }
     return(
         <div className="blog-main">
             <div className="blog-main-left">
@@ -61,8 +93,11 @@ function Blog(){
                 <div className="blog-main-mid-title">
                     Blog Posts
                 </div>
-                <div className="blog-main-mid-posts">
-                    Posts
+                <div className="blog-main-mid-posts" onClick={postClick}>
+                    {dataExists && postData.map((element) => {
+                        const str = "TEXT: " + element.text + "\n" + "TIME: " + element.time;
+                        return str;
+                    }).join('\n\n')}
                 </div>
                 <div className="blog-main-mid-writepost">
                     <div className="blog-main-mid-describe">
