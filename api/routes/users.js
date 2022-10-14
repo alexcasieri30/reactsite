@@ -40,19 +40,6 @@ router.get("/", async function(req, res){
     })
 })
 
-// router.get("/", async function (req, res){
-//   console.log("second")
-//   let username = req.query.username;
-//   console.log(username);
-//   let info = pool.query(`select first_name, last_name from users where username='${username}'`);
-//   console.log(info);
-//   if (info.length > 0) {
-//     res.set('Access-Control-Allow-Origin', '*');
-//     res.status(200).json({firstname: info[0]['first_name'], lastname: info[0]['lastname']})
-//   }
-//   res.status(200);
-// })
-
 
 router.post("/login", async function(req, res){
   const info = req.body;
