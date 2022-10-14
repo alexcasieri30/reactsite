@@ -1,8 +1,8 @@
 import "./styles/blogpost.scss";
 
-function BlogPost({ data }){
+function BlogPost({ id, data }){
     return(
-        <div className="blog-post-outline">
+        <div key={id} className="blog-post-outline">
             <div className="blog-post-header">
                 <div className="blog-post-title-info">
                     <div className="blog-post-title">

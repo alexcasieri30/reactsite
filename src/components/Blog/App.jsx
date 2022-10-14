@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import BlogPost from "./components/BlogPost";
 import WritePost from './components/WritePost';
+import AllPosts from './components/AllPosts';
+import MyPosts from './components/MyPosts';
 
 function Blog(){
     const [dataExists, setDataExists] = useState(false);
@@ -10,6 +12,13 @@ function Blog(){
     const [postData, setPostData] = useState(null);
     const [signin, setSignin] = useState(false);
     const [login, setLogin] = useState(false);
+    const [loginCredentials, setLoginCredentials] = useState({});
+    const [loginInvalid, setLoginInvalid] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [user, setUser] = useState({})
+    const [signupCredentials, setSignupCredentials] = useState({})
+    const [section, setSection] = useState('all');
+
 
     const getFirstPosts = async () => {
         const response = await fetch('http://localhost:3001/posts', {mode: 'cors'});
@@ -26,10 +35,18 @@ function Blog(){
 
     useEffect(() => {
         getFirstPosts();
+        if (localStorage.getItem('username')!==null && loggedIn==false){
+            console.log('not null')
+            setLoggedIn(true)
+            retrieveLoginCreds();
+        }
     });
 
-    function postClick (){
-        console.log(postData);
+    async function retrieveLoginCreds(){
+        let res = await fetch(`http://localhost:3001/users?username=${localStorage.getItem('username')}`, {mode: 'cors'});
+        res = await res.json();
+        setUser({firstname: res.firstname, lastname: res.lastname})
+        console.log('res:', res);
     }
 
     function writePostClick(){
@@ -40,24 +57,88 @@ function Blog(){
         if (e.currentTarget.id=="blog-signin-button"){
             setLogin(false);
             setSignin(true);
+            setLoginInvalid(false);
         }else{
             setLogin(true);
             setSignin(false);
         }
     }
+
+    const handleLogin = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setLoginCredentials(values => ({...values, [name]: value}))
+    }
+
+    async function handleLoginSubmit(){
+        let response = await fetch("http://localhost:3001/users/login", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username: loginCredentials['username'], password: loginCredentials['password']})
+        })
+        const res = await response.json()
+        console.log(res);
+        if (response.status==200){
+            localStorage.setItem('username', loginCredentials['username'])
+            setLogin(false);
+            setLoginInvalid(false);
+            setUser({firstname: res['user']['first'], lastname: res['user']['last']})
+        }else{
+            setLoginInvalid(true);
+        }
+        
+        setLoginCredentials({
+            username: '',
+            password: ''
+        })
+    }
+
+    const handleSignup = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setSignupCredentials(values => ({...values, [name]: value}))
+    }
+
+    async function handleSignupSubmit() {
+        let response = await fetch("http://localhost:3001/users/signup", {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                "Content-Type":'application/json'
+            },
+            body: JSON.stringify(signupCredentials)
+        })
+        const res = await response.json();
+        console.log(res);
+        setSignupCredentials({
+            first: '',
+            last: '',
+            email: '',
+            username: '',
+            password: ''
+        })
+        setSignin(false);
+    }
+
+    function changeSection(e){
+        setSection(e.currentTarget.id);
+        console.log(section);
+    }
     return(
         <div className="blog-main">
             <div className="blog-main-left">
-                
                 <div className="blog-sections-title">
                     Sections
                 </div>
                 <div className="blog-main-sections">
-                    <div className="blog-main-section">My Posts</div>
-                    <div className="blog-main-section">By Category</div>
-                    <div className="blog-main-section">Most Recent</div>
-                    <div className="blog-main-section">All</div>
-                    <div className="blog-main-section">Search</div>
+                    <div className="blog-main-section" id="my_posts" onClick={(e) => changeSection(e)}>My Posts</div>
+                    <div className="blog-main-section" id="by_category" onClick={(e) => changeSection(e)}>By Category</div>
+                    <div className="blog-main-section" id="most_recent" onClick={(e) => changeSection(e)}>Most Recent</div>
+                    <div className="blog-main-section" id="all" onClick={(e) => changeSection(e)}>All</div>
+                    <div className="blog-main-section" id="search" onClick={(e) => changeSection(e)}>Search</div>
                 </div>
                 <div className="blog-main-seeUsers-div">
                     <Link className="see-all-users-link" to={"/blog/users"}>
@@ -66,24 +147,8 @@ function Blog(){
                 </div>
             </div>
             <div className="blog-main-mid">
-                <div className="blog-main-mid-title">
-                    Blog Posts
-                </div>
-                <div className="blog-main-mid-posts" onClick={postClick}>
-                    {dataExists && postData.map((element) => <BlogPost data={element}/>)}
-                </div>
-                <div className="blog-main-mid-writepost">
-                    <div className="blog-main-mid-writepost-button">
-                        {!writePost && 
-                            <button id="blog-main-mid-writepost-button" onClick={writePostClick}>Write Post</button>
-                        }
-                    </div>
-                    <div className="blog-main-mid-writepost-content">
-                        {
-                            writePost && <WritePost postData={postData} setPostData={setPostData} setDataExists={setDataExists} setWritePost={setWritePost}/>
-                        }
-                    </div>
-                </div>
+                <AllPosts postData={postData} setPostData={setPostData} setDataExists={setDataExists} setWritePost={setWritePost}
+                loggedIn={loggedIn} user={user} dataExists={dataExists} writePost={writePost} writePostClick={writePostClick} filter={section}/>
             </div>
             <div className="blog-main-right">
                 <div className="signin-section">
@@ -91,43 +156,52 @@ function Blog(){
                     <button className="blog-signin-button" id="blog-login-button" onClick={(e) => handleLoginButtons(e)}>Log in</button>
                 </div>
                 <div className="signin-form-section">
+                    <div className="signin-form-section-content">
                     {
                         login && 
                         <div className="signin-form-signin-content">
                             <div className="signin-div">
-                                <input type="text" placeholder="username" className="signin-form-username" />
+                                <input onChange={(e) => handleLogin(e)} value={loginCredentials['username']} type="text" placeholder="username" name="username" className="signin-form-username" />
                             </div>
                             <div className="signin-div">
-                                <input type="text" placeholder="password" className="signin-form-password" />
+                                <input onChange={(e) => handleLogin(e)} value={loginCredentials['password']} type="password" placeholder="password" name="password" className="signin-form-password" />
                             </div>
                             <div className="signin-div">
-                                <button type="submit" id="blog-signin-button-signin">Log In</button>
+                                <button type="submit" id="blog-signin-button-signin" onClick={handleLoginSubmit}>Log In</button>
                             </div>
                         </div>
                     }
                     {
                         signin &&
-                        <div className="login-form-login-content">
-                            <div className="login-div">
-                                <input type="text" placeholder="firstname" className="signin-form-firstname" />
-                            </div>
-                            <div className="login-div">
-                                <input type="text" placeholder="lastname" className="signin-form-lastname" />
-                            </div>
-                            <div className="login-div">
-                                <input type="text" placeholder="username" className="signin-form-username" />
-                            </div>
-                            <div className="login-div">
-                                <input type="text" placeholder="password" className="signin-form-password" />
-                            </div>
-                            <div className="login-div">
-                                <input type="text" placeholder="email" className="signin-form-email" />
-                            </div>
-                            <div className="login-div">
-                                <button type="submit" id="blog-login-button-login">Sign Up</button>
-                            </div>
+                        <div>
+                            <form className="login-form-login-content" action="/" onSubmit={handleSignupSubmit}>
+                                <div className="login-div">
+                                    <input required type="text" onChange={(e) => handleSignup(e)} value={signupCredentials['first']} name="first" placeholder="firstname" className="signin-form-firstname" />
+                                </div>
+                                <div className="login-div">
+                                    <input type="text" onChange={(e) => handleSignup(e)} value={signupCredentials['last']} name="last" placeholder="lastname" className="signin-form-lastname" />
+                                </div>
+                                <div className="login-div">
+                                    <input type="text" onChange={(e) => handleSignup(e)} value={signupCredentials['email']} name="email" placeholder="email" className="signin-form-email" />
+                                </div>
+                                <div className="login-div">
+                                    <input required type="text" onChange={(e) => handleSignup(e)} value={signupCredentials['username']} name="username" placeholder="username" className="signin-form-username" />
+                                </div>
+                                <div className="login-div">
+                                    <input required type="text" onChange={(e) => handleSignup(e)} value={signupCredentials['password']} name="password" placeholder="password" className="signin-form-password" />
+                                </div>
+                                <div className="login-div">
+                                    <input type="submit" id="blog-login-button-login" value="Sign Up"/>
+                                </div>
+                            </form>
                         </div>
                     }
+                    </div>
+                    <div className="signin-form-response">
+                        {loginInvalid && 
+                            <div>Invalid login</div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

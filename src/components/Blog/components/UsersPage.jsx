@@ -52,6 +52,7 @@ function Main(){
         });
         await getdata();
         setInputs({first: '', last: '', username: '', email: ''})
+        console.log('r2:', response2);
         return response2;
     }
 
