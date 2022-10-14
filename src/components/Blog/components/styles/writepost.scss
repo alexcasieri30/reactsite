@@ -1,16 +1,17 @@
 .blog-main-writepost{
     width: 15%;
     position:absolute;
-    margin-top: -20em;
+    margin-top: -30em;
     align-items: center;
     display:flex;
     flex-direction:row;
     justify-content: space-around;
     .blog-main-writepost-container{
         border: solid 1px black;
-        background-color: rgba(0,0,0,0.9);
+        background-color: rgba(0,0,0,0.85);
         padding: 5em;
         border-radius: 40px;
+        box-shadow: 4px 10px 10px 4px rgba(0,0,0,0.6);
         .blog-main-describe{
             margin-top: 2em;
             display:flex;
@@ -18,6 +19,13 @@
             gap: 1em;
             .blog-main-mid-describe-input{
                 height: 2em;
+            }
+            .blog-main-mid-describe-cat-date{
+                display: flex;
+                gap: 1em;
+                .blog-main-mid-describe-input{
+                    flex: 1;
+                }
             }
         }
         .blog-main-mid-textarea{
@@ -33,9 +41,28 @@
                 justify-content:center;
                 #submit-post{
                     margin: 1em;
+                    width: 6em;
+                    height: 3em;
+                    border: none;
+                    border-radius: 0.5em;
+                    cursor: pointer;
+                    &:hover{
+                        border: solid 2px blue;
+                    }
                 }
                 #cancel-post{
                     margin: 1em;
+                    width: 6em;
+                    height: 3em;
+                    border: none;
+                    border-radius: 0.5em;
+                    cursor: pointer;
+                    &:hover{
+                        border: solid 2px blue;
+                    }
+                    &:focus{
+                        background-color: rgba(0,200,200,0.6);
+                    }
                 }
             }
         }

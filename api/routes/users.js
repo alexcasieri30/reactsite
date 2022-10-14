@@ -18,21 +18,18 @@ const pool = new Pool({
 })
 
 
-router.get("/", function (req, res) {
-    res.send("hello world")
-  });
-  
-router.get("/data", function(req, res){
+router.get("/", async function(req, res){
     pool.query('select * from users;', (error, results) => {
       if (error) {
         throw error
       }
+      console.log(results);
       res.set('Access-Control-Allow-Origin', '*');
       res.status(200).json(results.rows)
     })
 })
-  
-router.post("/add", function(req, res){
+
+router.post("/", async function(req, res){
     const info = req.body;
     pool.query(`insert into users (first_name, last_name, username, email) values ('${info.first}', '${info.last}', '${info.username}', '${info.email}');`, (error, results) => {
       if (error){

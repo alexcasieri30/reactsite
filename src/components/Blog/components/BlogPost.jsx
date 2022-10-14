@@ -1,7 +1,6 @@
 import "./styles/blogpost.scss";
 
 function BlogPost({ data }){
-    console.log(data);
     return(
         <div className="blog-post-outline">
             <div className="blog-post-header">
@@ -26,7 +25,6 @@ function BlogPost({ data }){
                 <div className="blog-post-text">
                     {data.text}
                 </div>
-               
             </div>
            <div className="blog-post-footer">
                 

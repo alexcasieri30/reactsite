@@ -18,7 +18,7 @@ const pool = new Pool({
 
 var router = express.Router();
 
-router.post("/write_post", async function(req, res){
+router.post("/", async function(req, res){
     const info = req.body;
     let current_id;
     const results = await pool.query(`select id from users where username='${info.username}'`);
@@ -27,7 +27,7 @@ router.post("/write_post", async function(req, res){
     }catch(error){
       console.error(error);
     }
-    pool.query(`insert into posts (text, author_id, time, category, title, subtitle) values ('${info.text}', ${current_id}, '${info.time}', '${info.category}', '${info.title}', '${info.subtitle}');`, (error, results) => {
+    pool.query(`insert into posts (text, author_id, time, category, title, subtitle) values ('${info.text}', ${current_id}, '${info.date}', '${info.category}', '${info.title}', '${info.subtitle}');`, (error, results) => {
       if (error){
         throw error;
       }
@@ -35,7 +35,7 @@ router.post("/write_post", async function(req, res){
     })
 })
   
-router.get("/get_posts", async function(req, res){
+router.get("/", async function(req, res){
     let sql_query = `SELECT text, author_id, time, category, title, subtitle, username FROM posts INNER JOIN users ON posts.author_id = users.id`;
     const results = await pool.query(sql_query)
     res.set('Access-Control-Allow-Origin', '*');

@@ -12,8 +12,7 @@ function WritePost({ postData, setPostData, setDataExists, setWritePost }){
     }
 
     async function submitPostButton(){
-
-        const response = await fetch('http://localhost:3001/posts/write_post', {
+        const response = await fetch('http://localhost:3001/posts', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -26,7 +25,7 @@ function WritePost({ postData, setPostData, setDataExists, setWritePost }){
                     username: inputs['username'].replace("'", "''"),
                     category: inputs['category'].replace("'", "''"),
                     text: inputs['text'].replace("'", "''"),
-                    time: '03/01/2022'
+                    date: inputs['date']
                 }
             )
         });
@@ -36,12 +35,13 @@ function WritePost({ postData, setPostData, setDataExists, setWritePost }){
             username: '',
             category: '',
             text: '',
+            date: '',
         }, updatePosts());
         setWritePost(false);
     }
 
     const updatePosts = async () => {
-        const response = await fetch('http://localhost:3001/posts/get_posts', {mode: 'cors'});
+        const response = await fetch('http://localhost:3001/posts', {mode: 'cors'});
         const data = await response.json();
         setPostData(
             data
@@ -61,8 +61,12 @@ function WritePost({ postData, setPostData, setDataExists, setWritePost }){
                 <div className="blog-main-describe">
                     <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="title" placeholder="Title" value={inputs['title']}/>
                     <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="subtitle" placeholder="Subtitle" value={inputs['subtitle']}/>
-                    <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="category" placeholder="Category" value={inputs['category']}/>
                     <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="username" placeholder="Username" value={inputs['username']}/>
+                    <div className="blog-main-mid-describe-cat-date">
+                        <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="category" placeholder="Category" value={inputs['category']}/>
+                        <input onChange={(e) => changePost(e)} className="blog-main-mid-describe-input" type="text" name="date" placeholder="Date" value={inputs['date']}/>
+                    </div>
+                    
                 </div>
                 <div className="blog-main-mid-textarea">
                     <div className="submit-post-text">

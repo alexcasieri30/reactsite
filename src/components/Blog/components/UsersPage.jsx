@@ -8,16 +8,19 @@ function Main(){
     useEffect(()=>{
         let body = document.querySelector('body');
         body.style.backgroundColor="white";
-        getdata();
+        console.log(children);
+        if (children.length==0){
+            getdata();
+        }
     })
 
     const getdata = async () => {
-        const response = await fetch('http://localhost:3001/users/data', {mode: 'cors'});
+        const response = await fetch('http://localhost:3001/users', {mode: 'cors'});
         console.log("RESPONSE: ", response);
         const data = await response.json()
         let table_elements = [];
         for (let i = 0; i < data.length; i++){
-            let element = <tr className="blog-page-users-table-tr">
+            let element = <tr key={i} className="blog-page-users-table-tr">
                 <td className="blog-page-users-table-td">{data[i].first_name}</td>
                 <td className="blog-page-users-table-td">{data[i].last_name}</td>
                 <td className="blog-page-users-table-td">{data[i].username}</td>
@@ -39,7 +42,7 @@ function Main(){
         if (!inputs['first']||!inputs['username']){
             return
         }
-        const response2 = await fetch('http://localhost:3001/users/add', {
+        const response2 = await fetch('http://localhost:3001/users', {
             method: 'POST', 
             mode: 'cors',
             headers: {
