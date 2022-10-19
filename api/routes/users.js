@@ -45,7 +45,7 @@ router.post("/login", async function(req, res){
   const info = req.body;
   res.set('Access-Control-Allow-Origin', '*');
   pool.query(`select * from users where username='${info.username}'`, (error, results)=>{
-    console.log('query results', results.rows);
+    console.log('query results', results.rows.length);
     if (error){
       throw error;
     }else{

@@ -8,7 +8,7 @@ import CVLetter from './components/Games/cv_project/App';
 import Sketch from './components/Games/etchasketch_react/App';
 import TictactoeBoard from './components/Games/tictactoe/App';
 import Battleship from "./components/Games/battleship/App";
-
+import WheresWaldo from "./components/Games/wheres_waldo/App";
 
 import Home from './static_pages/HomeV1';
 import React from "react";
@@ -37,6 +37,8 @@ const routes = [
 
     // <Route path="/chooseGameType" element={<ChooseGameType/>}/>,
     <Route path="/fullscreengames" element={<FullScreenGames/>}/>,
+    <Route path="/fullscreengames/where" element={<WheresWaldo/>}/>,
+
 
     <Route path="/games" element={<Games/>}/>,
     <Route path="/games/memory" element={<Memory />}/>,

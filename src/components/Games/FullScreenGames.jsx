@@ -1,5 +1,6 @@
 import "./fullscreengames.scss";
 import Dropdown from "../Utilities/Dropdown";
+import {Link} from "react-router-dom";
 
 function FullScreenGames(){
     return (
@@ -37,11 +38,13 @@ function FullScreenGames(){
                             Memory
                         </div>
                     </a>
-                    <a href="" className="fs-game-section" id="other">
-                        <div>
-                            Other
+                    <Link to="/fullscreengames/where">
+                        <div href="" className="fs-game-section" id="other">
+                            <div>
+                                
+                            </div>
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 <div className="fullscreengames-mid-right"></div>
             </div>
