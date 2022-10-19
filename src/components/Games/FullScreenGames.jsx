@@ -31,11 +31,11 @@ function FullScreenGames(){
                             Gotta Catch Them All
                         </div>
                         <div className="fs-game-section-bottom">
-                            <button className="fullscreen-play-button">
-                                <a href="../gottaCatchThemAll/index.html">
+                            <a href="../gottaCatchThemAll/index.html">
+                                <button className="fullscreen-play-button">
                                     Play
-                                </a>
-                            </button>
+                               </button>
+                            </a>
                         </div>
                     </div>
 
@@ -44,11 +44,11 @@ function FullScreenGames(){
                             Memory
                         </div>
                         <div className="fs-game-section-bottom">
-                            <button className="fullscreen-play-button">
-                                <a href="../memory2/index.html">
+                            <a href="../memory2/index.html">
+                                <button className="fullscreen-play-button">
                                     Play
-                                </a>
-                            </button>
+                                </button>
+                            </a>
                         </div>
                     </div>
                     <div id="lostinny" className="fs-game-section">
@@ -56,11 +56,11 @@ function FullScreenGames(){
                             Lost in New York
                         </div>
                         <div className="fs-game-section-bottom">
-                            <button className="fullscreen-play-button">
-                                <Link to="/fullscreengames/where">
+                            <Link to="/fullscreengames/where">
+                                <button className="fullscreen-play-button">
                                     Play
-                                </Link>
-                            </button>
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

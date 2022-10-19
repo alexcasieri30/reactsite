@@ -62,11 +62,12 @@
                     flex: 0.1;
                     display:flex;
                     justify-content:center;
-                    margin: 0 1em 0 1em;
                     .fullscreen-play-button{
                         flex: 1;
                         cursor: pointer;
                         border: solid 2px black;
+                        width: 10em;
+                        height: 2em;
                         &>a{
                             text-decoration: none;
                         }
