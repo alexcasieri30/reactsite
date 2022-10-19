@@ -22,29 +22,47 @@ function FullScreenGames(){
                         <Dropdown currentPage={"Full Screen"}></Dropdown>
                     </div>
                 </div>
-                
-                
             </div>
             <div className="fullscreengames-mid">
                 <div className="fullscreengames-mid-left"></div>
                 <div className="fullscreengames-mid-mid">
-                    <a href="../gottaCatchThemAll/index.html" id="gcta" className="fs-game-section">
-                        <div>
+                    <div id="gcta" className="fs-game-section">
+                        <div className="fs-game-section-top">
                             Gotta Catch Them All
                         </div>
-                    </a>
-                    <a href="../memory2/index.html" id="memory2" className="fs-game-section">
-                        <div>
+                        <div className="fs-game-section-bottom">
+                            <button className="fullscreen-play-button">
+                                <a href="../gottaCatchThemAll/index.html">
+                                    Play
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="memory2" className="fs-game-section">
+                        <div className="fs-game-section-top">
                             Memory
                         </div>
-                    </a>
-                    <Link to="/fullscreengames/where">
-                        <div href="" className="fs-game-section" id="other">
-                            <div>
-                                
-                            </div>
+                        <div className="fs-game-section-bottom">
+                            <button className="fullscreen-play-button">
+                                <a href="../memory2/index.html">
+                                    Play
+                                </a>
+                            </button>
                         </div>
-                    </Link>
+                    </div>
+                    <div id="lostinny" className="fs-game-section">
+                        <div className="fs-game-section-top">
+                            Lost in New York
+                        </div>
+                        <div className="fs-game-section-bottom">
+                            <button className="fullscreen-play-button">
+                                <Link to="/fullscreengames/where">
+                                    Play
+                                </Link>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className="fullscreengames-mid-right"></div>
             </div>
