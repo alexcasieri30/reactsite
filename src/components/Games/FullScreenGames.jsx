@@ -9,7 +9,7 @@ function FullScreenGames(){
                 <div className="fullscreengames-main-container-border-inset">
                     <div className="fullscreengames-top">
                         <div className="fullscreengames-top-left">
-                            space
+                            Change format
                         </div>
                         <div className="fullscreengames-top-title">
                             <div className="fullscreengames-top-title-featured">
