@@ -37,6 +37,7 @@
         .project-header-title-featuredgames{
             flex: 1;
             font-size: 40pt;
+            color: white;
             .project-header-title-featured{
                 font-family: featured;
                 text-align: center;
@@ -75,11 +76,27 @@
                 padding: 10px;
                 border-radius: 10px 10px 0px 0px;
             }
-    
             .project-navbar-active{
                 border-bottom:none;
             }
+            .project-navbar-link{
+                color: white;
+                text-decoration: none;
+                animation: dim 1s reverse 6;
+            }
         }
+    }
+}
+
+@keyframes dim{
+    0%{
+        color: white;
+    }
+    50%{
+        color: gray;
+    }
+    100%{
+        color: white;
     }
 }
 

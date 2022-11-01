@@ -9,16 +9,24 @@ import { useState, useEffect } from "react";
 const ProjectNavbar = function(){
     const redirect = useLocation().state;
     const [active, setActive] = useState('');
+    const [stopAnimation, setStopAnimation] = useState(false);
+
     useEffect(() => {
+        if (stopAnimation){
+            let links = document.querySelectorAll(".project-navbar-link");
+            links.forEach((l) => {
+                l.style.animation = "none";
+            })
+        }
         let container = document.querySelector('.container');
-        container.style.backgroundColor = "white";
+        container.style.backgroundColor = "black";
     })
-    console.log('rendering')
+
     function activateTitle(e){
-        console.log('clicked')
-        console.log(e.currentTarget.parentNode);
+        setStopAnimation(true);
         e.currentTarget.parentNode.classList.add('project-navbar-active');
     }
+
     let memoryclassname = "project-navbar-section";
     let cvletterclassname = "project-navbar-section";
     let sketchclassname = "project-navbar-section";
@@ -80,19 +88,19 @@ const ProjectNavbar = function(){
             <div className="project-navbar-content">
                 <div className="project-navbar-container">
                     <div className={memoryclassname} style={{backgroundColor:memoryTitleBackground}}>
-                        <Link onClick={(e) => activateTitle(e)} to="/games/memory" state={{from:"memory",backgroundColor:'lightred'}}>Memory</Link>
+                        <Link className="project-navbar-link" onClick={(e) => activateTitle(e)} to="/games/memory" state={{from:"memory",backgroundColor:'lightred'}}>Memory</Link>
                     </div >
                     <div className={cvletterclassname} style={{backgroundColor:cvLetterTitleBackground}}>
-                        <Link onClick={(e) => activateTitle(e)} to="/games/cv_letter" state={{from:"cv_letter",backgroundColor:'white'}}>CV Letter</Link>
+                        <Link className="project-navbar-link" onClick={(e) => activateTitle(e)} to="/games/cv_letter" state={{from:"cv_letter",backgroundColor:'white'}}>CV Letter</Link>
                     </div>
                     <div className={sketchclassname} style={{backgroundColor:sketchTitleBackground}}>
-                        <Link onClick={(e) => activateTitle(e)} to="/games/sketch" state={{from:"sketch",backgroundColor:'lightblue'}}>Sketch</Link>
+                        <Link className="project-navbar-link" onClick={(e) => activateTitle(e)} to="/games/sketch" state={{from:"sketch",backgroundColor:'lightblue'}}>Sketch</Link>
                     </div>
                     <div className={tictactoeclassname} style={{backgroundColor:tictactoeTitleBackground}}>
-                        <Link onClick={(e) => activateTitle(e)} to="/games/tictactoe" state={{from:"tictactoe",backgroundColor:'lightblue'}}>Tictactoe</Link>
+                        <Link className="project-navbar-link" onClick={(e) => activateTitle(e)} to="/games/tictactoe" state={{from:"tictactoe",backgroundColor:'lightblue'}}>Tictactoe</Link>
                     </div>
                     <div className={battleshipclassname} style={{backgroundColor: battleshipTitleBackground}}>
-                        <Link onClick={(e) => activateTitle(e)} to="/games/battleship" state={{from:"battleship",backgroundColor:'lightblue'}}>Battleship</Link>
+                        <Link className="project-navbar-link" onClick={(e) => activateTitle(e)} to="/games/battleship" state={{from:"battleship",backgroundColor:'lightblue'}}>Battleship</Link>
                     </div>
                 </div>
             </div>

@@ -191,9 +191,8 @@ function TictactoeBoard(){
     let classNamePlayer = 'playerWins ' + ((winner!=0&&winner==1) ? '':'hidden');
     let classNameComputer='computerWins ' + ((winner!=0&&winner==2) ? '':'hidden')
     let classNameTie = 'tieGame ' + ((winner!=0&&winner==3) ? '':'hidden')
-
+    
     return(
-        
         <div id="tictactoe">
             <div id="tictactoe-main">
                 <div className={classNamePlayer}>

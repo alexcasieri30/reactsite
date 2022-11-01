@@ -9,8 +9,8 @@ function ChooseGameType({currentPage}){
         if (currentPage==="Games"){
             let gamelink = document.querySelector(".choose-game-link");
             let gamelinktext = document.querySelector(".choose-game-link");
-            gamelink.style.border="solid 1px black";
-            gamelink.style.color="black";
+            gamelink.style.border="solid 1px white";
+            gamelink.style.color="white";
         }
     })
 

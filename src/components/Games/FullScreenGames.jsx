@@ -6,11 +6,13 @@ import { useEffect } from "react";
 function FullScreenGames(){
 
     useEffect(() => {
+        let container = document.querySelector(".container");
+        container.style.backgroundColor="black";
         let mouse_move = document.querySelector(".mouse-move");
         if (mouse_move){
             mouse_move.addEventListener("mousemove", function(event){
-                let x = event.clientX + 330 * (event.clientX / window.innerWidth),
-                    y = event.clientY - 130 + window.scrollY + (260 * event.clientY / window.innerHeight);
+                let x = event.clientX + 280 * (event.clientX / window.innerWidth),
+                    y = event.clientY - 130 + window.scrollY + (280 * event.clientY / window.innerHeight);
                 let element = document.createElement('span');
                     element.setAttribute('class', 'element-child');
                     element.style.left = `${x}px`;

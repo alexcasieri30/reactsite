@@ -305,7 +305,6 @@ $--typewriter_speed: 4s;
     }
     .home-page-footer{
         height: 600px;
-        border: solid 1px black;
     }
 
 }
@@ -461,4 +460,18 @@ $--typewriter_speed: 4s;
     grid-column-end: 4;
     grid-row-start: 6;
     grid-row-end: 7;
+}
+
+
+.home-page-footer-end{
+    display:flex;
+    justify-content:center;
+    .social-media-icons{
+        display:flex;
+        width: 15%;
+        .social-media-icon{
+            flex: 1;
+            margin-bottom: 10px;
+        }
+    }
 }

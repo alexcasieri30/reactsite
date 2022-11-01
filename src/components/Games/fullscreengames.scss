@@ -200,7 +200,7 @@
     align-items: center;
     position:relative;
     background: rgba(0,0,100,1);
-    animation: 4s changecolor ease-in infinite;
+    animation: 0.5s changecolor ease-in infinite;
 }
 .fullscreengames-main-container-border-inset{
     position:absolute;
@@ -226,7 +226,7 @@
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     transform: translate(-50%, -50%);
-    animation:  anime 1s linear infinite;
+    animation:  anime 0.5s linear infinite;
 }
 
 @keyframes anime{

@@ -12,7 +12,6 @@ GAMES:
 - games page
 	- users can log in with their blog credentials 
 		- allow me to keep track of game progress in database
-	- title "Featured Games" interactive with animation
 	- add animations to the buttons / backgrounds
 	- add small animations throughout the page, little gifs, moving shapes, etc.
 	- background to the /games endpoint
@@ -45,7 +44,6 @@ GAMES:
 		2. about the author (more in depth details about me)
 
 
-
 - blog page
 	- add support for categories
 	- add user passwords into database
@@ -65,9 +63,22 @@ GAMES:
 
 
 
+GAMES PAGE --> MACHINE LEARNING PAGE
 
+- ideas/steps
 
+- set up a flask server with different endpoints 
+	- server starts, and is used solely for the purpose of holding the python ML algorithms 
+	- that are used when users click on "Machine Learning" under the games section
 
+- previous ML projects -> titanic/boston housing/NLP
+	- use those ML models to allow the user to input some values
+	- those values sent to flask backend, model responds with predictions
 
-	
+- new ideas for "games" 
+	- user enters a phrase, phrase gets sent to ML model, 
+		- model spits out emotion/sentiment of the phrase
+	- user uploads a picture, model tries to predict what the image is
+		- user upload input style
+		- will have to do more research on this
 

@@ -11,12 +11,9 @@ function ChooseX({onClick, src}){
 
     const handleImageClick = (e) => {
         let parent = e.currentTarget.parentNode.parentNode;
-        console.log(parent)
         for (let i = 0; i < parent.children.length; i++){
             parent.children[i].firstChild.classList.remove("active")
-            console.log(parent.children[i].firstChild)
         }
-        
         e.currentTarget.classList.add('active');
         setActive(
             e.currentTarget.src
