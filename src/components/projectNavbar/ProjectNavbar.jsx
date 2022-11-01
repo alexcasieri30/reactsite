@@ -3,13 +3,16 @@ import "./projectNavbar.scss";
 import Dropdown from "../Utilities/Dropdown";
 import { Link } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const ProjectNavbar = function(){
     const redirect = useLocation().state;
     const [active, setActive] = useState('');
-
+    useEffect(() => {
+        let container = document.querySelector('.container');
+        container.style.backgroundColor = "white";
+    })
     console.log('rendering')
     function activateTitle(e){
         console.log('clicked')

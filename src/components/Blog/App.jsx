@@ -31,6 +31,8 @@ function Blog(){
     }
 
     useEffect(() => {
+        let container = document.querySelector('.container');
+        container.style.backgroundColor = "white";
         getFirstPosts();
         if (localStorage.getItem('username')!==null && loggedIn==false){
             console.log('not null')

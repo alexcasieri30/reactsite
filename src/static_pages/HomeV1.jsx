@@ -13,6 +13,8 @@ import Me6 from "./images/me_home_6.PNG";
 
 function App() {
   useEffect(()=>{
+    let container = document.querySelector('.container');
+    container.style.backgroundColor = "black";
     let body = document.querySelector('body');
     body.style.backgroundColor="white";
   })
