@@ -1,10 +1,30 @@
 import "./fullscreengames.scss";
 import Dropdown from "../Utilities/Dropdown";
 import {Link} from "react-router-dom";
+import { useEffect } from "react";
 
 function FullScreenGames(){
+
+    useEffect(() => {
+        let mouse_move = document.querySelector(".mouse-move");
+        if (mouse_move){
+            mouse_move.addEventListener("mousemove", function(event){
+                let x = event.clientX + 330 * (event.clientX / window.innerWidth),
+                    y = event.clientY - 130 + window.scrollY + (260 * event.clientY / window.innerHeight);
+                let element = document.createElement('span');
+                    element.setAttribute('class', 'element-child');
+                    element.style.left = `${x}px`;
+                    element.style.top = `${y}px`;
+                    this.appendChild(element);
+                    setTimeout(() => {
+                        element.remove()
+                    }, 1000)
+            })
+        }
+    })
+
     return (
-        <div className="fullscreengames-main-container">
+        <div className="fullscreengames-main-container mouse-move">
             <div className="fullscreengames-main-container-border">
                 <div className="fullscreengames-main-container-border-inset">
                     <div className="fullscreengames-top">
@@ -38,7 +58,7 @@ function FullScreenGames(){
                                             <a href="../gottaCatchThemAll/index.html">
                                                 <button className="fullscreen-play-button">
                                                     Play
-                                            </button>
+                                                </button>
                                             </a>
                                         </div>
                                     </div>
