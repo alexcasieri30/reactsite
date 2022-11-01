@@ -81,6 +81,7 @@ function Blog(){
         })
         if (response.status==200){
             const res = await response.json()
+            console.log(res);
             localStorage.setItem('username', loginCredentials['username'])
             setLogin(false);
             setLoginInvalid(false);

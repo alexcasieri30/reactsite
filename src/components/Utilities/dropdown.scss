@@ -1,4 +1,9 @@
 
+@font-face{
+    font-family: chicago;
+    src: url('../Games/Chicago.otf');
+}
+
 #choose-game-dropdown-container{
     display:flex;
     justify-content:center;
@@ -10,16 +15,22 @@
     border: solid 1px black;
     text-decoration: none;
     color: #777;
-    font-family: inherit;
-    font-size: inherit;
     cursor: pointer;
-    padding: 1em;
-    width: 25em;
-    margin-top: 1em;
+    padding: 0.5em;
+    width: 10em;
+    margin-top: 0;
+    border-radius: 2em;
+    border: solid 1px white;
+    font-family: chicago;
+    font-size: 20pt;
+    color: white;
+    &:active{
+        background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,100,0.8));
+    }
 }
 
 .choose-game-dropdown.choose-game-active > .choose-game-link, .choose-game-link:hover{
-    color: black;
+    color: white;
 }
 .choose-game-dropdown{
     position:relative;
@@ -27,7 +38,7 @@
 
 .choose-game-dropdown-menu{
     position:absolute;
-    width: 25em;
+    width: 17em;
     top: calc(100% + 0rem);
     background-color: transparent;
     padding: 0.75rem;
@@ -57,11 +68,16 @@
     .dropdown-link{
         background: linear-gradient(45deg, rgb(255, 135, 135), rgb(136, 136, 255));
         flex: 1;
-        padding: 1em;
+        padding: 0.5em;
         text-align: center;
         cursor: pointer;
+        max-height: 2em;
         &:hover{
-            background: linear-gradient(180deg, rgba(255, 135, 135,0.7), rgba(136, 136, 255, 0.7));
+            background: linear-gradient(180deg, rgba(255, 135, 135), rgba(136, 136, 255));
         }
     }
+}
+
+.dropdown-active-class{
+    background: radial-gradient(rgba(255,255,255,0.5), rgba(0,0,100,0.8));
 }

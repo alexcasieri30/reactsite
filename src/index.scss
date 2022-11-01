@@ -10,19 +10,23 @@
     width: 100%; 
     .header{
         flex: 0.1;
+        min-height: 10%;
         position: sticky;
         top: 0;
     }
     .middle{
+        margin-top: 3em;
         width: 100%;
         flex: 0.9;
+        display:flex;
         .left{
+            flex: 0;
         }
         .mid{
-            flex: 0.85;
+            flex: 1;
         }
         .right{
-            flex: 0.05;
+            flex: 0;
         }
     }
     .footer{

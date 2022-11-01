@@ -47,13 +47,16 @@ const ProjectNavbar = function(){
             battleshipTitleBackground = "rgb(83, 54, 54) ";
         }
     }
+
+    function onButtonClick(e){
+        // e.currentTarget.classList.toggle('game-settings-button-active')
+    }
     
-    console.log(memoryTitleBackground, cvLetterTitleBackground, sketchTitleBackground)
     return (
         <div className="games-header">
             <div className="project-header-title">
                 <div className="project-header-title-left">
-                    <div className="project-header-title-left-settings">
+                    <div className="project-header-title-left-settings" onClick={onButtonClick}>
                         Settings
                     </div>
                 </div>

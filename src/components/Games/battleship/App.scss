@@ -4,13 +4,14 @@
   src: url('./components/fonts/battleship.ttf')
 }
 
-
+.game-container{
+}
 .battleship-app{
+  min-height: 80em;
   display:flex;
   height: 98vh;
   width: 100%;
   background: linear-gradient(0deg, rgb(255, 241, 165) 1.9%, rgb(200, 125, 76) 49.7%, rgb(83, 54, 54) 100.5%);
-
   .battleship-left{
     flex: 0.1;
   }
@@ -29,9 +30,10 @@
     }
     .battleship-game{
       flex: 0.8;
+      max-height: 40em;
     }
     .battleship-footer{
-      flex: 0.1;    
+      flex: 0.1;
     }
   }
   .battleship-right{

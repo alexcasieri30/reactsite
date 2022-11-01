@@ -4,7 +4,7 @@ import ProjectNavbar from "../../projectNavbar/ProjectNavbar";
 
 function App() {
   return (
-    <div>
+    <div className="game-container">
       <ProjectNavbar/>
       <div className="battleship-app">
       <div className="battleship-left">

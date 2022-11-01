@@ -14,7 +14,7 @@
 .games-header{
     display:flex;
     flex-direction:column;
-    margin-top: 5em;
+    padding: 3em;
     .project-header-title{
         margin-bottom: 2%;
         display:flex;
@@ -29,6 +29,10 @@
                 width: 25em;
                 margin-top: 3em;
                 cursor: pointer;
+                border-radius: 2em;
+                &:active{
+                    background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,100,0.8));
+                }
             }
         }
         .project-header-title-featuredgames{
@@ -78,4 +82,9 @@
             }
         }
     }
+}
+
+
+.game-settings-button-active{
+    background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,100,0.8));
 }

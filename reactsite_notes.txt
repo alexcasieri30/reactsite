@@ -8,44 +8,60 @@
 		- modern looking
 		- light/smooth colors
 
+GAMES:
 - games page
+	- users can log in with their blog credentials 
+		- allow me to keep track of game progress in database
+	- title "Featured Games" interactive with animation
 	- add animations to the buttons / backgrounds
 	- add small animations throughout the page, little gifs, moving shapes, etc.
 	- background to the /games endpoint
-	- title "Featured Games" interactive with animation
 		- lots of room for images/
+
+- wheres waldo
+	- almost finished -- touching up for 2 other maps
+	- need to add game directions on the home page
+	- game over logic
+		- game over page
+		- keep track of stats -- in database
+		- show games table to user
+- etchasketch
+	- add image pixels to database
+	- show the previous images on page load
+- tictactoe
+	- 
 
 
 - home page
-	- infinite scroll down with small example sections from each page
-	- add more creative way to display the different pages that the website offers
-		- the dashboard is boring as fuck
-
-- about page
-	- work experience
-	- interests
-	- link to an image gallery perhaps
-
+	- complete about the author snippet
 
 - footer
 	- link to GitHub, linked, Contact Me page
-	- also could be a Link to a "history of this website" page
-		- here I detail all of the steps I took to making the website
-		- different versions of it, my ideas, motivations behind it, etc.
 
-- idea for right side of page
-	- once I get Node.js down, the right side can be a small popup 
-	  for users to leave comments on each page they visit
-	- example: on games page, the popup says "let me know your feedback for each of these games, and how I can improve them, or any general comments about them
-	- these are sent to the blog page 
+- about page - history of website / about the author
+	- main content -> 2 tabs for user to click on:
+		1. about the website (history/how it was made/etc)
+			- different versions of it, my ideas, motivations behind it, etc.
+		2. about the author (more in depth details about me)
+
+
 
 - blog page
-	- users can add general blog posts on general topics
-	- users can view others and query by topic / time / most liked
-	- users can view others' comments for each page in the website
+	- add support for categories
+	- add user passwords into database
+	- add "sort by" -> time button/dropdown
 
-
-
+- other ideas
+	- anywhere on the website, there can be a popup that asks
+	the user if they want to leave a comment
+		- the comment will automatically set the category based on where 
+		they are in the website
+	
+	- idea for right side of page
+		- once I get Node.js down, the right side can be a small popup 
+		for users to leave comments on each page they visit
+		- example: on games page, the popup says "let me know your feedback for each of these games, and how I can improve them, or any general comments about them
+		- these are sent to the blog page 
 
 
 

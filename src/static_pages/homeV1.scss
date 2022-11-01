@@ -169,6 +169,7 @@ $--typewriter_speed: 4s;
                             margin-top: 10px;
                         }
                         .dynamic-txts{
+                           
                             font-family: cheri;
                             margin: 0;
                             margin-left: 15px;
@@ -185,6 +186,7 @@ $--typewriter_speed: 4s;
                             animation: slide 6s steps(4) infinite;
                         }
                         .dynamic-txts li span{
+                            font-size: 50pt;
                             position:relative;
                         }
                         .dynamic-txts li span::after{

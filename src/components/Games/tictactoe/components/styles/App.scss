@@ -12,6 +12,8 @@ $name: "tictactoe";
     margin-bottom: 40px;
 }
 ##{$name}-section{
-    background-image: linear-gradient(#DECBA4, #3E5151);
+    background: linear-gradient(#DECBA4, #3E5151);
     height: 100vh;
+    min-height: 80em;
+
 }
