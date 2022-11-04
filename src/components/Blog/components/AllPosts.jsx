@@ -11,7 +11,6 @@ function AllPosts({postData, setPostData, setDataExists, setWritePost, loggedIn,
                 setCurrentUser(localStorage.getItem('username'))
             }
         }
-        console.log(currentUser);
     })
     return(
         <div className="blog-main-mid-div">
@@ -33,11 +32,12 @@ function AllPosts({postData, setPostData, setDataExists, setWritePost, loggedIn,
                         <button id="blog-main-mid-writepost-button" onClick={writePostClick}>Write Post</button>
                     }
                 </div>
-                <div className="blog-main-mid-writepost-content">
-                    {
-                        writePost && <WritePost postData={postData} setPostData={setPostData} setDataExists={setDataExists} setWritePost={setWritePost}/>
-                    }
-                </div>
+                
+            </div>
+            <div className="blog-main-mid-writepost-content">
+                {
+                    writePost && <WritePost postData={postData} setPostData={setPostData} setDataExists={setDataExists} setWritePost={setWritePost}/>
+                }
             </div>
         </div>
         

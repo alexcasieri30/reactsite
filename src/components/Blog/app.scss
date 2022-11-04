@@ -4,6 +4,7 @@
     height: 100vh;
     width: 100%;
     overflow: none;
+    background: linear-gradient(to bottom right, #a0d2eb, #e5eaf5, #d0bdf4 70%);
     .blog-main-left{
         border: solid 1px black;
         flex: 0.2;
@@ -16,20 +17,25 @@
         }
         .blog-main-sections{
             flex: 0.9;
-            display:flex;
+            display:flex;            
             flex-direction:column;
-            width: 100%;
+            width: 100%;                
+            background-color: rgba(200,200,255,0.4);
             .blog-main-section{
-                padding: 1em;
+                margin: 1em;
+                border-radius: 1em;
                 flex: 0.1;
                 max-height: 4em;
                 text-align: center;
-                padding-top: 10%;
-                border: solid 1px black;
-                background-color: rgba(0,255,100,0.5);
+                padding: 10%;
+                box-sizing: border-box;
                 &:hover{
-                    background-color: rgba(0,255,255,0.7);
                     cursor: pointer;
+                    animation: changecolor 1s linear 1;
+                    animation-fill-mode: forwards;
+                }
+                &:active{
+                    border: solid 2px rgba(0,0,0,0.5);
                 }
             }
         }
@@ -97,12 +103,6 @@
                 flex: 0.9;
                 display:flex;
                 justify-content:center;
-                .signin-form-signin-content{
-                    display:flex;
-                    flex-direction:column;
-                    gap: 1em;
-                    margin-top: 2em;
-                    justify-content:center;
                     .signin-div{
                         flex: 1;
                         display:flex;
@@ -129,7 +129,7 @@
                             width: 12em;
                         }
                     }
-                }
+                // }
                 .login-form-login-content{
                     display:flex;
                     flex-direction:column;
@@ -168,5 +168,44 @@
                 flex: 0.1;
             }
         }
+    }
+}
+
+
+.logout-section{
+    display:flex;
+    margin-top: 1em;
+    .blog-logout-button{
+        margin: auto;
+        border: none;
+        width: 6em;
+        height: 3em;
+        cursor: pointer;
+        border-radius: 0.5em;
+        background-color: rgba(0,100,100,0.6);
+        &:hover{
+            border: solid 2px blue;
+        }
+        &:active{
+            border: solid 3px blue;
+            background-color: rgba(0,100,100,0.8);
+        }
+    }
+}
+
+#invalid-login-message{
+    display:flex;
+    justify-content:center;
+    text-align: center;
+    padding: 10px;
+    color: red;
+}
+
+@keyframes changecolor{
+    0%{
+
+    }
+    100%{
+        background-color: rgba(50,50,150,0.3);
     }
 }

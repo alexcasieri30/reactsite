@@ -38,14 +38,12 @@
                 }
             }
         }
-        .blog-main-mid-writepost-content{
-            width:10em;
-            position:absolute;
-            margin-top: -6em;
-            align-items: center;
-            margin-bottom: 0;
-            margin-left: 0;
-            margin-right: 0;
-        }
     }
+}
+
+.blog-main-mid-writepost-content{
+    width:10em;
+    position:absolute;
+    align-items: center;
+    margin: 20% 0 0 20%;
 }

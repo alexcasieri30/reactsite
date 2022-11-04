@@ -31,8 +31,11 @@ function Blog(){
     }
 
     useEffect(() => {
+        console.log(loggedIn)
         let container = document.querySelector('.container');
         container.style.backgroundColor = "white";
+        let body = document.querySelector("body");
+        body.style.backgroundColor = "white";
         getFirstPosts();
         if (localStorage.getItem('username')!==null && loggedIn==false){
             console.log('not null')
@@ -70,9 +73,11 @@ function Blog(){
     }
 
     async function handleLoginSubmit(){
+        console.log("submitting")
         if (loginCredentials['username']=='' || loginCredentials['password']==''||loginCredentials['username']==null||loginCredentials['password']==null){
             return;
         }
+        console.log("username/password good, sending req");
         let response = await fetch("http://localhost:3001/users/login", {
             method: 'POST',
             mode: 'cors',
@@ -83,7 +88,6 @@ function Blog(){
         })
         if (response.status==200){
             const res = await response.json()
-            console.log(res);
             localStorage.setItem('username', loginCredentials['username'])
             setLogin(false);
             setLoginInvalid(false);
@@ -91,7 +95,6 @@ function Blog(){
         }else{
             setLoginInvalid(true);
         }
-        
         setLoginCredentials({
             username: '',
             password: ''
@@ -124,6 +127,9 @@ function Blog(){
         })
         setSignin(false);
     }
+    const handleLogoutButton = (e) => {
+        localStorage.removeItem("username");
+    }
 
     function changeSection(e){
         setSection(e.currentTarget.id);
@@ -153,26 +159,39 @@ function Blog(){
                 loggedIn={loggedIn} user={user} dataExists={dataExists} writePost={writePost} writePostClick={writePostClick} filter={section}/>
             </div>
             <div className="blog-main-right">
-                <div className="signin-section">
-                    <button className="blog-signin-button" id="blog-signin-button" onClick={(e) => handleLoginButtons(e)}>Sign Up</button>
-                    <button className="blog-signin-button" id="blog-login-button" onClick={(e) => handleLoginButtons(e)}>Log in</button>
-                </div>
+                {loggedIn && 
+                    <form className="logout-section">
+                        <button type="submit" className="blog-logout-button" id="blog-logout-button" onClick={(e) => handleLogoutButton(e)}>Log out</button>
+                    </form>
+                }
+                {!loggedIn && 
+                    <div className="signin-section">
+                        <button className="blog-signin-button" id="blog-signin-button" onClick={(e) => handleLoginButtons(e)}>Sign Up</button>
+                        <button className="blog-signin-button" id="blog-login-button" onClick={(e) => handleLoginButtons(e)}>Log in</button>
+                    </div>
+                }
+                {!loggedIn && 
                 <div className="signin-form-section">
                     <div className="signin-form-section-content">
                     {
                         login && 
-                        <div>
-                            <form className="signin-form-signin-content">
-                                <div className="signin-div">
-                                    <input required onChange={(e) => handleLogin(e)} value={loginCredentials['username']} type="text" placeholder="username" name="username" className="signin-form-username" />
+                        <div className="login-form-login-content">
+                            <div className="signin-div">
+                                <input required onChange={(e) => handleLogin(e)} value={loginCredentials['username']} type="text" placeholder="username" name="username" className="signin-form-username" />
+                            </div>
+                            <div className="signin-div">
+                                <input required onChange={(e) => handleLogin(e)} value={loginCredentials['password']} type="password" placeholder="password" name="password" className="signin-form-password" />
+                            </div>
+                            <div className="signin-div">
+                                <button onClick={handleLoginSubmit} id="blog-signin-button-signin">Log In</button>
+                            </div>
+                            <div className="signin-form-response">
+                            {loginInvalid && 
+                                <div id="invalid-login-message">
+                                    **Invalid login**
                                 </div>
-                                <div className="signin-div">
-                                    <input required onChange={(e) => handleLogin(e)} value={loginCredentials['password']} type="password" placeholder="password" name="password" className="signin-form-password" />
-                                </div>
-                                <div className="signin-div">
-                                    <button type="submit" id="blog-signin-button-signin" onClick={handleLoginSubmit}>Log In</button>
-                                </div>
-                            </form>
+                            }
+                            </div>
                         </div>
                     }
                     {
@@ -201,12 +220,8 @@ function Blog(){
                         </div>
                     }
                     </div>
-                    <div className="signin-form-response">
-                        {loginInvalid && 
-                            <div>Invalid login</div>
-                        }
-                    </div>
                 </div>
+                }
             </div>
         </div>
     )

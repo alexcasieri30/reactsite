@@ -3,10 +3,13 @@ const app = express();
 const { ending } = require('express-handlebars');
 const cors = require('cors');
 const router = express.Router();
+const cookieParser = require('cookie-parser')
 
 app.use(cors({
   origin: 'http://localhost:3000',
 }));
+
+app.use(cookieParser());
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -43,15 +46,23 @@ router.get("/", async function(req, res){
 
 router.post("/login", async function(req, res){
   const info = req.body;
+  console.log(info);
   res.set('Access-Control-Allow-Origin', '*');
   pool.query(`select * from users where username='${info.username}'`, (error, results)=>{
     console.log('query results', results.rows.length);
     if (error){
       throw error;
     }else{
-      if (results.rows.length==0){
+      if (results.rows.length==0 || results.rows[0]['password']!=info['password']){
         res.status(401).json({'response':'failed'})
       }else{
+        res.cookie('user', info['username'], {
+          maxAge: 5000,
+          // expires: new Date('01 12 2021'),
+          secure: true,
+          httpOnly: true,
+          sameSite: 'lax'
+        });
         res.status(200).json({"response": "SUCCESS", "user": {"first": results.rows[0]['first_name'], "last": results.rows[0]['last_name']}})
       }
     }

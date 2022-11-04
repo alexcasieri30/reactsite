@@ -8,11 +8,10 @@ import Navbar from "./components/Navbar";
 function App() {
 
   useEffect(()=>{
-    let container = document.querySelector('.container');
-    container.style.backgroundColor = "white";
-    console.log("going to shop")
-    let body = document.querySelector('body');
-    body.style.backgroundColor="lightblue";
+    let navbar_background = document.querySelector(".navbar");
+    navbar_background.style.backgroundColor="white";
+    let container = document.querySelector(".container");
+    container.style.backgroundColor="white";
   })
 
   return (
