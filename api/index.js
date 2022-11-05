@@ -4,6 +4,7 @@ const { ending } = require('express-handlebars');
 const cors = require('cors');
 const post_router = require('./routes/posts.js');
 const user_router = require('./routes/users.js');
+const game_router = require('./routes/games.js');
 
 app.use(cors({
   origin: 'http://localhost:3000',
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 
 app.use('/posts', post_router);
 app.use('/users', user_router);
+app.use('/games', game_router);
 
 app.listen(port, function () {
   console.log(`Example app listening on port ${port}!`);

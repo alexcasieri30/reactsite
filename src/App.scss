@@ -50,7 +50,6 @@ body{
             0 0 60px #00ff0a,
             0 0 80px #00ff0a,
             0 0 100px #00ff0a;
-                            
             border-radius: 50%;
             transition: 2s;
             transform: scale(0);
@@ -60,4 +59,8 @@ body{
             transform: scale(1);
         }
     }
+}
+
+.games-main-page{
+    max-height: 80em;
 }

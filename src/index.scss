@@ -11,12 +11,12 @@
     background-color: black;
     .header{
         flex: 0.1;
-        min-height: 10%;
+        // min-height: 10%;
         position: sticky;
         top: 0;
     }
     .middle{
-        margin-top: 3em;
+        margin-top: 0;
         width: 100%;
         flex: 0.9;
         display:flex;

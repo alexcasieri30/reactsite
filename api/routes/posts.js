@@ -3,9 +3,6 @@ const app = express();
 const { ending } = require('express-handlebars');
 const cors = require('cors');
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-}));
 
 const Pool = require('pg').Pool
 const pool = new Pool({

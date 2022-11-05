@@ -5,11 +5,6 @@ const cors = require('cors');
 const router = express.Router();
 const cookieParser = require('cookie-parser')
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-}));
-
-app.use(cookieParser());
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -71,7 +66,7 @@ router.post("/login", async function(req, res){
 
 router.post("/signup", async function(req, res){
     const info = req.body;
-    pool.query(`insert into users (first_name, last_name, username, email) values ('${info.first}', '${info.last}', '${info.username}', '${info.email}');`, (error, results) => {
+    pool.query(`insert into users (first_name, last_name, username, email, password) values ('${info.first}', '${info.last}', '${info.username}', '${info.email}', '${info.password}');`, (error, results) => {
       if (error){
         throw error;
       }

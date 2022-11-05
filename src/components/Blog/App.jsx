@@ -2,6 +2,9 @@ import './app.scss';
 import {Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import AllPosts from './components/AllPosts';
+import FriendActivity from "./components/FriendActivity";
+import uniqid from 'uniqid';
+
 
 function Blog(){
     const [dataExists, setDataExists] = useState(false);
@@ -15,7 +18,7 @@ function Blog(){
     const [user, setUser] = useState({})
     const [signupCredentials, setSignupCredentials] = useState({})
     const [section, setSection] = useState('all');
-
+    const [myFriends, setMyFriends] = useState([]);
 
     const getFirstPosts = async () => {
         const response = await fetch('http://localhost:3001/posts', {mode: 'cors'});
@@ -31,7 +34,6 @@ function Blog(){
     }
 
     useEffect(() => {
-        console.log(loggedIn)
         let container = document.querySelector('.container');
         container.style.backgroundColor = "white";
         let body = document.querySelector("body");
@@ -41,18 +43,31 @@ function Blog(){
             console.log('not null')
             setLoggedIn(true)
             retrieveLoginCreds();
+            getMyFriends();
         }
     });
+
+    async function getMyFriends(){
+        let res = await fetch('http://localhost:3001/users', {mode: 'cors'});
+        res = await res.json();
+        let myfriends = [];
+        res.filter(friend => friend.username != localStorage.getItem('username'))
+        .forEach((friend) => {
+            myfriends.push([friend['first_name'], friend['last_name']]);
+        })
+        setMyFriends(myfriends);
+    }
 
     async function retrieveLoginCreds(){
         let res = await fetch(`http://localhost:3001/users?username=${localStorage.getItem('username')}`, {mode: 'cors'});
         res = await res.json();
         setUser({firstname: res.firstname, lastname: res.lastname})
-        console.log('res:', res);
     }
 
     function writePostClick(){
         setWritePost(true);
+        console.log(myFriends);
+
     }
 
     function handleLoginButtons(e){
@@ -117,7 +132,6 @@ function Blog(){
             body: JSON.stringify(signupCredentials)
         })
         const res = await response.json();
-        console.log(res);
         setSignupCredentials({
             first: '',
             last: '',
@@ -133,8 +147,24 @@ function Blog(){
 
     function changeSection(e){
         setSection(e.currentTarget.id);
-        console.log(section);
     }
+
+    function friendClick(ind){
+        console.log('clicking')
+    }
+
+    function setExpanded(e){
+        let children = e.currentTarget.parentNode.children;
+        for (let i = 0; i < children.length; i++){
+            if (children[i].children.length == 3){
+                children[i].children[2].classList.add("hidden")
+            }
+        }
+        if (e.currentTarget.children[2]){
+            e.currentTarget.children[2].classList.remove('hidden');
+        }
+    }
+
     return(
         <div className="blog-main">
             <div className="blog-main-left">
@@ -147,12 +177,13 @@ function Blog(){
                     <div className="blog-main-section" id="most_recent" onClick={(e) => changeSection(e)}>Most Recent</div>
                     <div className="blog-main-section" id="all" onClick={(e) => changeSection(e)}>All</div>
                     <div className="blog-main-section" id="search" onClick={(e) => changeSection(e)}>Search</div>
+                    <div className="blog-main-seeUsers-div">
+                        <Link className="see-all-users-link" to={"/blog/users"}>
+                            <button className="see-all-users-link-button">See All Users</button>
+                        </Link>
+                    </div>
                 </div>
-                <div className="blog-main-seeUsers-div">
-                    <Link className="see-all-users-link" to={"/blog/users"}>
-                        <button className="see-all-users-link-button">See All Users</button>
-                    </Link>
-                </div>
+                
             </div>
             <div className="blog-main-mid">
                 <AllPosts postData={postData} setPostData={setPostData} setDataExists={setDataExists} setWritePost={setWritePost}
@@ -221,6 +252,29 @@ function Blog(){
                     }
                     </div>
                 </div>
+                }
+                {loggedIn && 
+                    <div className="friends-activity-section" onClick={(e) => setExpanded(e)}>
+                        <div className="friends-activity-title">
+                            <span>Your friends</span>
+                        </div>
+                        <div className="friends-activity-content">
+                            {myFriends.map((friend)=> {
+                                return <div className="activity-friend" onClick={(e) => (setExpanded(e))}>
+                                    <span>{friend[0]}</span> <span>{friend[1]}</span>
+                                    <div className="expanded-friend-info hidden">
+                                        <div>
+                                            Send message?
+                                        </div>
+                                        <textarea name="" id="friend-dm-textarea" cols="10" rows="2">
+
+                                        </textarea>
+                                        <button>Send</button>
+                                    </div>
+                                </div>
+                            })}
+                        </div>
+                    </div>
                 }
             </div>
         </div>

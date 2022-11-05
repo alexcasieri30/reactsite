@@ -4,15 +4,16 @@
     height: 100%;
     .blog-main-mid-welcome{
         font-size: 40pt;
+        text-align: center;
+        margin: 0.5em 0 1em 0;
     }
     .blog-main-mid-title{
-        flex: 0.1;
+        flex: 0.05;
         font-size: 30pt;
-        border: solid 1px black;
+        margin: 0 0 0 1em;
     }
     .blog-main-mid-posts{
         flex: 0.9;
-        border: solid 1px black;
         white-space: pre-wrap;
         padding: 1em;
         overflow: scroll;
@@ -27,7 +28,9 @@
             margin-top: -6em;
             align-items: center;
             #blog-main-mid-writepost-button{
-                width: 100%;
+                position:fixed;
+                bottom: 3em;
+                width: 10em;
                 height: 4em;
                 border-radius: 1em;
                 border: outset 3px gray;
@@ -45,5 +48,6 @@
     width:10em;
     position:absolute;
     align-items: center;
-    margin: 20% 0 0 20%;
+    top: max(40em, 50%);
+    left: 50%;
 }

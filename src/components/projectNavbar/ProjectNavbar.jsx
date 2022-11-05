@@ -105,8 +105,6 @@ const ProjectNavbar = function(){
                 </div>
             </div>
         </div>
-        
-        
     )
 }
 
