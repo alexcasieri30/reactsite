@@ -3,6 +3,8 @@ import Games from './App';
 import ChooseGameType from "./components/Utilities/Dropdown";
 import FullScreenGames from "./components/Games/FullScreenGames";
 
+import ML from './components/ML/App';
+
 import Memory from './components/Games/memory/App';
 import CVLetter from './components/Games/cv_project/App';
 import Sketch from './components/Games/etchasketch_react/App';
@@ -34,6 +36,8 @@ const routes = [
     <Route path="/blog" element={<Blog/>}/>,
     <Route path="/blog/users" element={<BlogUsers/>}/>,
     <Route path="/settings" element={<Settings/>}/>,
+
+    <Route path="/ml" element={<ML/>}/>,
 
     // <Route path="/chooseGameType" element={<ChooseGameType/>}/>,
     <Route path="/fullscreengames" element={<FullScreenGames/>}/>,

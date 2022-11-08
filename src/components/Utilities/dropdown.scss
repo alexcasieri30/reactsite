@@ -38,6 +38,8 @@
 .choose-game-dropdown-menu{
     position:absolute;
     width: 17em;
+    height: 10em;
+    z-index: 5;
     top: calc(100% + 0rem);
     background-color: transparent;
     padding: 0.75rem;
@@ -70,7 +72,7 @@
         padding: 0.5em;
         text-align: center;
         cursor: pointer;
-        max-height: 2em;
+        max-height: 8em;
         color: white;
         &:hover{
             background: linear-gradient(180deg, rgba(155, 35, 35), rgba(36, 36, 155));

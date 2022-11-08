@@ -5,7 +5,6 @@ const cors = require('cors');
 const router = express.Router();
 const cookieParser = require('cookie-parser')
 
-
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',

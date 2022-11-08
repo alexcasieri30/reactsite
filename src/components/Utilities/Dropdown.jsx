@@ -42,6 +42,7 @@ function ChooseGameType({currentPage}){
                         <Link to="/games"><div onClick={buttonOnclick} className="dropdown-link">Games</div></Link>
                         <Link to="/fullscreengames"><div onClick={buttonOnclick} className="dropdown-link">Full Screen</div></Link>
                         <Link><div onClick={buttonOnclick} className="dropdown-link">Utility</div></Link>
+                        <Link to="/ml"><div onClick={buttonOnclick} className="dropdown-link">Machine Learning</div></Link>
                     </div>
                 </div>
             </div>

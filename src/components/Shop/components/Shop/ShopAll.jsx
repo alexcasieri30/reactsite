@@ -35,8 +35,6 @@ export default function ShopAll(){
     useEffect(()=>{
         let body = document.querySelector("body");
         body.style.backgroundColor = "rgba(100,100,250,0.2)";
-        let container = document.querySelector('.container');
-        container.style.backgroundColor="white";
         let shop_navbar = document.querySelectorAll(".shop-all-page-navbar-items");
         for (let i = 0; i < shop_navbar.length; i++){
             if (!shop_navbar[i].classList.contains('active-section')){
