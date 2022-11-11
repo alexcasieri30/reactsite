@@ -1,25 +1,49 @@
 import { Link } from 'react-router-dom';
 import ProjectNavbar from "../components/projectNavbar/ProjectNavbar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./homeV1.scss";
-import Me from "./images/me.jpg";
-import Me1 from "./images/me_home_1.PNG";
-import Me2 from "./images/me_home_2.PNG";
-import Me3 from "./images/me_home_3.PNG";
-import Me4 from "./images/me_home_4.PNG";
-import Me5 from "./images/me_home_5.PNG";
-import Me6 from "./images/me_home_6.PNG";
+import mario from './gifs/5UKF.gif';
+import city from './gifs/N0K.gif';
+import runningGuy from './gifs/l1G.gif';
+import pow from './gifs/1IZc.gif';
+import random from './gifs/3D8r.gif';
+import loading from './gifs/ZWdx.gif';
+import sky from './gifs/2P9x.gif'
 
+import Me from './images/me.jpg';
+
+const NUMGIFS = 6;
 
 function App() {
+  const [counter, setCounter] = useState(0);
+  const [running, setRunning] = useState(true);
+  const [time, setTime] = useState(0);
+
+
   useEffect(()=>{
+    if (!running){
+      setRunning(true)
+    }
     let container = document.querySelector('.container');
     container.style.backgroundColor = "black";
     let body = document.querySelector('body');
     body.style.backgroundColor="white";
-  })
 
-  
+    setInterval(function(){
+      let gifs = document.querySelectorAll(".games-gif");
+      console.log(gifs.length)
+      for (let i = 0; i < gifs.length; i++){
+        gifs[i].classList.add("hidden");
+      }
+      let random = Math.floor((Math.random() * NUMGIFS) + 1).toString();
+      console.log(random);
+      console.log("-----------")
+      let randomId = 'gif' + random;
+      let gif = document.getElementById(randomId);
+      
+      gif.classList.remove('hidden');
+    }, 3000)
+  });
 
   return (
     <div className="home-page">
@@ -136,8 +160,26 @@ function App() {
         <div className="home-page-site-features-body">
           <div className="site-features-row">
             <div className="site-features-col">
-            <div className="site-features-feature">
-                Games
+              <div className="site-features-feature">
+                <div id="gif1" className="games-gif">
+                  <img className="gif" style={{height: '10em', width: '12em'}} src={mario} alt="" />
+                </div>
+                <div id="gif2" className="games-gif hidden" style={{position: 'relative'}}>
+                  <img className="gif" src={city} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                  <img className="gif" src={runningGuy} style={{position:'absolute', bottom: '10px', left: '10px'}} alt="" />
+                </div>
+                <div id="gif3" className="games-gif hidden">
+                  <img className="gif" src={pow} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                </div>
+                <div id="gif4" className="games-gif hidden">
+                  <img className="gif" src={random} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                </div>
+                <div id="gif5" className="games-gif hidden">
+                  <img className="gif" src={loading} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                </div>
+                <div id="gif6" className="games-gif hidden">
+                  <img className="gif" src={sky} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                </div>
               </div>
             </div>
             <div className="site-features-col">
