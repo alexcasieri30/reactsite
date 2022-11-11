@@ -31,27 +31,22 @@ function App() {
           </div>
           <div className="typewriter-animation-section-child2">
             <div className="image-container-div" id="image1">
-              <img src={Me1} alt="" style={{'width':'200px', 'height':'auto'}}/>
             </div>
             <div className="image-container-div" id="image6">
-              <img src={Me6} alt="" style={{'width':'200px', 'height':'auto'}}/>
+
             </div>
           </div>
         </div>
         <div className="lower-section">
           <div className="image-container-div" id="image2">
-            <img src={Me2} style={{'width':'250px', 'height':'auto'}} alt="" />
           </div>
           <div className="image-container-div" id="images3and4">
             <div className="image-container-div" id="image3">
-              <img src={Me3} style={{'width':'200px', 'height':'auto'}} alt="" />
             </div>
             <div className="image-container-div" id="image4">
-              <img src={Me4} style={{'width':'300px', 'height':'auto'}} alt="" />
             </div>
           </div>
           <div className="image-container-div" id="image5">
-            <img src={Me5} style={{'width':'300px', 'height':'auto'}} alt="" />
           </div>
         </div>
       </div>
@@ -101,10 +96,10 @@ function App() {
               <div className="home-page-intro-myskills-body-section" id="myskills-5">Angular</div>
               <div className="home-page-intro-myskills-body-section" id="myskills-6">Python</div>
               <div className="home-page-intro-myskills-body-section" id="myskills-7">Flask</div>
-              <div className="home-page-intro-myskills-body-section" id="myskills-8">CreateJS</div>
+              <div className="home-page-intro-myskills-body-section" id="myskills-8">Java</div>
               <div className="home-page-intro-myskills-body-section" id="myskills-9">ExpressJS</div>
               <div className="home-page-intro-myskills-body-section" id="myskills-10">Django</div>
-              <div className="home-page-intro-myskills-body-section" id="myskills-11">Java</div>
+              <div className="home-page-intro-myskills-body-section" id="myskills-11">Kubernetes</div>
               <div className="home-page-intro-myskills-body-section" id="myskills-12">Docker</div>
               <div className="home-page-intro-myskills-body-section" id="myskills-13">Data Analysis</div>
               <div className="home-page-intro-myskills-body-section" id="myskills-14">Machine Learning</div>
@@ -117,13 +112,62 @@ function App() {
         </div>
       </div>
       <div className="home-page-about-this-site">
-        about
+        <div className="home-page-about-section-title">
+          A little about me ...
+        </div>
+        <div className="home-page-about-section-body">
+          I was born and raised in Deerfield, Illinois. Since I was a kid, I have always loved exploring, learning, and creating. 
+          These traits have allowed me to pursue a career in computer science, which I have recently begun as a full stack software engineer.
+          Click below to read more about my background.
+        </div>
+        <div className="about-me-readmore">
+          <Link to="/about">
+            <button id="read-more">
+              Read More
+            </button>
+          </Link>
+        </div>
       </div>
-      <div className="home-page-games-snippet">
-        
-      </div>
+      <hr />
+      <div className="home-page-site-features-snippet">
+        <div className="home-page-site-features-title">
+          Site Features
+        </div>
+        <div className="home-page-site-features-body">
+          <div className="site-features-row">
+            <div className="site-features-col">
+            <div className="site-features-feature">
+                Games
+              </div>
+            </div>
+            <div className="site-features-col">
+            <div className="site-features-feature">
+                Blog
+              </div>
+            </div>
+          </div>
+          <div className="site-features-row">
+            <div className="site-features-col">
+            <div className="site-features-feature">
+                Shop
+              </div>
+            </div>
+            <div className="site-features-col">
+              <div className="site-features-feature">
+                Settings
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div className="about-site-readmore">
+          <Link to="/about">
+            <button id="read-more">
+              Read More
+            </button>
+          </Link>
+        </div>
       <div className="home-page-footer">
-        
       </div>
       <div className="home-page-footer-end">
         <div className="social-media-icons">
