@@ -35,15 +35,18 @@ function MachineLearningHome(){
     }
 
     return <div className="ml-home-container">
-            <div className="ml-input-div"><input onChange={makeformdata} placeholder="pclass" type="text" className="ml-input" name="pclass"/></div>
-            <div className="ml-input-div"><input onChange={makeformdata} placeholder="sex" type="text" className="ml-input" name="sex"/></div>
-            <div className="ml-input-div"><input onChange={makeformdata} placeholder="age" type="text" className="ml-input" name="age"/></div>
-            <div className="ml-input-div"><input onChange={makeformdata} placeholder="family" type="text" className="ml-input" name="family"/></div>
-            <div className="ml-input-div"><input onChange={makeformdata} placeholder="fare" type="text" className="ml-input" name="fare"/></div>
-            <div className="ml-input-div"><input onChange={makeformdata} placeholder="cabin" type="text" className="ml-input" name="cabin"/></div>
-            <div className="ml-input-div"><input onChange={makeformdata} placeholder="port" type="text" className="ml-input" name="port"/></div>
-            <div className="ml-input-div"><input onChange={makeformdata} placeholder="ticketnum" type="text" className="ml-input" name="ticketnum"/></div>
-            <div><button onClick={makeDataRequest}>Submit</button></div>
+        <div className="project">
+            <div className="project-form-questions">
+                <div className="ml-input-div"><input onChange={makeformdata} placeholder="pclass" type="text" className="ml-input" name="pclass"/></div>
+                <div className="ml-input-div"><input onChange={makeformdata} placeholder="sex" type="text" className="ml-input" name="sex"/></div>
+                <div className="ml-input-div"><input onChange={makeformdata} placeholder="age" type="text" className="ml-input" name="age"/></div>
+                <div className="ml-input-div"><input onChange={makeformdata} placeholder="family" type="text" className="ml-input" name="family"/></div>
+                <div className="ml-input-div"><input onChange={makeformdata} placeholder="fare" type="text" className="ml-input" name="fare"/></div>
+                <div className="ml-input-div"><input onChange={makeformdata} placeholder="cabin" type="text" className="ml-input" name="cabin"/></div>
+                <div className="ml-input-div"><input onChange={makeformdata} placeholder="port" type="text" className="ml-input" name="port"/></div>
+                <div className="ml-input-div"><input onChange={makeformdata} placeholder="ticketnum" type="text" className="ml-input" name="ticketnum"/></div>
+            </div>
+            <div id="titanic-submit-button"><button onClick={makeDataRequest}>Submit</button></div>
             <div className="titanic-result">
                 {
                     titanicResult==0 && <div>You would have survived!</div>
@@ -52,6 +55,13 @@ function MachineLearningHome(){
                     titanicResult==1 && <div>Unfortunately, you would not have survived!</div>
                 }
             </div>
+
+        </div>
+
+        <div className="project">
+                project
+        </div>
+
     </div>
 }
 
