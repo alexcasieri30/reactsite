@@ -94,7 +94,7 @@ export default function(){
                     </div>
                     <div className="your-cart-footer">
                         <br />
-                        <Link to="/shop/all" state={{items: data.items}}><button id="checkout-back-button">Back</button></Link>
+                        <Link to="/shop" state={{items: data.items}}><button id="checkout-back-button">Back</button></Link>
                     </div>
                 </div>
             }

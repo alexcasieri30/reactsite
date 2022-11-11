@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./styles/app.scss";
+import ProjectNavbar from "../projectNavbar/ProjectNavbar";
+import Dropdown from "../Utilities/Dropdown";
+
 
 function MachineLearningHome(){
     const [formdata, setFormdata] = useState({})
@@ -35,7 +38,34 @@ function MachineLearningHome(){
     }
 
     return <div className="ml-home-container">
+        <div className="ml-top-controls">
+            <div className="ml-top-left">
+
+            </div>
+            <div className="ml-top-title">
+                <div className="ml-top-title-featured">
+                    Machine Learning
+                </div>
+                <div className="ml-top-title-games">
+                    Models
+                </div>
+            </div>
+            <div className="ml-top-right">
+                <div className="ml-top-dropdown">
+                    <Dropdown currentPage={"Full Screen"}></Dropdown>
+                </div>
+            </div>
+        </div>
+        
         <div className="project">
+            <div className="project-title">
+                <div>
+                    Titanic
+                </div>
+                <div style={{fontSize: '15pt'}}>
+                    icon
+                </div>
+            </div>
             <div className="project-form-questions">
                 <div className="ml-input-div"><input onChange={makeformdata} placeholder="pclass" type="text" className="ml-input" name="pclass"/></div>
                 <div className="ml-input-div"><input onChange={makeformdata} placeholder="sex" type="text" className="ml-input" name="sex"/></div>

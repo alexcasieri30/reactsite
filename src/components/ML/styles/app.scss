@@ -8,22 +8,33 @@ hr{
     width: 100%;
     height: 100%;
     margin-top: 5em;
-    gap: 1em;
+   
     .project{
+        padding: 2em 0 2em 0;
         flex: 1;
         display:flex;
         flex-direction:column;
         justify-content:center;
         margin: auto;
-        width: 80%;
+        width: 100%;
         border: solid 1px black;
+        .project-title{
+            padding: 0 1em 1em 1em;
+            font-size: 30pt;
+            display:flex;
+            justify-content: space-between;
+        }
         .project-form-questions{
-            margin: 1em;
+            width: 75%;
+            margin: auto;
+            margin-top: 1em;
+            margin-bottom: 1em;
             display:flex;
             flex-direction:row;
             justify-content:center;
             gap: 1em;
             .ml-input-div{
+                flex: 0.8;
                 height: max-content;
                 & > input{
                     width: 100%;
@@ -54,4 +65,38 @@ hr{
             margin: auto;
         }
     }
+}
+
+
+.ml-top-title{
+    flex: 1;
+    text-align: center;
+    font-size: 40pt;
+    margin-bottom: 2%;
+    .ml-top-title-featured{
+        font-family: featured;
+        text-align: center;
+        color: black;
+    }
+    .ml-top-title-games{
+        font-family: games;
+        font-size: 50pt;
+        text-align: center;
+        color: black;
+    }
+}
+
+.ml-top-right{
+    flex: 1;
+    .ml-top-dropdown{
+        margin-top: 2em;
+    }
+}
+.ml-top-left{
+    flex: 1;
+}
+
+.ml-top-controls{
+    display:flex;
+    
 }

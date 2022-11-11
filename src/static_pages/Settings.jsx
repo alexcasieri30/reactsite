@@ -1,6 +1,14 @@
 import "./settings.scss";
+import { useEffect } from "react";
 
 function Settings(){
+
+    useEffect(() => {
+        let container = document.querySelector('.container');
+        container.style.backgroundColor = "white";
+        let body = document.querySelector("body");
+        body.style.backgroundColor = "white";
+    })
 
     function clickSubmit(event){
         event.preventDefault();
