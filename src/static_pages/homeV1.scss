@@ -21,7 +21,6 @@ $--typewriter_speed: 4s;
     src: url('../fonts/typewriter.otf');
 }
 
-
 .home-page{
     background: linear-gradient(#000000 10%, transparent),
                 radial-gradient(circle at center, lightblue 40%, transparent),
@@ -352,20 +351,27 @@ $--typewriter_speed: 4s;
                 display:flex;
                 flex-direction:column;
                 gap: 1em;
-                .site-features-col{
-                    height: 100%;
-                    width:  100%;
-                    display:flex;
-                    gap: 1em;
-                    border: solid 1px black;
-                    justify-content:center;
-                    align-items: center;
-                    .site-features-feature{
-                        width: 12em;
-                        height: 10em;
+                    .site-features-col{
+                        height: 100%;
+                        width:  100%;
+                        display:flex;
+                        gap: 1em;
                         border: solid 1px black;
+                        justify-content:center;
+                        align-items: center;
+                        .site-features-feature{
+                            width: 12em;
+                            height: 10em;
+                            border: solid 1px black;
+                            & > img{
+                                outline: thick solid black;
+                                outline-width: 10px;
+                                cursor: pointer;
+                            }
+                        }
                     }
-                }
+                
+                
             }
         }
     }
@@ -575,4 +581,51 @@ $--typewriter_speed: 4s;
 
 .gif{
     transition: 1s;
+}
+
+#features-games{
+    outline: thick solid black;
+    outline-width: 10px;
+}
+
+.feature-settings{
+	position: relative;
+	background: linear-gradient(0deg, #000, #272727);
+}
+
+.feature-settings:before, .feature-settings:after {
+	content: '';
+	position: absolute;
+	left: -100px;
+	top: -60px;
+	background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+		#0000ff, #00ff00,#ffff00, #ff0000);
+	background-size: 400%;
+	width: calc(100% + 200px);
+	height: calc(100% + 120px);
+	z-index: -1;
+	animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.feature-settings:after {
+	filter: blur(200px);
+}
+
+
+#feature-settings-img{
+    filter: invert(100%);
+    outline: thick solid white;
+    outline-width: 10px;
 }

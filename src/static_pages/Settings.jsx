@@ -43,6 +43,12 @@ function Settings(){
                 <div class="bar fill6"></div>
                 <div class="bar"></div>
             </div>
+            <div style={{height: '500px', marginTop: '500px'}}>
+
+            </div>
+            <div className="blurblock">
+
+            </div>
         </div>
 
     )

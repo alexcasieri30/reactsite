@@ -1,8 +1,4 @@
 - overall theme ideas
-	- games page --> super interactive
-		- lot going on
-		- things moving all over the place
-		- colorful backgrounds
 	- shop
 		- more generic, smooth/rounded edges
 		- modern looking
@@ -28,14 +24,15 @@ GAMES:
 	- add image pixels to database
 	- show the previous images on page load
 - tictactoe
-	- 
+	- change game over screen
 
 
 - home page
-	- complete about the author snippet
+	- complete the site features section
+	- add more images / description / titles to each section
+	- read more from about me section goes to about page with "me" tab active
+	- read more from the site features section goes to about page with "site" tab active
 
-- footer
-	- link to GitHub, linked, Contact Me page
 
 - about page - history of website / about the author
 	- main content -> 2 tabs for user to click on:
@@ -46,10 +43,12 @@ GAMES:
 
 - blog page
 	- add support for categories
-	- add user passwords into database
 	- add "sort by" -> time button/dropdown
+	- add support for sending direct messages
+		- add database support for this
 
 - other ideas
+	- login button for any page that you are on
 	- anywhere on the website, there can be a popup that asks
 	the user if they want to leave a comment
 		- the comment will automatically set the category based on where 

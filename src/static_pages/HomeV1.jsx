@@ -9,6 +9,8 @@ import pow from './gifs/1IZc.gif';
 import random from './gifs/3D8r.gif';
 import loading from './gifs/ZWdx.gif';
 import sky from './gifs/2P9x.gif'
+import shoppingCart from './gifs/SxH.gif';
+import gearGif from './gifs/gear_gif.gif';
 
 import Me from './images/me.jpg';
 
@@ -31,13 +33,10 @@ function App() {
 
     setInterval(function(){
       let gifs = document.querySelectorAll(".games-gif");
-      console.log(gifs.length)
       for (let i = 0; i < gifs.length; i++){
         gifs[i].classList.add("hidden");
       }
       let random = Math.floor((Math.random() * NUMGIFS) + 1).toString();
-      console.log(random);
-      console.log("-----------")
       let randomId = 'gif' + random;
       let gif = document.getElementById(randomId);
       
@@ -160,44 +159,54 @@ function App() {
         <div className="home-page-site-features-body">
           <div className="site-features-row">
             <div className="site-features-col">
-              <div className="site-features-feature">
-                <div id="gif1" className="games-gif">
-                  <img className="gif" style={{height: '10em', width: '12em'}} src={mario} alt="" />
+              <Link className="features-link" to="/games">
+                <div className="site-features-feature" id="features-games">
+                  <div id="gif1" className="games-gif">
+                    <img className="gif" style={{height: '10em', width: '12em'}} src={mario} alt="" />
+                  </div>
+                  <div id="gif2" className="games-gif hidden" style={{position: 'relative'}}>
+                    <img className="gif" src={city} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                    <img className="gif" src={runningGuy} style={{position:'absolute', bottom: '10px', left: '10px'}} alt="" />
+                  </div>
+                  <div id="gif3" className="games-gif hidden">
+                    <img className="gif" src={pow} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                  </div>
+                  <div id="gif4" className="games-gif hidden">
+                    <img className="gif" src={random} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                  </div>
+                  <div id="gif5" className="games-gif hidden">
+                    <img className="gif" src={loading} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                  </div>
+                  <div id="gif6" className="games-gif hidden">
+                    <img className="gif" src={sky} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                  </div>
                 </div>
-                <div id="gif2" className="games-gif hidden" style={{position: 'relative'}}>
-                  <img className="gif" src={city} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
-                  <img className="gif" src={runningGuy} style={{position:'absolute', bottom: '10px', left: '10px'}} alt="" />
-                </div>
-                <div id="gif3" className="games-gif hidden">
-                  <img className="gif" src={pow} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
-                </div>
-                <div id="gif4" className="games-gif hidden">
-                  <img className="gif" src={random} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
-                </div>
-                <div id="gif5" className="games-gif hidden">
-                  <img className="gif" src={loading} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
-                </div>
-                <div id="gif6" className="games-gif hidden">
-                  <img className="gif" src={sky} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
-                </div>
-              </div>
+              </Link>
+              
             </div>
-            <div className="site-features-col">
-            <div className="site-features-feature">
-                Blog
+              <div className="site-features-col">
+                <Link className="features-link" to="/blog">
+                  <div className="site-features-feature">
+                    Blog
+                  </div>
+                </Link>
               </div>
-            </div>
           </div>
           <div className="site-features-row">
             <div className="site-features-col">
-            <div className="site-features-feature">
-                Shop
-              </div>
+              <Link className="features-link" to="/shop" state={{items: []}}>
+                <div className="site-features-feature">
+                  <img src={shoppingCart} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                </div>
+              </Link>
             </div>
-            <div className="site-features-col">
-              <div className="site-features-feature">
-                Settings
-              </div>
+            <div className="site-features-col test-settings">
+              <Link className="features-link" to="/settings">
+              
+                <div className="site-features-feature feature-settings" id="feature-settings">
+                  <img id="feature-settings-img" src={gearGif} style={{height: '10em', width: '12em',position:'relative', top: '0px', left: '0px'}} alt="" />
+                </div>
+              </Link>
             </div>
           </div>
         </div>

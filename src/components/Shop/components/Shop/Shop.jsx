@@ -25,12 +25,14 @@ import C4 from "../images/Ava/StarGirlTank$65.jpeg";
 
 export default function Shop(){
     const data = useLocation().state;
+    console.log(data);
     useEffect(()=>{
         let body = document.querySelector("body");
         body.style.backgroundColor = "rgba(100,100,250,0.2)";
         let container = document.querySelector('.container');
         container.style.backgroundColor="lightblue";
     })
+
     return(
         <div id="shop-main-container">
             <Navbar/>
