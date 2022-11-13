@@ -98,5 +98,33 @@ hr{
 
 .ml-top-controls{
     display:flex;
-    
+}
+
+#numbers-project{
+    display:flex;
+    flex-direction:row;
+    .numbers{
+        flex: 0.2;
+    }
+    .numbers-result{
+        flex: 0.8;
+        display:flex;
+        flex-direction:row;
+        gap: 1em;
+        .numbers-result-perc{
+            flex: 0.9;
+            display:flex;
+            flex-direction:row;
+            position:relative;
+            width: 50em;
+            .number-perc{
+                flex: 1;
+                position:relative;
+                width: 5em;
+            }
+        }
+        .numbers-result-pred{
+            flex: 0.1;
+        }
+    }
 }
