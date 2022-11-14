@@ -922,16 +922,25 @@ function MachineLearningHome(){
                 }
                 </div>
                 <div className="numbers-result-perc">
+                    <div className="numbers-result-perc-graph">
                     {
                         numbersResult && JSON.parse(numbersResult[1]).map((res) => {
-                            let perc = (parseFloat(res) / 1.0 * 100).toString() + "%";
-                            let margin_top = (1 - parseFloat(res) / 1.0) * 100;
+                            let perc = (parseFloat(res) / 1.0 * 500).toString();
+                            let margin_top = 500 - perc;
                             console.log(perc);
-                            return <div className="number-perc" style={{height: perc, backgroundColor:"blue"}}>{Math.round(res * 100000)/100000}</div>
+                            return <div className="number-perc" style={{height: perc + "px", marginTop: margin_top + "px", backgroundColor:"blue"}}>{Math.round(res * 1000000)/10000}%</div>
                         })
                     }
+                    </div>
+                    <div className="numbers-result-perc-xaxis">
+                    {
+                        numbersResult && JSON.parse(numbersResult[1]).map((res, i) => {
+                            console.log(i);
+                            return <div className="x-axis">{i}</div>
+                        })
+                    }
+                    </div>
                 </div>
-                
             </div>
         </div>
 
