@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Cell from "./Cell";
 import ChooseX from "./ChooseX.jsx";
 import "./styles/TictactoeBoard.scss";
-import O from "./images/o.png";
-import x from "./images/x.jpg";
-import x1 from "./images/x1.png";
-import x2 from "./images/x2.png";
-import x3 from "./images/x3.png";
-import x4 from "./images/x4.jpg";
+import O from "../../../../Assets/Images/o.png";
+import x from "../../../../Assets/Images/x.jpg";
+import x1 from "../../../../Assets/Images/x1.png";
+import x2 from "../../../../Assets/Images/x2.png";
+import x3 from "../../../../Assets/Images/x3.png";
+import x4 from "../../../../Assets/Images/x4.jpg";
 
 const initAvailStates = [];
 let board = [];

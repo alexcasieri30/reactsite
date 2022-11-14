@@ -1,5 +1,5 @@
 import "./fullscreengames.scss";
-import Dropdown from "../Utilities/Dropdown";
+import Dropdown from "../Utilities/Dropdown/Dropdown";
 import {Link} from "react-router-dom";
 import { useEffect } from "react";
 

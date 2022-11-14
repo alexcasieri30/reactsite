@@ -1,6 +1,6 @@
 import React from "react";
 import "./projectNavbar.scss";
-import Dropdown from "../Utilities/Dropdown";
+import Dropdown from "../Utilities/Dropdown/Dropdown";
 import { Link } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";

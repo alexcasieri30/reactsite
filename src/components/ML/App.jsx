@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./styles/app.scss";
-import ProjectNavbar from "../projectNavbar/ProjectNavbar";
-import Dropdown from "../Utilities/Dropdown";
+import ProjectNavbar from "../ProjectNavbar/ProjectNavbar";
+import Dropdown from "../Utilities/Dropdown/Dropdown";
 
 
 let templateGrid = [];

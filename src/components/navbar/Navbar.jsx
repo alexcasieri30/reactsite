@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Home from "./images/home.png";
-import Settings from "./images/settings.png";
-import Games from "./images/games.png";
-import Shop from "./images/shop.png";
-import About from "./images/about.png";
-import Blog from "./images/blogging.png";
+import Home from "../../Assets/Images/home.png";
+import Settings from "../../Assets/Images/settings.png";
+import Games from "../../Assets/Images/games.png";
+import Shop from "../../Assets/Images/shop.png";
+import About from "../../Assets/Images/about.png";
+import Blog from "../../Assets/Images/blogging.png";
 import "./navbar.scss";
 
 const Navbar = function(){

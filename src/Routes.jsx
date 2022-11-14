@@ -1,33 +1,33 @@
 import {Route} from "react-router-dom";
 import Games from './App';
-import ChooseGameType from "./components/Utilities/Dropdown";
-import FullScreenGames from "./components/Games/FullScreenGames";
+import ChooseGameType from "./Components/Utilities/Dropdown/Dropdown";
+import FullScreenGames from "./Components/Games/FullScreenGames";
 
-import ML from './components/ML/App';
+import ML from './Components/ML/App';
 
-import Memory from './components/Games/memory/App';
-import CVLetter from './components/Games/cv_project/App';
-import Sketch from './components/Games/etchasketch_react/App';
-import TictactoeBoard from './components/Games/tictactoe/App';
-import Battleship from "./components/Games/battleship/App";
-import WheresWaldo from "./components/Games/wheres_waldo/App";
+import Memory from './Components/Games/memory/App';
+import CVLetter from './Components/Games/cv_project/App';
+import Sketch from './Components/Games/etchasketch_react/App';
+import TictactoeBoard from './Components/Games/tictactoe/App';
+import Battleship from "./Components/Games/battleship/App";
+import WheresWaldo from "./Components/Games/wheres_waldo/App";
 
-import Home from './static_pages/HomeV1';
+import Home from './StaticPages/Home/Home';
 import React from "react";
 
-import BlogUsers from "./components/Blog/components/UsersPage";
-import Blog from "./components/Blog/App";
-import About from "./static_pages/About";
-import Settings from "./static_pages/Settings";
+import BlogUsers from "./Components/Blog/components/UsersPage";
+import Blog from "./Components/Blog/App";
+import About from "./StaticPages/About/About";
+import Settings from "./StaticPages/Settings/Settings";
 
-import Shop from "./components/Shop/components/Shop/Shop";
-import ShopAll from "./components/Shop/components/Shop/ShopAll";
-import ShopLatest from "./components/Shop/components/Shop/ShopLatest";
-import ShopPopular from "./components/Shop/components/Shop/ShopPopular";
-import AboutPage from "./components/Shop/components/About";
-import Cart from "./components/Shop/components/Cart/MyCart";
-import Checkout from "./components/Shop/components/Cart/Checkout";
-import Item from "./components/Shop/components/Items/Item";
+import Shop from "./Components/Shop/components/Shop/Shop";
+import ShopAll from "./Components/Shop/components/Shop/ShopAll";
+import ShopLatest from "./Components/Shop/components/Shop/ShopLatest";
+import ShopPopular from "./Components/Shop/components/Shop/ShopPopular";
+import AboutPage from "./Components/Shop/components/About";
+import Cart from "./Components/Shop/components/Cart/MyCart";
+import Checkout from "./Components/Shop/components/Cart/Checkout";
+import Item from "./Components/Shop/components/Items/Item";
 
 const routes = [
 

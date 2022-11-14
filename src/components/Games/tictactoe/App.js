@@ -1,5 +1,5 @@
 import TictactoeBoard from "./components/TictactoeBoard"
-import ProjectNavbar from "../../projectNavbar/ProjectNavbar";
+import ProjectNavbar from "../../ProjectNavbar/ProjectNavbar";
 import "./components/styles/App.scss";
 
 function App() {
