@@ -20,7 +20,6 @@ router.get("/", async function(req, res){
   console.log(username);
   if (username!=null){
     let info = await pool.query(`select first_name, last_name from users where username='${username}'`);
-    console.log(info.rows[0]);
     if (info.rows.length > 0) {
       res.set('Access-Control-Allow-Origin', '*');
       res.status(200).json({firstname: info.rows[0]['first_name'], lastname: info.rows[0]['last_name']})
@@ -40,7 +39,6 @@ router.get("/", async function(req, res){
 
 router.post("/login", async function(req, res){
   const info = req.body;
-  console.log(info);
   res.set('Access-Control-Allow-Origin', '*');
   pool.query(`select * from users where username='${info.username}'`, (error, results)=>{
     console.log('query results', results.rows.length);

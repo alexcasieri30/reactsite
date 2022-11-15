@@ -1,0 +1,25 @@
+- like an article
+- top right is about title
+    - top middle has 2 words, ME / SITE, 
+    - user can click on either of the words to have the content changed
+
+- about me sections
+    - grow up, basketball, family, DHS
+    - NYU -- basketball, studies, freshman, soph year
+    - coding class soph year, data science, ML projects, SWE intern
+    - career, DataEarn, Tutor, Software Engineer
+    - skills / resume
+
+- about site sections
+    - little bit about the site
+    - all of the projects that I have scattered across my computer
+        - web dev projects / ML projects
+    - learning react over the summer
+    - learning about how to incorporate separate projects into one site
+        - along the way, had the idea to have different users and track their progress on games 
+    - incorporating my ML projects in different backend servers
+
+- design ideas:
+    - pictures from linkedin / basketball scattered throughout
+    - less flashy, more basic background design
+    - 
