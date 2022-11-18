@@ -44,6 +44,8 @@ hr{
         }
         #titanic-submit-button{
             margin: auto;
+            display:flex;
+            justify-content:center;
             & > button{
                 width: 80px;
                 height: 40px;
@@ -101,13 +103,34 @@ hr{
 }
 
 #numbers-project{
+    padding: 2em 0 2em 0;
+    flex: 1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin: auto;
+    width: 100%;
+    height: max-content;
     display:flex;
     flex-direction:row;
     margin-bottom: 2em;
     height: 600px;
+    gap: 2em;
     .numbers{
         flex: 0.2;
+        .numbers-result-pred{
+            margin: 1em;
+            text-align: center;
+            .numbers-result-pred-title{
+                font-size: 18pt;
+            }
+            .numbers-result-pred-num{
+                margin: 0.5em;
+                font-size: 40pt;
+            }
+        }
     }
+
     .numbers-result{
         flex: 0.8;
         display:flex;
@@ -124,6 +147,7 @@ hr{
                 .number-perc{
                     flex: 1;
                     width: 5em;
+                    text-align: center;
                 }
             }
             .numbers-result-perc-xaxis{
@@ -132,14 +156,37 @@ hr{
                 margin-top: 2em;
                 justify-content:center;
                 text-align: center;
+                
                 .x-axis{
                     flex: 1;
+                    font-size: 18pt;
                 }
             }
-            
+            .numbers-result-perc-expl{
+                font-size: 18pt;
+                text-align: center;
+                margin: 1em;
+            }
         }
-        .numbers-result-pred{
-            flex: 0.1;
+    }
+}
+
+
+.submit-number-grid{
+    display:flex;
+    justify-content:center;
+    padding: 10px;
+    & > button{
+        cursor: pointer;
+        height: 40px;
+        width: 80px;
+        border: none;
+        border-radius: 8px; 
+        &:hover{
+            background-color: rgba(0,0,0,0.3);
+        }
+        &:active{
+            border: solid 3px black;
         }
     }
 }
