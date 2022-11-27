@@ -9,6 +9,7 @@
     "axios": "^1.1.0",
     "concurrently": "^7.4.0",
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
     "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-app-rewired": "^2.2.1",
@@ -24,7 +25,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "dev": "concurrently \"react-app-rewired start\" \"cd api && nodemon index\"",
+    "dev": "react-app-rewired start & cd api && nodemon index",
     "flask": "concurrently \"react-app-rewired start\" \"cd api && nodemon index\" \"cd flask_ml && python3 main.py\"",
     "build": "react-scripts build",
     "test": "react-scripts test",

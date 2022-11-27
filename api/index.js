@@ -5,17 +5,19 @@ const cors = require('cors');
 const post_router = require('./routes/posts.js');
 const user_router = require('./routes/users.js');
 const game_router = require('./routes/games.js');
+require('dotenv').config()
 
 app.use(cors({
   origin: 'http://localhost:3000',
 }));
 
+
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'postgres',
+  user: process.env.USERNAME,
   host: '127.0.0.1',
   database: 'postgres',
-  password: 'wolf0435',
+  password: process.env.PASSWORD,
   port: 5431,
 })
 
