@@ -1,7 +1,13 @@
+import { useEffect } from 'react';
 import './aboutme.scss';
 
 
 function AboutMe(){
+    
+    useEffect(() => {
+        // let header = document.querySelector(".header");
+        // header.style.height = "5em";
+    })
     return <div className="about-page-subsection">
         <div className="about-me-paragraph">
             <p>

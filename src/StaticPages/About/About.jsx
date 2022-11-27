@@ -31,10 +31,10 @@ function About(){
                     About
                 </div>
                 <div className="about-page-choose-section">
-                    <div className="about-page-aboutme-button" style={infoType==1?{textDecoration: 'underline'}:{}} onClick={changeInfoType}>
+                    <div className="about-page-aboutme-button" style={infoType==1?{textDecoration: 'underline'}:{}} onClick={(e) => changeInfoType(e)}>
                         About Me
                     </div>
-                    <div className="about-page-aboutsite-button" style={infoType==-1?{textDecoration: 'underline'}:{}} onClick={changeInfoType}>
+                    <div className="about-page-aboutsite-button" style={infoType==-1?{textDecoration: 'underline'}:{}} onClick={(e) => changeInfoType(e)}>
                         About This Site
                     </div>
                 </div>

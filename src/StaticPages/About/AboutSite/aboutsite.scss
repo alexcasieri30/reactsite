@@ -1,4 +1,11 @@
 .about-page-subsection{
     border: solid 1px black;
+    .about-site-paragraph{
+        margin: 3em;
+        font-family: Times;
+        line-height: 2em;
+        font-size: 18pt;
+        max-width: 75%;
+    }
     
 }

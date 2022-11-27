@@ -2,8 +2,9 @@
 .about-page-container{
     display:flex;
     flex-direction:column;
+    height: 500px;
     max-height: max-content;
-    margin-top: 5em;
+    margin-top: 3em;
     .about-page-intro{
         flex: 1;
         display:flex;
