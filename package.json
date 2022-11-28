@@ -25,8 +25,8 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "dev": "react-app-rewired start & cd api && nodemon index",
-    "flask": "concurrently \"react-app-rewired start\" \"cd api && nodemon index\" \"cd flask_ml && python3 main.py\"",
+    "backend": "react-app-rewired start & cd api && nodemon index",
+    "dev": "react-app-rewired start & cd api && nodemon index & cd flask_ml && python3 main.py",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
