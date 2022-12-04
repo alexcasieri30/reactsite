@@ -181,6 +181,16 @@ $game-background-color: rgba(0,0,0,0.2);
     font-family: monospace;
 }
 
+.battleship-stats-table-tr-header{
+    margin: 0.5em;
+    display:flex;
+    font-size: 18pt;
+    .battleship-stats-table-tr-td-header{
+        padding: 1em;
+        flex: 1;
+    }
+}
+
 @keyframes flash{
     50%{
         opacity: 0;

@@ -15,10 +15,19 @@ function GameBoard({ newGameButton, playerShips, computerShips }){
     const [compShipsCaught, setCompShipsCaught] = useState(['','','','','']);
     const [compIndex, setCompIndex] = useState(0);
     const [compBoardSpotsRemaining, setCompBoardSpotsRemaining] = useState([...spots]);
+    const [numTurns, setNumTurns] = useState(0);
+    const [pastData, setPastData] = useState(null);
 
     const [gameOver, setGameOver] = useState(false);
     //0 if computer, 1 if player
     const [winner, setWinner] = useState(-1);
+
+
+    useEffect(() => {
+        if (pastData == null){
+            getData()
+        }
+    })
 
 
     function onCellClick(target, player){
@@ -28,7 +37,8 @@ function GameBoard({ newGameButton, playerShips, computerShips }){
         }
     }
     
-    function handlePlayerClick(target){
+    async function handlePlayerClick(target){
+        setNumTurns(numTurns + 1)
         let included=false;
         for (let i = 0; i < computerShips.length; i++){
             if (computerShips[i].includes(parseInt(target.id))){
@@ -43,6 +53,9 @@ function GameBoard({ newGameButton, playerShips, computerShips }){
                     if (playerShipsCaught[4]!=''){
                         setWinner(0);
                         setGameOver(true);
+                        await sendData();
+                        await getData();
+                        console.log("PastData: ", pastData);
                     } 
                 }
             }
@@ -51,6 +64,33 @@ function GameBoard({ newGameButton, playerShips, computerShips }){
             target.classList.add('chosen')
         }
     }
+
+    async function getData(){
+        let res = await fetch("http://localhost:3001/games/info?game=battleship", {mode: 'cors'});
+        res = await res.json();
+        setPastData(res);
+    }
+
+    async function sendData(){
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1; // Months start at 0!
+        let dd = today.getDate();
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        const formattedToday = dd + '/' + mm + '/' + yyyy;
+        let res = await fetch("http://localhost:3001/games/gameScore", {
+            method: 'POST', 
+            mode:'cors',
+            headers: {
+                'content-type':'application/json'
+            },
+            body: JSON.stringify({username: window.localStorage.getItem('username'), score: numTurns, game: 'battleship', time: formattedToday})
+        })
+        res = await res.json()
+        console.log("RES: ", res);
+    }
+
     function handleComputerClick(){
         let randomIndex = Math.floor( Math.random()*compBoardSpotsRemaining.length );
         let randomSpot = compBoardSpotsRemaining[randomIndex];
@@ -146,36 +186,25 @@ function GameBoard({ newGameButton, playerShips, computerShips }){
                     <div className="you-win-stats-table-div" style={{border: 'solid 1px black'}}>
                         STATS
                         <div className="battleship-stats-table">
-                            <div className="battleship-stats-table-tr">
-                                <div className="battleship-stats-table-tr-td">1</div>
-                                <div className="battleship-stats-table-tr-td">2</div>
-                                <div className="battleship-stats-table-tr-td">3</div>
+                            <div className="battleship-stats-table-tr-header">
+                                <div className="battleship-stats-table-tr-td-header">Name</div>
+                                <div className="battleship-stats-table-tr-td-header">Score</div>
+                                <div className="battleship-stats-table-tr-td-header">Date</div>
                             </div>
-                            <div className="battleship-stats-table-tr">
-                                <div className="battleship-stats-table-tr-td">1</div>
-                                <div className="battleship-stats-table-tr-td">2</div>
-                                <div className="battleship-stats-table-tr-td">3</div>
-                            </div>
-                            <div className="battleship-stats-table-tr">
-                                <div className="battleship-stats-table-tr-td">1</div>
-                                <div className="battleship-stats-table-tr-td">2</div>
-                                <div className="battleship-stats-table-tr-td">3</div>
-                            </div>
-                            <div className="battleship-stats-table-tr">
-                                <div className="battleship-stats-table-tr-td">1</div>
-                                <div className="battleship-stats-table-tr-td">2</div>
-                                <div className="battleship-stats-table-tr-td">3</div>
-                            </div>
-                            <div className="battleship-stats-table-tr">
-                                <div className="battleship-stats-table-tr-td">1</div>
-                                <div className="battleship-stats-table-tr-td">2</div>
-                                <div className="battleship-stats-table-tr-td">3</div>
-                            </div>
-                            <div className="battleship-stats-table-tr">
-                                <div className="battleship-stats-table-tr-td">1</div>
-                                <div className="battleship-stats-table-tr-td">2</div>
-                                <div className="battleship-stats-table-tr-td">3</div>
-                            </div>
+                            {   pastData && 
+                                pastData.sort((a, b) => 
+                                    (a.score > b.score) ? 1 : -1
+                                ).map((item) => {
+                                    return(
+                                        <div className="battleship-stats-table-tr">
+                                            <div className="battleship-stats-table-tr-td">{item.username}</div>
+                                            <div className="battleship-stats-table-tr-td">{item.score}</div>
+                                            <div className="battleship-stats-table-tr-td">{item.time}</div>
+                                        </div>
+                                    )
+                                })
+                            }
+
                         </div>
                     </div>
                 </div>

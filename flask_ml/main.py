@@ -5,9 +5,6 @@ import pandas as pd
 from Titanic.titanic_model_helpers import *
 import json
 import numpy as np
-
-from tensorflow.keras.models import load_model #
-from tensorflow.python.keras.backend import set_session # 
 import tensorflow as tf
 
 new_model = tf.keras.models.load_model('Mnist/numbers_model.model', compile=False)
