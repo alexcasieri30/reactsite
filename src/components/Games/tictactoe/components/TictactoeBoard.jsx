@@ -8,6 +8,7 @@ import x1 from "../../../../Assets/Images/x1.png";
 import x2 from "../../../../Assets/Images/x2.png";
 import x3 from "../../../../Assets/Images/x3.png";
 import x4 from "../../../../Assets/Images/x4.jpg";
+import { useEffect } from "react";
 
 const initAvailStates = [];
 let board = [];
@@ -61,17 +62,6 @@ const didWin = function(playerSpots){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 function TictactoeBoard(){
     const [availableStates, setAvailableStates]=useState([...initAvailStates]);
     const [boardMoves, setBoardMoves]=useState([...board]);
@@ -79,8 +69,42 @@ function TictactoeBoard(){
     const [boxes, setBoxes] = useState([...initAvailStates]);
     const [newgame, setNewgame] = useState(false);
     const [xType, setXType] = useState(x);
-    console.log("RENDERED: boardmoves: ", boardMoves, availableStates);
-    
+    const [pastData, setPastData] = useState(null);
+    const [userData, setUserData] = useState(null);
+    const [dataSet, setDataSet] = useState(false);
+
+    useEffect(() => {
+        if (winner != 0){
+            sendData();
+            getData();
+        }
+    }, [winner])
+
+    useEffect(() => {
+        let temp = {}
+        if (pastData){
+            temp['username'] = pastData[0].username;
+            temp['wins'] = 0
+            temp['losses'] = 0
+            temp['ties'] = 0
+            pastData.forEach((item) => {
+                console.log('item: ', item.score);
+                if (item.score == '1'){
+                    temp['wins'] += 1
+                }else if (item.score=='2'){
+                    temp['losses'] += 1
+                }else if (item.score=='3'){
+                    temp['ties'] += 1
+                }
+            })
+            temp['perc'] = (temp['wins'] / (temp['wins'] + temp['losses'] + temp['ties'])) * 100;
+            console.log(temp);
+            setUserData(temp)
+            setDataSet(true)
+        }
+    }, [pastData]);
+
+
     if (newgame){
         let cls = document.querySelectorAll(".tictactoe-grid-cell");
         for (let i = 0; i < cls.length; i++){
@@ -91,6 +115,29 @@ function TictactoeBoard(){
             }
         }
     }
+
+    async function sendData(){
+        console.log("sending data, winner: ", winner);
+        let res = await fetch('http://localhost:3001/games/gameScore', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username: window.localStorage.getItem('username'), score: winner, game: 'tictactoe', time: "N/A"})
+        })
+        res = await res.json()
+        console.log("RES: ", res);
+    }
+
+    async function getData(){
+        console.log('getting data')
+        let res = await fetch("http://localhost:3001/games/info?game=tictactoe", {mode: 'cors'});
+        res = await res.json();
+        console.log("RES: ", res)
+        setPastData(res);
+    }
+
     function chooseRandom(){
         let randomSpotIndex = Math.floor( Math.random()*availableStates.length );
         let randomSpot = availableStates[randomSpotIndex];
@@ -111,14 +158,10 @@ function TictactoeBoard(){
             }
         }
         if (didWin(curr_spots)){
-            setWinner(
-                2
-            )
+            setWinner(2)
             return
         }else if (availableStates.length==0){
-            setWinner(
-                3
-            )
+            setWinner(3)
             return
         }
     }
@@ -140,8 +183,6 @@ function TictactoeBoard(){
         availableStates.splice(indexOfNumCell, 1);
         boardMoves[parseInt(numCell)] = "X";
         
-        console.log("person: ", availableStates, boardMoves);
-
         setAvailableStates(
             availableStates
         )
@@ -155,14 +196,12 @@ function TictactoeBoard(){
             }
         }
         if (didWin(curr_spots)){
-            setWinner(
-                1
-            )
+            setWinner(1)
+            getData();
             return
         }else if (availableStates.length==0){
-            setWinner(
-                3
-            )
+            setWinner(3)
+            getData();
             return
         }
         setTimeout(chooseRandom, 500);
@@ -174,9 +213,8 @@ function TictactoeBoard(){
         )
     }
     const handlePlayAgainButton = () => {
-        setWinner(
-            0
-        )
+        setWinner(0)
+        setDataSet(false)
         setAvailableStates(
             [...initAvailStates]
         )
@@ -188,37 +226,56 @@ function TictactoeBoard(){
         )
     }
     let classNameBoard = 'tictactoe-main-board ' + ((winner==1||winner==2||winner==3) ? 'hidden':'')
-    let classNamePlayer = 'playerWins ' + ((winner!=0&&winner==1) ? '':'hidden');
-    let classNameComputer='computerWins ' + ((winner!=0&&winner==2) ? '':'hidden')
-    let classNameTie = 'tieGame ' + ((winner!=0&&winner==3) ? '':'hidden')
     
     return(
         <div id="tictactoe">
             <div id="tictactoe-main">
-                <div className={classNamePlayer}>
-                    <div className="game-over-banner" id="you-win">
-                        You WIN!
+                <div className="game-over-banner-div">
+                    <div className={winner==0&&"hidden" || "game-over-banner"} id={winner==1&&"you-win"||winner==2&&"computer-wins"||winner==3&&"tie-game"}>
+                        {winner==1 && "You WIN!"}
+                        {winner==2 && "Computer WINS!"}
+                        {winner==3 && "Tie Game!"}
                         <div className="game-over-button-div">
-                            <button className="play-again-button" onClick={handlePlayAgainButton}>
-                                Play again
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className={classNameComputer}>
-                    <div className="game-over-banner" id="computer-wins">
-                        Computer WINS!
-                        <div className="game-over-button-div">
-                            <button className="play-again-button" onClick={handlePlayAgainButton}>
-                                Play again
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className={classNameTie}>
-                    <div className="game-over-banner" id="tie-game">
-                        Tie Game!
-                        <div className="game-over-button-div">
+                            <div className="player-stats-table">
+                                <div className="player-stats-table-tr">
+                                    <div className="player-stats-table-td">
+                                        Name
+                                    </div>
+                                    <div className="player-stats-table-td">
+                                        Wins
+                                    </div>
+                                    <div className="player-stats-table-td">
+                                        Losses
+                                    </div>
+                                    <div className="player-stats-table-td">
+                                        Ties
+                                    </div>
+                                    <div className="player-stats-table-td">
+                                        Perc%
+                                    </div>
+                                </div>
+                                { userData && 
+                                <div className="player-stats-table-tr">
+                                    <div className="player-stats-table-td">
+                                        {userData.username}
+                                    </div>
+                                    <div className="player-stats-table-td">
+                                        {userData.wins}
+                                    </div>
+                                    <div className="player-stats-table-td">
+                                        {userData.losses}
+                                    </div>
+                                    <div className="player-stats-table-td">
+                                        {userData.ties}
+                                    </div>
+                                    <div className="player-stats-table-td">
+                                        {Math.floor(userData.perc * 100) / 100}%
+                                    </div>
+                                </div>
+                                }
+                                
+    
+                            </div>
                             <button className="play-again-button" onClick={handlePlayAgainButton}>
                                 Play again
                             </button>
